@@ -104,7 +104,7 @@ class CreateAccountScreen extends StatelessWidget {
                                                               getVerticalSize(
                                                                   1),
                                                           color: ColorConstant
-                                                              .whiteA70001))),
+                                                              .ghostWhite))),
                                               Padding(
                                                   padding: getPadding(left: 8),
                                                   child: Text(
@@ -128,7 +128,7 @@ class CreateAccountScreen extends StatelessWidget {
                                                               getVerticalSize(
                                                                   1),
                                                           color: ColorConstant
-                                                              .whiteA70001,
+                                                              .ghostWhite,
                                                           indent:
                                                               getHorizontalSize(
                                                                   8))))

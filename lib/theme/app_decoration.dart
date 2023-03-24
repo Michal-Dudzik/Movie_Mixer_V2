@@ -6,11 +6,11 @@ class AppDecoration {
         color: ColorConstant.gray900,
       );
   static BoxDecoration get txtFillWhiteA70001 => BoxDecoration(
-        color: ColorConstant.whiteA70001,
+        color: ColorConstant.ghostWhite,
       );
   static BoxDecoration get outlineBlack9003f => BoxDecoration();
   static BoxDecoration get fillWhiteA70001 => BoxDecoration(
-        color: ColorConstant.whiteA70001,
+        color: ColorConstant.ghostWhite,
       );
   static BoxDecoration get outlineWhiteA700 => BoxDecoration(
         color: ColorConstant.whiteA70026,
@@ -43,13 +43,13 @@ class AppDecoration {
         color: ColorConstant.cyan600,
         border: Border(
           left: BorderSide(
-            color: ColorConstant.whiteA70001,
+            color: ColorConstant.ghostWhite,
             width: getHorizontalSize(
               1,
             ),
           ),
           right: BorderSide(
-            color: ColorConstant.whiteA70001,
+            color: ColorConstant.ghostWhite,
             width: getHorizontalSize(
               1,
             ),

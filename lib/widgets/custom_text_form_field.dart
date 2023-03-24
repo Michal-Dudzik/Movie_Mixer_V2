@@ -122,9 +122,21 @@ class CustomTextFormField extends StatelessWidget {
             1.25,
           ),
         );
+      case TextFormFieldFontStyle.RobotoRegular12:
+        return TextStyle(
+          color: ColorConstant.gray90002,
+          fontSize: getFontSize(
+            12,
+          ),
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w400,
+          height: getVerticalSize(
+            1.25,
+          ),
+        );
       default:
         return TextStyle(
-          color: ColorConstant.whiteA70001,
+          color: ColorConstant.ghostWhite,
           fontSize: getFontSize(
             18,
           ),
@@ -175,6 +187,8 @@ class CustomTextFormField extends StatelessWidget {
     switch (variant) {
       case TextFormFieldVariant.FillBlack900:
         return ColorConstant.black900;
+      case TextFormFieldVariant.FillWhite:
+        return ColorConstant.whiteA700;
       default:
         return ColorConstant.pink600;
     }
@@ -219,11 +233,14 @@ enum TextFormFieldPadding {
 
 enum TextFormFieldVariant {
   None,
+  OutlineWhiteA70001,
   OutlineBlack9003f,
   FillBlack900,
+  FillWhite,
 }
 
 enum TextFormFieldFontStyle {
   RobotoRomanBold18,
   RobotoRomanBold12,
+  RobotoRegular12,
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_button.dart';
@@ -62,61 +64,7 @@ class LoginScreen extends StatelessWidget {
                                                                   Alignment
                                                                       .center,
                                                               children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Container(
-                                                                        height: getSize(
-                                                                            115),
-                                                                        width: getSize(
-                                                                            115),
-                                                                        decoration: BoxDecoration(
-                                                                            color: ColorConstant
-                                                                                .whiteA700,
-                                                                            borderRadius: BorderRadius.circular(getHorizontalSize(
-                                                                                57)),
-                                                                            border: Border.all(
-                                                                                color: ColorConstant.whiteA700B2,
-                                                                                width: getHorizontalSize(1),
-                                                                                strokeAlign: strokeAlignOutside)))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Container(
-                                                                        height: getSize(
-                                                                            129),
-                                                                        width: getSize(
-                                                                            129),
-                                                                        decoration: BoxDecoration(
-                                                                            color: ColorConstant
-                                                                                .whiteA700,
-                                                                            borderRadius: BorderRadius.circular(getHorizontalSize(
-                                                                                64)),
-                                                                            border: Border.all(
-                                                                                color: ColorConstant.cyan600,
-                                                                                width: getHorizontalSize(2),
-                                                                                strokeAlign: strokeAlignOutside)))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Container(
-                                                                        height: getSize(
-                                                                            116),
-                                                                        width: getSize(
-                                                                            116),
-                                                                        decoration: BoxDecoration(
-                                                                            color: ColorConstant
-                                                                                .whiteA700,
-                                                                            borderRadius: BorderRadius.circular(getHorizontalSize(
-                                                                                58)),
-                                                                            border: Border.all(
-                                                                                color: ColorConstant.pink600,
-                                                                                width: getHorizontalSize(2),
-                                                                                strokeAlign: strokeAlignOutside)))),
-                                                                CustomImageView(
+                                                                (CustomImageView(
                                                                     imagePath:
                                                                         ImageConstant
                                                                             .imgLogo,
@@ -126,12 +74,17 @@ class LoginScreen extends StatelessWidget {
                                                                     width:
                                                                         getSize(
                                                                             115),
+                                                                    border: Border.all(
+                                                                        color: ColorConstant
+                                                                            .whiteA700B2,
+                                                                        width: getSize(
+                                                                            2)),
                                                                     radius: BorderRadius.circular(
                                                                         getHorizontalSize(
                                                                             57)),
                                                                     alignment:
                                                                         Alignment
-                                                                            .center)
+                                                                            .center)),
                                                               ]))),
                                                   Align(
                                                       alignment:
@@ -161,25 +114,28 @@ class LoginScreen extends StatelessWidget {
                                                                         child: Stack(alignment: Alignment.center, children: [
                                                                           Align(
                                                                               alignment: Alignment.center,
-                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36)),
+                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36Cyan600)),
+                                                                          Align(
+                                                                              alignment: Alignment.center,
+                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2)),
                                                                           Align(
                                                                               alignment: Alignment.center,
                                                                               child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2))
                                                                         ]))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Text(
-                                                                        "Mixer",
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .left,
-                                                                        style: AppStyle
-                                                                            .txtClip36Cyan600))
+                                                                // Align(
+                                                                //     alignment:
+                                                                //         Alignment
+                                                                //             .center,
+                                                                //     child: Text(
+                                                                //         "Mixer",
+                                                                //         overflow:
+                                                                //             TextOverflow
+                                                                //                 .ellipsis,
+                                                                //         textAlign:
+                                                                //             TextAlign
+                                                                //                 .left,
+                                                                //         style: AppStyle
+                                                                //             .txtClip36Cyan600))
                                                               ]))),
                                                   Align(
                                                       alignment:
@@ -210,31 +166,37 @@ class LoginScreen extends StatelessWidget {
                                                                               child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36Pink600)),
                                                                           Align(
                                                                               alignment: Alignment.center,
+                                                                              child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2)),
+                                                                          Align(
+                                                                              alignment: Alignment.center,
                                                                               child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2))
                                                                         ]))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Text(
-                                                                        "Movie ",
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .left,
-                                                                        style: AppStyle
-                                                                            .txtClip36Pink6001))
                                                               ])))
                                                 ])),
-                                        CustomButton(
-                                            height: getVerticalSize(40),
-                                            text: "E-Mail",
-                                            margin: getMargin(
-                                                left: 31, top: 29, right: 29),
-                                            variant:
-                                                ButtonVariant.FillWhiteA70001),
+                                        // CustomButton(
+                                        //     height: getVerticalSize(40),
+                                        //     text: "E-Mail",
+                                        //     margin: getMargin(
+                                        //         left: 31, top: 29, right: 29),
+                                        //     variant:
+                                        //         ButtonVariant.FillWhiteA70001),
+
+                                        CustomTextFormField(
+                                          focusNode: FocusNode(),
+                                          hintText: "E-Mail",
+                                          margin: getMargin(
+                                              left: 31, top: 29, right: 29),
+                                          variant:
+                                              TextFormFieldVariant.FillWhite,
+                                          shape: TextFormFieldShape
+                                              .RoundedBorder10,
+                                          padding:
+                                              TextFormFieldPadding.PaddingT10,
+                                          fontStyle: TextFormFieldFontStyle
+                                              .RobotoRegular12,
+                                          textInputAction: TextInputAction.done,
+                                        ),
+
                                         CustomButton(
                                             height: getVerticalSize(40),
                                             text: "Password",
@@ -242,13 +204,13 @@ class LoginScreen extends StatelessWidget {
                                                 left: 30, top: 18, right: 30),
                                             variant:
                                                 ButtonVariant.FillWhiteA70001),
-                                        Padding(
-                                            padding: getPadding(top: 19),
-                                            child: Text("Forgot password",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtRobotoRomanThin12)),
+                                        // Padding(
+                                        //     padding: getPadding(top: 19),
+                                        //     child: Text("Forgot password",
+                                        //         overflow: TextOverflow.ellipsis,
+                                        //         textAlign: TextAlign.left,
+                                        //         style: AppStyle
+                                        //             .txtRobotoRomanThin12)),
                                         Padding(
                                             padding: getPadding(top: 17),
                                             child: Row(
@@ -290,15 +252,19 @@ class LoginScreen extends StatelessWidget {
                                                       onTap: () =>
                                                           onTapSignin(context))
                                                 ])),
-                                        CustomTextFormField(
+                                        CustomButton(
+                                            height: getVerticalSize(34),
                                             width: getHorizontalSize(214),
-                                            focusNode: FocusNode(),
-                                            controller: enterasguestController,
-                                            hintText: "Enter as a guest",
+                                            text: "Enter as a guest",
                                             margin:
                                                 getMargin(top: 18, bottom: 58),
-                                            textInputAction:
-                                                TextInputAction.done)
+                                            variant: ButtonVariant.FillPink600,
+                                            shape: ButtonShape.RoundedBorder15,
+                                            padding: ButtonPadding.PaddingAll8,
+                                            fontStyle: ButtonFontStyle
+                                                .RobotoRomanMedium18,
+                                            onTap: () =>
+                                                onTapEnterAsGuest(context))
                                       ])))
                         ])))));
   }
@@ -308,6 +274,10 @@ class LoginScreen extends StatelessWidget {
   }
 
   onTapSignin(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
+  }
+
+  onTapEnterAsGuest(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }
