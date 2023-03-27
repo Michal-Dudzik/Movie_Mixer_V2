@@ -119,94 +119,94 @@ class LoginScreen extends StatelessWidget {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        GestureDetector(
-                                                            onTap: () {
-                                                              onTapGooglebutton(
-                                                                  context);
-                                                            },
-                                                            child: Card(
-                                                                clipBehavior: Clip
-                                                                    .antiAlias,
-                                                                elevation: 0,
-                                                                margin:
-                                                                    getMargin(
-                                                                        bottom:
-                                                                            2),
-                                                                color: ColorConstant
-                                                                    .whiteA700,
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(getHorizontalSize(
-                                                                            15))),
-                                                                child:
-                                                                    Container(
-                                                                        height: getVerticalSize(
-                                                                            40),
-                                                                        width: getHorizontalSize(
-                                                                            55),
-                                                                        padding: getPadding(
-                                                                            left:
-                                                                                16,
-                                                                            top:
-                                                                                8,
-                                                                            right:
-                                                                                16,
-                                                                            bottom:
-                                                                                8),
-                                                                        decoration: AppDecoration
-                                                                            .outlineIndigo3001c
-                                                                            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
-                                                                        child: Stack(children: [
-                                                                          CustomImageView(
-                                                                              svgPath: ImageConstant.imgGoogle,
-                                                                              height: getVerticalSize(23),
-                                                                              width: getHorizontalSize(23),
-                                                                              alignment: Alignment.center)
-                                                                        ])))),
-                                                        GestureDetector(
-                                                            onTap: () {
-                                                              onTapApplebutton(
-                                                                  context);
-                                                            },
-                                                            child: Card(
-                                                                clipBehavior: Clip
-                                                                    .antiAlias,
-                                                                elevation: 0,
-                                                                margin:
-                                                                    getMargin(
-                                                                        bottom:
-                                                                            2),
-                                                                color: ColorConstant
-                                                                    .whiteA700,
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(getHorizontalSize(
-                                                                            15))),
-                                                                child:
-                                                                    Container(
-                                                                        height: getVerticalSize(
-                                                                            40),
-                                                                        width: getHorizontalSize(
-                                                                            55),
-                                                                        padding: getPadding(
-                                                                            left:
-                                                                                16,
-                                                                            top:
-                                                                                8,
-                                                                            right:
-                                                                                16,
-                                                                            bottom:
-                                                                                8),
-                                                                        decoration: AppDecoration
-                                                                            .outlineIndigo3001c
-                                                                            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
-                                                                        child: Stack(children: [
-                                                                          CustomImageView(
-                                                                              svgPath: ImageConstant.imgApple,
-                                                                              height: getVerticalSize(23),
-                                                                              width: getHorizontalSize(19),
-                                                                              alignment: Alignment.center)
-                                                                        ])))),
+                                                        // GestureDetector(
+                                                        //     onTap: () {
+                                                        //       onTapGooglebutton(
+                                                        //           context);
+                                                        //     },
+                                                        //     child: Card(
+                                                        //         clipBehavior: Clip
+                                                        //             .antiAlias,
+                                                        //         elevation: 0,
+                                                        //         margin:
+                                                        //             getMargin(
+                                                        //                 bottom:
+                                                        //                     2),
+                                                        //         color: ColorConstant
+                                                        //             .whiteA700,
+                                                        //         shape: RoundedRectangleBorder(
+                                                        //             borderRadius:
+                                                        //                 BorderRadius.circular(getHorizontalSize(
+                                                        //                     15))),
+                                                        //         child:
+                                                        //             Container(
+                                                        //                 height: getVerticalSize(
+                                                        //                     40),
+                                                        //                 width: getHorizontalSize(
+                                                        //                     55),
+                                                        //                 padding: getPadding(
+                                                        //                     left:
+                                                        //                         16,
+                                                        //                     top:
+                                                        //                         8,
+                                                        //                     right:
+                                                        //                         16,
+                                                        //                     bottom:
+                                                        //                         8),
+                                                        //                 decoration: AppDecoration
+                                                        //                     .outlineIndigo3001c
+                                                        //                     .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
+                                                        //                 child: Stack(children: [
+                                                        //                   CustomImageView(
+                                                        //                       svgPath: ImageConstant.imgGoogle,
+                                                        //                       height: getVerticalSize(23),
+                                                        //                       width: getHorizontalSize(23),
+                                                        //                       alignment: Alignment.center)
+                                                        //                 ])))),
+                                                        // GestureDetector(
+                                                        //     onTap: () {
+                                                        //       onTapApplebutton(
+                                                        //           context);
+                                                        //     },
+                                                        //     child: Card(
+                                                        //         clipBehavior: Clip
+                                                        //             .antiAlias,
+                                                        //         elevation: 0,
+                                                        //         margin:
+                                                        //             getMargin(
+                                                        //                 bottom:
+                                                        //                     2),
+                                                        //         color: ColorConstant
+                                                        //             .whiteA700,
+                                                        //         shape: RoundedRectangleBorder(
+                                                        //             borderRadius:
+                                                        //                 BorderRadius.circular(getHorizontalSize(
+                                                        //                     15))),
+                                                        //         child:
+                                                        //             Container(
+                                                        //                 height: getVerticalSize(
+                                                        //                     40),
+                                                        //                 width: getHorizontalSize(
+                                                        //                     55),
+                                                        //                 padding: getPadding(
+                                                        //                     left:
+                                                        //                         16,
+                                                        //                     top:
+                                                        //                         8,
+                                                        //                     right:
+                                                        //                         16,
+                                                        //                     bottom:
+                                                        //                         8),
+                                                        //                 decoration: AppDecoration
+                                                        //                     .outlineIndigo3001c
+                                                        //                     .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
+                                                        //                 child: Stack(children: [
+                                                        //                   CustomImageView(
+                                                        //                       svgPath: ImageConstant.imgApple,
+                                                        //                       height: getVerticalSize(23),
+                                                        //                       width: getHorizontalSize(19),
+                                                        //                       alignment: Alignment.center)
+                                                        //                 ])))),
                                                         CustomButton(
                                                             height:
                                                                 getVerticalSize(
@@ -238,28 +238,16 @@ class LoginScreen extends StatelessWidget {
                                                           .RobotoRomanRegular18,
                                                       onTap: () =>
                                                           onTapSignup(context)),
-                                                  CustomButton(
-                                                    height: getVerticalSize(39),
-                                                    text: "Enter as a guest",
-                                                    margin: getMargin(top: 26),
-                                                    variant: ButtonVariant
-                                                        .OutlineBlack9003f_1,
-                                                    fontStyle: ButtonFontStyle
-                                                        .RobotoRomanRegular18,
-                                                    onTap: () =>
-                                                        onTapGuest(context),
-
-                                                    // CustomTextFormField(
-                                                    //   focusNode: FocusNode(),
-                                                    //   controller:
-                                                    //       guestbuttonController,
-                                                    //   hintText:
-                                                    //       "Enter as a guest",
-                                                    //   margin:
-                                                    //       getMargin(top: 12),
-                                                    //   textInputAction:
-                                                    //       TextInputAction.done)
-                                                  )
+                                                  // CustomButton(
+                                                  //   height: getVerticalSize(39),
+                                                  //   text: "Enter as a guest",
+                                                  //   margin: getMargin(top: 26),
+                                                  //   variant: ButtonVariant
+                                                  //       .OutlineBlack9003f_1,
+                                                  //   fontStyle: ButtonFontStyle
+                                                  //       .RobotoRomanRegular18,
+                                                  //   onTap: () =>
+                                                  //       onTapGuest(context),
                                                 ]))
                                       ])))
                         ])))));
