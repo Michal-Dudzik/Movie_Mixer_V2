@@ -26,7 +26,6 @@ class AppbarImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadiusStyle.roundedBorder10,
       onTap: () {
         onTap!();
       },
@@ -38,11 +37,6 @@ class AppbarImage extends StatelessWidget {
           height: height,
           width: width,
           fit: BoxFit.contain,
-          radius: BorderRadius.circular(
-            getHorizontalSize(
-              10,
-            ),
-          ),
         ),
       ),
     );

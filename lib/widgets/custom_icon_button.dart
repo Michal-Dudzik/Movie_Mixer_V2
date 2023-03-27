@@ -67,7 +67,6 @@ class CustomIconButton extends StatelessWidget {
   _buildDecoration() {
     return BoxDecoration(
       color: _setColor(),
-      border: _setBorder(),
       borderRadius: _setBorderRadius(),
       boxShadow: _setBoxShadow(),
     );
@@ -75,55 +74,28 @@ class CustomIconButton extends StatelessWidget {
 
   _setPadding() {
     switch (padding) {
-      case IconButtonPadding.PaddingAll12:
-        return getPadding(
-          all: 12,
-        );
       default:
         return getPadding(
-          all: 9,
+          all: 12,
         );
     }
   }
 
   _setColor() {
     switch (variant) {
-      case IconButtonVariant.OutlineBlack9003f:
-        return ColorConstant.pink600;
       case IconButtonVariant.OutlineBlack9003f_1:
         return ColorConstant.cyan600;
       default:
-        return ColorConstant.whiteA70026;
-    }
-  }
-
-  _setBorder() {
-    switch (variant) {
-      case IconButtonVariant.OutlineBlack9003f:
-      case IconButtonVariant.OutlineBlack9003f_1:
-        return null;
-      default:
-        return Border.all(
-          color: ColorConstant.whiteA700,
-          width: getHorizontalSize(
-            3.00,
-          ),
-        );
+        return ColorConstant.pink600;
     }
   }
 
   _setBorderRadius() {
     switch (shape) {
-      case IconButtonShape.CircleBorder32:
-        return BorderRadius.circular(
-          getHorizontalSize(
-            32.00,
-          ),
-        );
       default:
         return BorderRadius.circular(
           getHorizontalSize(
-            22.00,
+            32.00,
           ),
         );
     }
@@ -131,22 +103,6 @@ class CustomIconButton extends StatelessWidget {
 
   _setBoxShadow() {
     switch (variant) {
-      case IconButtonVariant.OutlineBlack9003f:
-        return [
-          BoxShadow(
-            color: ColorConstant.black9003f,
-            spreadRadius: getHorizontalSize(
-              2.00,
-            ),
-            blurRadius: getHorizontalSize(
-              2.00,
-            ),
-            offset: Offset(
-              0,
-              4,
-            ),
-          )
-        ];
       case IconButtonVariant.OutlineBlack9003f_1:
         return [
           BoxShadow(
@@ -163,26 +119,35 @@ class CustomIconButton extends StatelessWidget {
             ),
           )
         ];
-      case IconButtonVariant.OutlineWhiteA700:
-        return null;
       default:
-        return null;
+        return [
+          BoxShadow(
+            color: ColorConstant.black9003f,
+            spreadRadius: getHorizontalSize(
+              2.00,
+            ),
+            blurRadius: getHorizontalSize(
+              2.00,
+            ),
+            offset: Offset(
+              0,
+              4,
+            ),
+          )
+        ];
     }
   }
 }
 
 enum IconButtonShape {
-  CircleBorder22,
   CircleBorder32,
 }
 
 enum IconButtonPadding {
-  PaddingAll9,
   PaddingAll12,
 }
 
 enum IconButtonVariant {
-  OutlineWhiteA700,
   OutlineBlack9003f,
   OutlineBlack9003f_1,
 }

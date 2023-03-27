@@ -75,16 +75,18 @@ class CustomTextFormField extends StatelessWidget {
     return Container(
       width: width ?? double.maxFinite,
       margin: margin,
-      child: TextFormField(
-        controller: controller,
-        focusNode: focusNode,
-        style: _setFontStyle(),
-        obscureText: isObscureText!,
-        textInputAction: textInputAction,
-        keyboardType: textInputType,
-        maxLines: maxLines ?? 1,
-        decoration: _buildDecoration(),
-        validator: validator,
+      child: Center(
+        child: TextFormField(
+          controller: controller,
+          focusNode: focusNode,
+          style: _setFontStyle(),
+          obscureText: isObscureText!,
+          textInputAction: textInputAction,
+          keyboardType: textInputType,
+          maxLines: maxLines ?? 1,
+          decoration: _buildDecoration(),
+          validator: validator,
+        ),
       ),
     );
   }
@@ -110,21 +112,9 @@ class CustomTextFormField extends StatelessWidget {
 
   _setFontStyle() {
     switch (fontStyle) {
-      case TextFormFieldFontStyle.RobotoRomanBold12:
+      default:
         return TextStyle(
-          color: ColorConstant.whiteA700,
-          fontSize: getFontSize(
-            12,
-          ),
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w700,
-          height: getVerticalSize(
-            1.25,
-          ),
-        );
-      case TextFormFieldFontStyle.RobotoRegular12:
-        return TextStyle(
-          color: ColorConstant.gray90002,
+          color: ColorConstant.black900,
           fontSize: getFontSize(
             12,
           ),
@@ -134,33 +124,15 @@ class CustomTextFormField extends StatelessWidget {
             1.25,
           ),
         );
-      default:
-        return TextStyle(
-          color: ColorConstant.ghostWhite,
-          fontSize: getFontSize(
-            18,
-          ),
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w700,
-          height: getVerticalSize(
-            1.22,
-          ),
-        );
     }
   }
 
   _setOutlineBorderRadius() {
     switch (shape) {
-      case TextFormFieldShape.RoundedBorder10:
-        return BorderRadius.circular(
-          getHorizontalSize(
-            10.00,
-          ),
-        );
       default:
         return BorderRadius.circular(
           getHorizontalSize(
-            15.00,
+            10.00,
           ),
         );
     }
@@ -168,11 +140,6 @@ class CustomTextFormField extends StatelessWidget {
 
   _setBorderStyle() {
     switch (variant) {
-      case TextFormFieldVariant.FillBlack900:
-        return OutlineInputBorder(
-          borderRadius: _setOutlineBorderRadius(),
-          borderSide: BorderSide.none,
-        );
       case TextFormFieldVariant.None:
         return InputBorder.none;
       default:
@@ -185,19 +152,13 @@ class CustomTextFormField extends StatelessWidget {
 
   _setFillColor() {
     switch (variant) {
-      case TextFormFieldVariant.FillBlack900:
-        return ColorConstant.black900;
-      case TextFormFieldVariant.FillWhite:
-        return ColorConstant.whiteA700;
       default:
-        return ColorConstant.pink600;
+        return ColorConstant.whiteA700;
     }
   }
 
   _setFilled() {
     switch (variant) {
-      case TextFormFieldVariant.FillBlack900:
-        return true;
       case TextFormFieldVariant.None:
         return false;
       default:
@@ -207,15 +168,9 @@ class CustomTextFormField extends StatelessWidget {
 
   _setPadding() {
     switch (padding) {
-      case TextFormFieldPadding.PaddingT10:
-        return getPadding(
-          top: 10,
-          right: 10,
-          bottom: 10,
-        );
       default:
         return getPadding(
-          all: 9,
+          all: 12,
         );
     }
   }
@@ -223,24 +178,17 @@ class CustomTextFormField extends StatelessWidget {
 
 enum TextFormFieldShape {
   RoundedBorder15,
-  RoundedBorder10,
 }
 
 enum TextFormFieldPadding {
   PaddingAll9,
-  PaddingT10,
 }
 
 enum TextFormFieldVariant {
   None,
-  OutlineWhiteA70001,
   OutlineBlack9003f,
-  FillBlack900,
-  FillWhite,
 }
 
 enum TextFormFieldFontStyle {
-  RobotoRomanBold18,
-  RobotoRomanBold12,
-  RobotoRegular12,
+  RobotoRomanRegular18,
 }

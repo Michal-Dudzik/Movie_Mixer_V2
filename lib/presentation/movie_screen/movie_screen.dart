@@ -7,89 +7,60 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.gray90002,
+            backgroundColor: ColorConstant.gray900,
             body: Container(
                 width: double.maxFinite,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                          height: getVerticalSize(445),
-                          width: double.maxFinite,
-                          child:
-                              Stack(alignment: Alignment.bottomLeft, children: [
-                            Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                    height: getVerticalSize(376),
-                                    width: double.maxFinite,
-                                    child: Stack(
-                                        alignment: Alignment.topLeft,
-                                        children: [
-                                          CustomImageView(
-                                              imagePath: ImageConstant
-                                                  .imgPoster376x360,
-                                              height: getVerticalSize(376),
-                                              width: getHorizontalSize(360),
-                                              alignment: Alignment.center),
-                                          CustomIconButton(
-                                              height: 44,
-                                              width: 44,
-                                              margin:
-                                                  getMargin(left: 6, top: 15),
-                                              alignment: Alignment.topLeft,
-                                              onTap: () {
-                                                onTapBtnArrowleftbutton(
-                                                    context);
-                                              },
-                                              child: CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .imgArrowleftbutton44x44))
-                                        ]))),
-                            Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Padding(
-                                    padding: getPadding(left: 24, bottom: 11),
-                                    child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Row(children: [
-                                            Text("Morbius",
+                          width: getHorizontalSize(312),
+                          margin: getMargin(left: 24, top: 21, right: 24),
+                          child: Text(
+                              "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead. Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Morbius attempts a desperate gamble.",
+                              maxLines: null,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtRobotoRomanRegular14)),
+                      CustomImageView(
+                          imagePath: ImageConstant.imgPoster376x360,
+                          height: getVerticalSize(376),
+                          width: getHorizontalSize(360)),
+                      Padding(
+                          padding: getPadding(left: 24, top: 5, right: 24),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        Text("Morbius",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle
+                                                .txtRobotoRomanMedium35),
+                                        Padding(
+                                            padding: getPadding(
+                                                left: 13, top: 15, bottom: 8),
+                                            child: Text("2022",
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.left,
                                                 style: AppStyle
-                                                    .txtRobotoRomanBold32),
-                                            Padding(
-                                                padding: getPadding(
-                                                    left: 8,
-                                                    top: 17,
-                                                    bottom: 5),
-                                                child: Text("01.04.2022",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtRobotoRomanLight12))
-                                          ]),
-                                          Padding(
-                                              padding: getPadding(top: 6),
-                                              child: Text("Daniel Espinosa",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.left,
-                                                  style: AppStyle
-                                                      .txtRobotoRomanLight12))
-                                        ]))),
-                            Align(
-                                alignment: Alignment.bottomRight,
-                                child: Padding(
-                                    padding: getPadding(right: 31),
+                                                    .txtRobotoRomanLight15))
+                                      ]),
+                                      Padding(
+                                          padding: getPadding(left: 12, top: 6),
+                                          child: Text("Daniel Espinosa",
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.left,
+                                              style: AppStyle
+                                                  .txtRobotoRomanLight15))
+                                    ]),
+                                Padding(
+                                    padding: getPadding(bottom: 1),
                                     child: Column(
-                                        mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         mainAxisAlignment:
@@ -104,42 +75,30 @@ class MovieScreen extends StatelessWidget {
                                                     CustomImageView(
                                                         svgPath: ImageConstant
                                                             .imgStar,
-                                                        height:
-                                                            getVerticalSize(26),
-                                                        width:
-                                                            getHorizontalSize(
-                                                                27),
+                                                        height: getSize(27),
+                                                        width: getSize(27),
                                                         margin: getMargin(
-                                                            top: 6, bottom: 2)),
+                                                            top: 6, bottom: 4)),
                                                     Padding(
                                                         padding:
                                                             getPadding(left: 6),
                                                         child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Align(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Text(
-                                                                      "5.2",
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
-                                                                      style: AppStyle
-                                                                          .txtRobotoRomanLight20)),
-                                                              Align(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .centerRight,
+                                                              Text("5.2",
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .left,
+                                                                  style: AppStyle
+                                                                      .txtRobotoRomanLight20),
+                                                              Padding(
+                                                                  padding: getPadding(
+                                                                      top: 1),
                                                                   child: Text(
                                                                       "133K",
                                                                       overflow:
@@ -153,19 +112,19 @@ class MovieScreen extends StatelessWidget {
                                                             ]))
                                                   ])),
                                           Padding(
-                                              padding: getPadding(top: 11),
+                                              padding: getPadding(top: 8),
                                               child: Row(children: [
                                                 CustomImageView(
                                                     svgPath:
                                                         ImageConstant.imgVector,
-                                                    height: getVerticalSize(16),
+                                                    height: getVerticalSize(15),
                                                     width:
-                                                        getHorizontalSize(28),
-                                                    margin:
-                                                        getMargin(bottom: 1)),
+                                                        getHorizontalSize(27),
+                                                    margin: getMargin(
+                                                        top: 1, bottom: 1)),
                                                 Padding(
                                                     padding:
-                                                        getPadding(left: 5),
+                                                        getPadding(left: 6),
                                                     child: Text("621",
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -174,65 +133,61 @@ class MovieScreen extends StatelessWidget {
                                                         style: AppStyle
                                                             .txtRobotoRomanLight15))
                                               ]))
-                                        ])))
-                          ])),
-                      Container(
-                          width: getHorizontalSize(316),
-                          margin: getMargin(left: 24, top: 23, right: 19),
-                          child: Text(
-                              "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead. Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Morbius attempts a desperate gamble.",
-                              maxLines: null,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtRobotoRomanRegular14)),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                              padding: getPadding(left: 24, top: 77, right: 42),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomIconButton(
-                                        height: 64,
-                                        width: 64,
-                                        variant:
-                                            IconButtonVariant.OutlineBlack9003f,
-                                        shape: IconButtonShape.CircleBorder32,
-                                        padding: IconButtonPadding.PaddingAll12,
-                                        onTap: () {
-                                          onTapBtnComputer(context);
-                                        },
-                                        child: CustomImageView(
-                                            svgPath:
-                                                ImageConstant.imgComputer)),
-                                    CustomIconButton(
-                                        height: 64,
-                                        width: 64,
-                                        variant: IconButtonVariant
-                                            .OutlineBlack9003f_1,
-                                        shape: IconButtonShape.CircleBorder32,
-                                        padding: IconButtonPadding.PaddingAll12,
-                                        onTap: () {
-                                          onTapBtnThumbsup(context);
-                                        },
-                                        child: CustomImageView(
-                                            svgPath: ImageConstant.imgThumbsup))
-                                  ]))),
+                                        ]))
+                              ])),
                       Padding(
-                          padding: getPadding(top: 3, bottom: 5),
-                          child: Text("1/6",
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtRobotoRomanBold20.copyWith(
-                                  letterSpacing: getHorizontalSize(0.38))))
+                          padding: getPadding(left: 24, top: 77, right: 24),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CustomIconButton(
+                                    height: 64,
+                                    width: 64,
+                                    onTap: () {
+                                      onTapBtnDisagreebutton(context);
+                                    },
+                                    child: CustomImageView(
+                                        svgPath: ImageConstant.imgComputer)),
+                                CustomIconButton(
+                                    height: 64,
+                                    width: 64,
+                                    variant:
+                                        IconButtonVariant.OutlineBlack9003f_1,
+                                    onTap: () {
+                                      onTapBtnThumbsup(context);
+                                    },
+                                    child: CustomImageView(
+                                        svgPath: ImageConstant.imgThumbsup))
+                              ])),
+                      Padding(
+                          padding: getPadding(top: 13, bottom: 5),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("X",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle
+                                        .txtRobotoRomanRegular20WhiteA70001),
+                                Padding(
+                                    padding: getPadding(left: 1, top: 1),
+                                    child: Text("/",
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style:
+                                            AppStyle.txtRobotoRomanRegular18)),
+                                Padding(
+                                    padding: getPadding(left: 1),
+                                    child: Text("X",
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle
+                                            .txtRobotoRomanRegular20WhiteA70001))
+                              ]))
                     ]))));
   }
 
-  onTapBtnArrowleftbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.mainScreen);
-  }
-
-  onTapBtnComputer(BuildContext context) {
+  onTapBtnDisagreebutton(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
   }
 

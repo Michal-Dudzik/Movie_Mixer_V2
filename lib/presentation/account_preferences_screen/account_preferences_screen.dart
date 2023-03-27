@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
 class AccountPreferencesScreen extends StatelessWidget {
   @override
@@ -16,57 +15,88 @@ class AccountPreferencesScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: ColorConstant.gray900,
                     image: DecorationImage(
-                        image: AssetImage(ImageConstant.imgLoginscreen),
+                        image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
                 child: Container(
                     width: double.maxFinite,
                     padding:
-                        getPadding(left: 13, top: 15, right: 13, bottom: 15),
+                        getPadding(left: 13, top: 17, right: 13, bottom: 17),
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          CustomIconButton(
-                              height: 44,
-                              width: 44,
+                          CustomImageView(
+                              svgPath: ImageConstant.imgArrowleft,
+                              height: getVerticalSize(17),
+                              width: getHorizontalSize(23),
+                              margin: getMargin(left: 1),
                               onTap: () {
-                                onTapBtnArrowleftbutton(context);
-                              },
-                              child: CustomImageView(
-                                  imagePath: ImageConstant.imgArrowleftbutton)),
+                                onTapImgArrowleft(context);
+                              }),
                           Container(
-                              margin: getMargin(top: 73, bottom: 5),
-                              padding: getPadding(
-                                  left: 36, top: 64, right: 36, bottom: 64),
-                              decoration: AppDecoration.outlineWhiteA700b2
-                                  .copyWith(
+                              width: double.maxFinite,
+                              child: Container(
+                                  width: getHorizontalSize(334),
+                                  margin: getMargin(top: 97, bottom: 5),
+                                  padding: getPadding(all: 22),
+                                  decoration: AppDecoration.purple.copyWith(
                                       borderRadius:
                                           BorderRadiusStyle.roundedBorder43),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomImageView(
-                                        svgPath: ImageConstant.imgToggleon,
-                                        height: getVerticalSize(24),
-                                        width: getHorizontalSize(58),
-                                        radius: BorderRadius.circular(
-                                            getHorizontalSize(12)),
-                                        margin: getMargin(bottom: 381)),
-                                    Padding(
-                                        padding:
-                                            getPadding(left: 8, bottom: 376),
-                                        child: Text("App notifications",
+                                  child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text("Manage account",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style:
-                                                AppStyle.txtRobotoRomanLight25))
-                                  ]))
+                                                AppStyle.txtRobotoRomanBold20),
+                                        Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                                padding: getPadding(
+                                                    top: 37, bottom: 404),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      CustomImageView(
+                                                          svgPath: ImageConstant
+                                                              .imgOffer,
+                                                          height:
+                                                              getVerticalSize(
+                                                                  24),
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  48),
+                                                          radius: BorderRadius
+                                                              .circular(
+                                                                  getHorizontalSize(
+                                                                      12))),
+                                                      Padding(
+                                                          padding: getPadding(
+                                                              left: 8),
+                                                          child: Text(
+                                                              "Notifications",
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: AppStyle
+                                                                  .txtRobotoRomanRegular20))
+                                                    ])))
+                                      ])))
                         ])))));
   }
 
-  onTapBtnArrowleftbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.mainScreen);
+  onTapImgArrowleft(BuildContext context) {
+    Navigator.pop(context);
   }
 }

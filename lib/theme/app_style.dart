@@ -2,17 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
 class AppStyle {
-  static TextStyle txtRobotoRomanThin12 = TextStyle(
-    color: ColorConstant.ghostWhite,
+  static TextStyle txtRobotoRomanRegular12Black900 = TextStyle(
+    color: ColorConstant.black900,
     fontSize: getFontSize(
       12,
     ),
     fontFamily: 'Roboto',
-    fontWeight: FontWeight.w100,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanMedium35 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      35,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
   );
 
   static TextStyle txtRobotoRomanLight15 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       15,
     ),
@@ -20,80 +29,8 @@ class AppStyle {
     fontWeight: FontWeight.w300,
   );
 
-  static TextStyle txtRobotoRomanBold12 = TextStyle(
-    color: ColorConstant.gray600,
-    fontSize: getFontSize(
-      12,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w700,
-  );
-
-  static TextStyle txtRobotoRomanMedium12 = TextStyle(
-    color: ColorConstant.black900,
-    fontSize: getFontSize(
-      12,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle txtRobotoRomanLight7 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      7,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
-  );
-
-  static TextStyle txtRobotoRomanLight8 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      8,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
-  );
-
-  static TextStyle txtRobotoRomanBold32 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      32,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w700,
-  );
-
-  static TextStyle txtRobotoRomanMedium30 = TextStyle(
-    color: ColorConstant.cyan600,
-    fontSize: getFontSize(
-      30,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle txtRobotoRomanSemiBold18 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      18,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w600,
-  );
-
-  static TextStyle txtLemonTuesday35 = TextStyle(
-    color: ColorConstant.whiteA700,
-    fontSize: getFontSize(
-      35,
-    ),
-    fontFamily: 'Lemon Tuesday',
-    fontWeight: FontWeight.w400,
-  );
-
   static TextStyle txtLemonTuesday15 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       15,
     ),
@@ -128,13 +65,31 @@ class AppStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle txtRobotoRomanLight12 = TextStyle(
-    color: ColorConstant.gray60001,
+  static TextStyle txtRobotoRomanRegular40 = TextStyle(
+    color: ColorConstant.whiteA70001,
     fontSize: getFontSize(
-      12,
+      40,
     ),
     fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular20 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      20,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular22 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      22,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle txtRobotoRegular20 = TextStyle(
@@ -146,8 +101,17 @@ class AppStyle {
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle txtRobotoRomanRegular25 = TextStyle(
+    color: ColorConstant.cyan600,
+    fontSize: getFontSize(
+      25,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle txtRobotoRomanLight10 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       10,
     ),
@@ -182,17 +146,8 @@ class AppStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle txtRobotoRomanLight25 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      25,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
-  );
-
   static TextStyle txtRobotoRomanBold20 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       20,
     ),
@@ -200,19 +155,55 @@ class AppStyle {
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle txtRobotoRomanMedium20 = TextStyle(
-    color: ColorConstant.ghostWhite,
+  static TextStyle txtRobotoRomanRegular20WhiteA70001 = TextStyle(
+    color: ColorConstant.whiteA70001,
     fontSize: getFontSize(
       20,
     ),
     fontFamily: 'Roboto',
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle txtRobotoRomanRegular15 = TextStyle(
-    color: ColorConstant.black900,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       15,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular17Black900 = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      17,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular37 = TextStyle(
+    color: ColorConstant.whiteA70001,
+    fontSize: getFontSize(
+      37,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular18 = TextStyle(
+    color: ColorConstant.whiteA70001,
+    fontSize: getFontSize(
+      18,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanRegular17 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      17,
     ),
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
@@ -245,26 +236,8 @@ class AppStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle txtRobotoRomanLight12Gray600ab = TextStyle(
-    color: ColorConstant.gray600Ab,
-    fontSize: getFontSize(
-      12,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
-  );
-
-  static TextStyle txtRobotoRomanMedium18 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      18,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w500,
-  );
-
   static TextStyle txtRobotoRomanRegular12 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       12,
     ),
@@ -272,31 +245,22 @@ class AppStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle txtRobotoRomanMedium15 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      15,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle txtRobotoRomanLight20 = TextStyle(
-    color: ColorConstant.ghostWhite,
-    fontSize: getFontSize(
-      20,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w300,
-  );
-
   static TextStyle txtRobotoRomanRegular14 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       14,
     ),
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle txtRobotoRomanLight20 = TextStyle(
+    color: ColorConstant.whiteA700,
+    fontSize: getFontSize(
+      20,
+    ),
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w300,
   );
 
   static TextStyle txtRobotoRomanRegular35 = TextStyle(
@@ -309,7 +273,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanBold25 = TextStyle(
-    color: ColorConstant.ghostWhite,
+    color: ColorConstant.whiteA700,
     fontSize: getFontSize(
       25,
     ),

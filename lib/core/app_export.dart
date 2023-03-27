@@ -1,4 +1,3 @@
-export 'package:movie_mixer/core/constants/constants.dart';
 export 'package:movie_mixer/core/utils/image_constant.dart';
 export 'package:movie_mixer/core/utils/color_constant.dart';
 export 'package:movie_mixer/core/utils/size_utils.dart';

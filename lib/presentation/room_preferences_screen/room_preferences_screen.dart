@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_button.dart';
-import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
 class RoomPreferencesScreen extends StatelessWidget {
   @override
@@ -17,41 +16,32 @@ class RoomPreferencesScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: ColorConstant.gray900,
                     image: DecorationImage(
-                        image: AssetImage(ImageConstant.imgLoginscreen),
+                        image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
                 child: Container(
                     width: double.maxFinite,
-                    padding: getPadding(left: 6, top: 15, right: 6, bottom: 15),
+                    padding:
+                        getPadding(left: 13, top: 17, right: 13, bottom: 17),
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          CustomIconButton(
-                              height: 44,
-                              width: 44,
-                              onTap: () {
-                                onTapBtnArrowleftbutton(context);
-                              },
-                              child: CustomImageView(
-                                  imagePath:
-                                      ImageConstant.imgArrowleftbutton44x44)),
                           Container(
                               height: getVerticalSize(577),
                               width: getHorizontalSize(334),
-                              margin: getMargin(left: 7, top: 52, bottom: 5),
+                              margin: getMargin(top: 76, bottom: 5),
                               child:
                                   Stack(alignment: Alignment.center, children: [
                                 Align(
                                     alignment: Alignment.center,
                                     child: Container(
                                         padding: getPadding(
-                                            left: 35,
-                                            top: 41,
-                                            right: 35,
-                                            bottom: 41),
-                                        decoration: AppDecoration
-                                            .outlineWhiteA700b2
+                                            left: 43,
+                                            top: 49,
+                                            right: 43,
+                                            bottom: 49),
+                                        decoration: AppDecoration.purple
                                             .copyWith(
                                                 borderRadius: BorderRadiusStyle
                                                     .roundedBorder43),
@@ -61,38 +51,38 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                 MainAxisAlignment.end,
                                             children: [
                                               Padding(
-                                                  padding: getPadding(top: 25),
+                                                  padding: getPadding(top: 18),
                                                   child: Text(
                                                       "How many movies do you want:",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium18)),
+                                                          .txtRobotoRomanRegular17)),
                                               Padding(
-                                                  padding: getPadding(top: 10),
+                                                  padding: getPadding(top: 12),
                                                   child: Text("10",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium15)),
+                                                          .txtRobotoRomanRegular15)),
                                               Padding(
-                                                  padding: getPadding(top: 2),
+                                                  padding: getPadding(top: 5),
                                                   child: Text("11",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium30)),
+                                                          .txtRobotoRomanRegular25)),
                                               Padding(
-                                                  padding: getPadding(top: 2),
+                                                  padding: getPadding(top: 5),
                                                   child: Text("12",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium15)),
+                                                          .txtRobotoRomanRegular15)),
                                               Padding(
                                                   padding: getPadding(top: 29),
                                                   child: Text(
@@ -101,41 +91,105 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium18)),
+                                                          .txtRobotoRomanRegular17)),
                                               Padding(
-                                                  padding: getPadding(top: 10),
+                                                  padding: getPadding(top: 12),
                                                   child: Text("4",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium15)),
+                                                          .txtRobotoRomanRegular15)),
                                               Padding(
-                                                  padding: getPadding(top: 2),
+                                                  padding: getPadding(top: 5),
                                                   child: Text("5",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium30)),
+                                                          .txtRobotoRomanRegular25)),
                                               Padding(
-                                                  padding: getPadding(top: 2),
+                                                  padding: getPadding(top: 5),
                                                   child: Text("6",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanMedium15)),
-                                              Container(
-                                                  margin: getMargin(
-                                                      top: 26, right: 2),
+                                                          .txtRobotoRomanRegular15)),
+                                              Padding(
                                                   padding: getPadding(
-                                                      left: 9,
-                                                      top: 8,
-                                                      right: 9,
-                                                      bottom: 8),
+                                                      left: 21,
+                                                      top: 28,
+                                                      right: 21),
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                            padding: getPadding(
+                                                                left: 17,
+                                                                top: 7,
+                                                                bottom: 3),
+                                                            child: Text(
+                                                                "Advanced options",
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                style: AppStyle
+                                                                    .txtRobotoRomanBold20)),
+                                                        Container(
+                                                            height:
+                                                                getVerticalSize(
+                                                                    35),
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    26),
+                                                            child: Stack(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                children: [
+                                                                  CustomImageView(
+                                                                      svgPath:
+                                                                          ImageConstant
+                                                                              .imgLockWhiteA700,
+                                                                      height:
+                                                                          getVerticalSize(
+                                                                              35),
+                                                                      width:
+                                                                          getHorizontalSize(
+                                                                              26),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .center),
+                                                                  CustomImageView(
+                                                                      svgPath:
+                                                                          ImageConstant
+                                                                              .imgLockWhiteA70035x26,
+                                                                      height:
+                                                                          getVerticalSize(
+                                                                              35),
+                                                                      width:
+                                                                          getHorizontalSize(
+                                                                              26),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .center)
+                                                                ]))
+                                                      ])),
+                                              Container(
+                                                  margin: getMargin(top: 26),
+                                                  padding: getPadding(
+                                                      left: 19,
+                                                      top: 11,
+                                                      right: 19,
+                                                      bottom: 11),
                                                   decoration: AppDecoration
-                                                      .fillWhiteA70001
+                                                      .fillWhiteA700
                                                       .copyWith(
                                                           borderRadius:
                                                               BorderRadiusStyle
@@ -146,8 +200,7 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                       children: [
                                                         Padding(
                                                             padding: getPadding(
-                                                                top: 5,
-                                                                bottom: 3),
+                                                                top: 1),
                                                             child: Text(
                                                                 "Preferred genres",
                                                                 overflow:
@@ -157,23 +210,23 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                                     TextAlign
                                                                         .left,
                                                                 style: AppStyle
-                                                                    .txtRobotoRomanRegular15)),
+                                                                    .txtRobotoRomanRegular17Black900)),
                                                         CustomImageView(
-                                                            svgPath:
-                                                                ImageConstant
-                                                                    .imgPlus,
-                                                            height: getSize(26),
-                                                            width: getSize(26),
+                                                            svgPath: ImageConstant
+                                                                .imgPlusBlack900,
+                                                            height: getSize(17),
+                                                            width: getSize(17),
                                                             margin: getMargin(
-                                                                left: 39,
-                                                                top: 1))
+                                                                left: 24,
+                                                                top: 2,
+                                                                bottom: 2))
                                                       ])),
                                               Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Padding(
                                                       padding:
-                                                          getPadding(top: 7),
+                                                          getPadding(top: 8),
                                                       child: Row(children: [
                                                         CustomButton(
                                                             height:
@@ -181,87 +234,29 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                                     29),
                                                             width:
                                                                 getHorizontalSize(
-                                                                    64),
+                                                                    60),
                                                             text: "Action",
-                                                            variant: ButtonVariant
-                                                                .FillWhiteA70001,
-                                                            padding:
-                                                                ButtonPadding
-                                                                    .PaddingAll5,
-                                                            fontStyle:
-                                                                ButtonFontStyle
-                                                                    .RobotoRomanRegular15),
-                                                        Container(
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    64),
-                                                            margin: getMargin(
-                                                                left: 4),
-                                                            padding: getPadding(
-                                                                left: 3,
-                                                                top: 5,
-                                                                right: 3,
-                                                                bottom: 5),
-                                                            decoration: AppDecoration
-                                                                .txtFillWhiteA70001
-                                                                .copyWith(
-                                                                    borderRadius:
-                                                                        BorderRadiusStyle
-                                                                            .txtRoundedBorder10),
-                                                            child: Text(
-                                                                "Comedy",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtRobotoRomanRegular15))
-                                                      ]))),
-                                              Padding(
-                                                  padding: getPadding(
-                                                      left: 38,
-                                                      top: 47,
-                                                      right: 27),
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        CustomImageView(
-                                                            svgPath:
-                                                                ImageConstant
-                                                                    .imgLock,
+                                                            shape: ButtonShape
+                                                                .RoundedBorder10),
+                                                        CustomButton(
                                                             height:
                                                                 getVerticalSize(
-                                                                    19),
+                                                                    29),
                                                             width:
                                                                 getHorizontalSize(
-                                                                    20),
+                                                                    60),
+                                                            text: "Comedy",
                                                             margin: getMargin(
-                                                                top: 1,
-                                                                bottom: 3)),
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                left: 15),
-                                                            child: Text(
-                                                                "Advanced options",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtRobotoRomanBold20))
-                                                      ]))
+                                                                left: 4),
+                                                            shape: ButtonShape
+                                                                .RoundedBorder10)
+                                                      ])))
                                             ]))),
                                 Align(
                                     alignment: Alignment.center,
                                     child: Padding(
                                         padding:
-                                            getPadding(left: 35, right: 35),
+                                            getPadding(left: 43, right: 43),
                                         child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
@@ -269,79 +264,70 @@ class RoomPreferencesScreen extends StatelessWidget {
                                             children: [
                                               Container(
                                                   decoration: AppDecoration
-                                                      .outlineBlack9003f,
+                                                      .outlineBlack9003f1,
                                                   child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
                                                       children: [
-                                                        CustomButton(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    42),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    131),
-                                                            text: "Movie",
-                                                            variant: ButtonVariant
-                                                                .OutlineWhiteA70001,
-                                                            shape: ButtonShape
-                                                                .CustomBorderTL10,
-                                                            padding:
-                                                                ButtonPadding
-                                                                    .PaddingAll8,
-                                                            fontStyle:
-                                                                ButtonFontStyle
-                                                                    .RobotoRomanBold20),
-                                                        CustomButton(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    42),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    131),
-                                                            text: "TV Series",
-                                                            margin: getMargin(
-                                                                left: 2),
-                                                            variant: ButtonVariant
-                                                                .OutlineWhiteA70001_1,
-                                                            shape: ButtonShape
-                                                                .CustomBorderLR10,
-                                                            padding:
-                                                                ButtonPadding
-                                                                    .PaddingAll8,
-                                                            fontStyle:
-                                                                ButtonFontStyle
-                                                                    .RobotoRomanBold20)
+                                                        Expanded(
+                                                            child: CustomButton(
+                                                                height:
+                                                                    getVerticalSize(
+                                                                        42),
+                                                                text: "Movie",
+                                                                variant:
+                                                                    ButtonVariant
+                                                                        .OutlineWhiteA700,
+                                                                shape: ButtonShape
+                                                                    .CustomBorderTL10,
+                                                                fontStyle:
+                                                                    ButtonFontStyle
+                                                                        .RobotoRomanBold20WhiteA700)),
+                                                        Expanded(
+                                                            child: CustomButton(
+                                                                height:
+                                                                    getVerticalSize(
+                                                                        42),
+                                                                text:
+                                                                    "TV Series",
+                                                                variant:
+                                                                    ButtonVariant
+                                                                        .Cyan,
+                                                                shape: ButtonShape
+                                                                    .CustomBorderLR10,
+                                                                fontStyle:
+                                                                    ButtonFontStyle
+                                                                        .RobotoRomanBold20WhiteA700))
                                                       ])),
                                               Spacer(),
                                               CustomButton(
                                                   height: getVerticalSize(40),
                                                   text: "Open Room",
-                                                  margin: getMargin(
-                                                      left: 24, right: 26),
                                                   variant: ButtonVariant
-                                                      .OutlineWhiteA70001_3,
-                                                  shape: ButtonShape
-                                                      .RoundedBorder15,
-                                                  padding:
-                                                      ButtonPadding.PaddingAll8,
+                                                      .OutlineBlack9003f,
                                                   fontStyle: ButtonFontStyle
-                                                      .RobotoRomanMedium18,
+                                                      .RobotoRomanMedium20,
                                                   onTap: () =>
                                                       onTapOpenroom(context))
                                             ])))
-                              ]))
+                              ])),
+                          CustomImageView(
+                              svgPath: ImageConstant.imgArrowleft,
+                              height: getVerticalSize(17),
+                              width: getHorizontalSize(23),
+                              margin: getMargin(left: 1),
+                              onTap: () {
+                                onTapImgArrowleft(context);
+                              })
                         ])))));
-  }
-
-  onTapBtnArrowleftbutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
   onTapOpenroom(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.waitingRoomScreen);
+  }
+
+  onTapImgArrowleft(BuildContext context) {
+    Navigator.pop(context);
   }
 }

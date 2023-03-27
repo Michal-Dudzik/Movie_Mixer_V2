@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_button.dart';
@@ -7,7 +5,7 @@ import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginScreen extends StatelessWidget {
-  TextEditingController enterasguestController = TextEditingController();
+  TextEditingController guestbuttonController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,15 @@ class LoginScreen extends StatelessWidget {
                 height: size.height,
                 decoration: BoxDecoration(
                     color: ColorConstant.gray900,
+                    boxShadow: [
+                      BoxShadow(
+                          color: ColorConstant.black9003f,
+                          spreadRadius: getHorizontalSize(2),
+                          blurRadius: getHorizontalSize(2),
+                          offset: Offset(0, 4))
+                    ],
                     image: DecorationImage(
-                        image: AssetImage(ImageConstant.imgLoginscreen),
+                        image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
                 child: Container(
                     width: double.maxFinite,
@@ -34,250 +39,249 @@ class LoginScreen extends StatelessWidget {
                           Container(
                               width: double.maxFinite,
                               child: Container(
-                                  margin: getMargin(top: 20),
                                   padding: getPadding(
-                                      left: 9, top: 37, right: 9, bottom: 37),
-                                  decoration: AppDecoration.outlineWhiteA700b2
-                                      .copyWith(
-                                          borderRadius: BorderRadiusStyle
-                                              .roundedBorder43),
+                                      left: 10, top: 34, right: 10, bottom: 34),
+                                  decoration: AppDecoration.purple.copyWith(
+                                      borderRadius:
+                                          BorderRadiusStyle.roundedBorder43),
                                   child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
                                         Container(
-                                            height: getVerticalSize(129),
-                                            width: getHorizontalSize(315),
+                                            height: getVerticalSize(142),
+                                            width: getHorizontalSize(314),
                                             child: Stack(
-                                                alignment:
-                                                    Alignment.bottomRight,
+                                                alignment: Alignment.center,
                                                 children: [
-                                                  Align(
+                                                  CustomImageView(
+                                                      imagePath: ImageConstant
+                                                          .imgNeonMovie,
+                                                      height: getSize(58),
+                                                      width: getSize(127),
                                                       alignment:
-                                                          Alignment.center,
-                                                      child: Container(
-                                                          height: getSize(129),
-                                                          width: getSize(129),
-                                                          child: Stack(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              children: [
-                                                                (CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .imgLogo,
-                                                                    height:
-                                                                        getSize(
-                                                                            115),
-                                                                    width:
-                                                                        getSize(
-                                                                            115),
-                                                                    border: Border.all(
-                                                                        color: ColorConstant
-                                                                            .whiteA700B2,
-                                                                        width: getSize(
-                                                                            2)),
-                                                                    radius: BorderRadius.circular(
-                                                                        getHorizontalSize(
-                                                                            57)),
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center)),
-                                                              ]))),
-                                                  Align(
+                                                          Alignment.topLeft),
+                                                  CustomImageView(
+                                                      imagePath: ImageConstant
+                                                          .imgNeonMixer,
+                                                      height: getSize(58),
+                                                      width: getSize(127),
+                                                      alignment: Alignment
+                                                          .bottomRight),
+                                                  CustomImageView(
+                                                      imagePath: ImageConstant
+                                                          .imgLogo328x328,
+                                                      height: getSize(130),
+                                                      width: getSize(130),
                                                       alignment:
-                                                          Alignment.bottomRight,
-                                                      child: Container(
-                                                          height:
-                                                              getVerticalSize(
-                                                                  42),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  94),
-                                                          margin: getMargin(
-                                                              bottom: 3),
-                                                          child: Stack(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .bottomCenter,
-                                                                    child: Container(
-                                                                        height: getVerticalSize(30),
-                                                                        width: getHorizontalSize(94),
-                                                                        margin: getMargin(bottom: 4),
-                                                                        child: Stack(alignment: Alignment.center, children: [
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36Cyan600)),
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2)),
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Mixer", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2))
-                                                                        ]))),
-                                                                // Align(
-                                                                //     alignment:
-                                                                //         Alignment
-                                                                //             .center,
-                                                                //     child: Text(
-                                                                //         "Mixer",
-                                                                //         overflow:
-                                                                //             TextOverflow
-                                                                //                 .ellipsis,
-                                                                //         textAlign:
-                                                                //             TextAlign
-                                                                //                 .left,
-                                                                //         style: AppStyle
-                                                                //             .txtClip36Cyan600))
-                                                              ]))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      child: Container(
-                                                          height:
-                                                              getVerticalSize(
-                                                                  42),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  103),
-                                                          child: Stack(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .bottomCenter,
-                                                                    child: Container(
-                                                                        height: getVerticalSize(30),
-                                                                        width: getHorizontalSize(103),
-                                                                        margin: getMargin(bottom: 4),
-                                                                        child: Stack(alignment: Alignment.center, children: [
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36Pink600)),
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2)),
-                                                                          Align(
-                                                                              alignment: Alignment.center,
-                                                                              child: Text("Movie ", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtClip36WhiteA700b2))
-                                                                        ]))),
-                                                              ])))
+                                                          Alignment.center)
                                                 ])),
-                                        // CustomButton(
-                                        //     height: getVerticalSize(40),
-                                        //     text: "E-Mail",
-                                        //     margin: getMargin(
-                                        //         left: 31, top: 29, right: 29),
-                                        //     variant:
-                                        //         ButtonVariant.FillWhiteA70001),
-
                                         CustomTextFormField(
-                                          focusNode: FocusNode(),
-                                          hintText: "E-Mail",
-                                          margin: getMargin(
-                                              left: 31, top: 29, right: 29),
-                                          variant:
-                                              TextFormFieldVariant.FillWhite,
-                                          shape: TextFormFieldShape
-                                              .RoundedBorder10,
-                                          padding:
-                                              TextFormFieldPadding.PaddingT10,
-                                          fontStyle: TextFormFieldFontStyle
-                                              .RobotoRegular12,
-                                          textInputAction: TextInputAction.done,
-                                        ),
-
-                                        CustomButton(
-                                            height: getVerticalSize(40),
-                                            text: "Password",
+                                            focusNode: FocusNode(),
+                                            textInputType:
+                                                TextInputType.emailAddress,
+                                            isObscureText: false,
+                                            // controller:
+                                            //     guestbuttonController,
+                                            hintText: "E-Mail",
                                             margin: getMargin(
-                                                left: 30, top: 18, right: 30),
-                                            variant:
-                                                ButtonVariant.FillWhiteA70001),
-                                        // Padding(
-                                        //     padding: getPadding(top: 19),
-                                        //     child: Text("Forgot password",
-                                        //         overflow: TextOverflow.ellipsis,
-                                        //         textAlign: TextAlign.left,
-                                        //         style: AppStyle
-                                        //             .txtRobotoRomanThin12)),
-                                        Padding(
-                                            padding: getPadding(top: 17),
-                                            child: Row(
+                                                left: 33, top: 16, right: 33),
+                                            textInputAction:
+                                                TextInputAction.done),
+                                        CustomTextFormField(
+                                            focusNode: FocusNode(),
+                                            isObscureText: true,
+                                            hintText: "Password",
+                                            margin: getMargin(
+                                                left: 33, top: 16, right: 33),
+                                            textInputAction:
+                                                TextInputAction.done),
+                                        Container(
+                                            margin: getMargin(
+                                                left: 33,
+                                                top: 33,
+                                                right: 33,
+                                                bottom: 17),
+                                            decoration: AppDecoration
+                                                .outlineBlack9003f1
+                                                .copyWith(
+                                                    borderRadius:
+                                                        BorderRadiusStyle
+                                                            .roundedBorder15),
+                                            child: Column(
+                                                mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                    MainAxisAlignment.start,
                                                 children: [
+                                                  Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              onTapGooglebutton(
+                                                                  context);
+                                                            },
+                                                            child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                elevation: 0,
+                                                                margin:
+                                                                    getMargin(
+                                                                        bottom:
+                                                                            2),
+                                                                color: ColorConstant
+                                                                    .whiteA700,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(getHorizontalSize(
+                                                                            15))),
+                                                                child:
+                                                                    Container(
+                                                                        height: getVerticalSize(
+                                                                            40),
+                                                                        width: getHorizontalSize(
+                                                                            55),
+                                                                        padding: getPadding(
+                                                                            left:
+                                                                                16,
+                                                                            top:
+                                                                                8,
+                                                                            right:
+                                                                                16,
+                                                                            bottom:
+                                                                                8),
+                                                                        decoration: AppDecoration
+                                                                            .outlineIndigo3001c
+                                                                            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
+                                                                        child: Stack(children: [
+                                                                          CustomImageView(
+                                                                              svgPath: ImageConstant.imgGoogle,
+                                                                              height: getVerticalSize(23),
+                                                                              width: getHorizontalSize(23),
+                                                                              alignment: Alignment.center)
+                                                                        ])))),
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              onTapApplebutton(
+                                                                  context);
+                                                            },
+                                                            child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                elevation: 0,
+                                                                margin:
+                                                                    getMargin(
+                                                                        bottom:
+                                                                            2),
+                                                                color: ColorConstant
+                                                                    .whiteA700,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(getHorizontalSize(
+                                                                            15))),
+                                                                child:
+                                                                    Container(
+                                                                        height: getVerticalSize(
+                                                                            40),
+                                                                        width: getHorizontalSize(
+                                                                            55),
+                                                                        padding: getPadding(
+                                                                            left:
+                                                                                16,
+                                                                            top:
+                                                                                8,
+                                                                            right:
+                                                                                16,
+                                                                            bottom:
+                                                                                8),
+                                                                        decoration: AppDecoration
+                                                                            .outlineIndigo3001c
+                                                                            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
+                                                                        child: Stack(children: [
+                                                                          CustomImageView(
+                                                                              svgPath: ImageConstant.imgApple,
+                                                                              height: getVerticalSize(23),
+                                                                              width: getHorizontalSize(19),
+                                                                              alignment: Alignment.center)
+                                                                        ])))),
+                                                        CustomButton(
+                                                            height:
+                                                                getVerticalSize(
+                                                                    40),
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    100),
+                                                            text: "Sign in",
+                                                            variant: ButtonVariant
+                                                                .OutlineBlack9003f_2,
+                                                            padding: ButtonPadding
+                                                                .PaddingAll12,
+                                                            fontStyle:
+                                                                ButtonFontStyle
+                                                                    .RobotoRomanRegular15,
+                                                            onTap: () =>
+                                                                onTapSignin(
+                                                                    context))
+                                                      ]),
                                                   CustomButton(
                                                       height:
-                                                          getVerticalSize(34),
-                                                      width:
-                                                          getHorizontalSize(96),
+                                                          getVerticalSize(39),
                                                       text: "Sign up",
+                                                      margin:
+                                                          getMargin(top: 26),
                                                       variant: ButtonVariant
-                                                          .OutlineBlack9003f,
-                                                      shape: ButtonShape
-                                                          .RoundedBorder15,
-                                                      padding: ButtonPadding
-                                                          .PaddingAll8,
+                                                          .OutlineBlack9003f_2,
                                                       fontStyle: ButtonFontStyle
-                                                          .RobotoRomanMedium15,
+                                                          .RobotoRomanRegular18,
                                                       onTap: () =>
                                                           onTapSignup(context)),
                                                   CustomButton(
-                                                      height:
-                                                          getVerticalSize(34),
-                                                      width:
-                                                          getHorizontalSize(95),
-                                                      text: "Sign in",
-                                                      margin:
-                                                          getMargin(left: 22),
-                                                      variant: ButtonVariant
-                                                          .OutlineBlack9003f,
-                                                      shape: ButtonShape
-                                                          .RoundedBorder15,
-                                                      padding: ButtonPadding
-                                                          .PaddingAll8,
-                                                      fontStyle: ButtonFontStyle
-                                                          .RobotoRomanMedium15,
-                                                      onTap: () =>
-                                                          onTapSignin(context))
-                                                ])),
-                                        CustomButton(
-                                            height: getVerticalSize(34),
-                                            width: getHorizontalSize(214),
-                                            text: "Enter as a guest",
-                                            margin:
-                                                getMargin(top: 18, bottom: 58),
-                                            variant: ButtonVariant.FillPink600,
-                                            shape: ButtonShape.RoundedBorder15,
-                                            padding: ButtonPadding.PaddingAll8,
-                                            fontStyle: ButtonFontStyle
-                                                .RobotoRomanMedium18,
-                                            onTap: () =>
-                                                onTapEnterAsGuest(context))
+                                                    height: getVerticalSize(39),
+                                                    text: "Enter as a guest",
+                                                    margin: getMargin(top: 26),
+                                                    variant: ButtonVariant
+                                                        .OutlineBlack9003f_1,
+                                                    fontStyle: ButtonFontStyle
+                                                        .RobotoRomanRegular18,
+                                                    onTap: () =>
+                                                        onTapGuest(context),
+
+                                                    // CustomTextFormField(
+                                                    //   focusNode: FocusNode(),
+                                                    //   controller:
+                                                    //       guestbuttonController,
+                                                    //   hintText:
+                                                    //       "Enter as a guest",
+                                                    //   margin:
+                                                    //       getMargin(top: 12),
+                                                    //   textInputAction:
+                                                    //       TextInputAction.done)
+                                                  )
+                                                ]))
                                       ])))
                         ])))));
   }
 
-  onTapSignup(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.createAccountScreen);
+  onTapGooglebutton(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
+  }
+
+  onTapApplebutton(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
   onTapSignin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
-  onTapEnterAsGuest(BuildContext context) {
+  onTapSignup(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.createAccountScreen);
+  }
+
+  onTapGuest(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }
