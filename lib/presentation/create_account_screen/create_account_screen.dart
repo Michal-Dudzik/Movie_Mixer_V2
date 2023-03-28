@@ -94,52 +94,52 @@ class CreateAccountScreen extends StatelessWidget {
                                                 .RobotoRomanRegular18WhiteA700,
                                             onTap: () =>
                                                 onTapCreateaccount(context)),
-                                        // Padding(
-                                        //     padding: getPadding(top: 32),
-                                        //     child: Row(
-                                        //         mainAxisAlignment:
-                                        //             MainAxisAlignment
-                                        //                 .spaceBetween,
-                                        //         children: [
-                                        //           Padding(
-                                        //               padding: getPadding(
-                                        //                   top: 6, bottom: 7),
-                                        //               child: SizedBox(
-                                        //                   width:
-                                        //                       getHorizontalSize(
-                                        //                           93),
-                                        //                   child: Divider(
-                                        //                       height:
-                                        //                           getVerticalSize(
-                                        //                               1),
-                                        //                       thickness:
-                                        //                           getVerticalSize(
-                                        //                               1),
-                                        //                       color: ColorConstant
-                                        //                           .whiteA700))),
-                                        //           Text("or continue with",
-                                        //               overflow:
-                                        //                   TextOverflow.ellipsis,
-                                        //               textAlign: TextAlign.left,
-                                        //               style: AppStyle
-                                        //                   .txtRobotoRomanRegular12),
-                                        //           Padding(
-                                        //               padding: getPadding(
-                                        //                   top: 7, bottom: 6),
-                                        //               child: SizedBox(
-                                        //                   width:
-                                        //                       getHorizontalSize(
-                                        //                           93),
-                                        //                   child: Divider(
-                                        //                       height:
-                                        //                           getVerticalSize(
-                                        //                               1),
-                                        //                       thickness:
-                                        //                           getVerticalSize(
-                                        //                               1),
-                                        //                       color: ColorConstant
-                                        //                           .whiteA700)))
-                                        //         ])),
+                                        Padding(
+                                            padding: getPadding(top: 32),
+                                            child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                      padding: getPadding(
+                                                          top: 6, bottom: 7),
+                                                      child: SizedBox(
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  93),
+                                                          child: Divider(
+                                                              height:
+                                                                  getVerticalSize(
+                                                                      1),
+                                                              thickness:
+                                                                  getVerticalSize(
+                                                                      1),
+                                                              color: ColorConstant
+                                                                  .whiteA700))),
+                                                  Text("or continue with",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle
+                                                          .txtRobotoRomanRegular12),
+                                                  Padding(
+                                                      padding: getPadding(
+                                                          top: 7, bottom: 6),
+                                                      child: SizedBox(
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  93),
+                                                          child: Divider(
+                                                              height:
+                                                                  getVerticalSize(
+                                                                      1),
+                                                              thickness:
+                                                                  getVerticalSize(
+                                                                      1),
+                                                              color: ColorConstant
+                                                                  .whiteA700)))
+                                                ])),
                                         Container(
                                             margin: getMargin(
                                                 left: 21, top: 31, right: 21),
