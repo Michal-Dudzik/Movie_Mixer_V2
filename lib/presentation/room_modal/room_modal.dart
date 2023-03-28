@@ -57,12 +57,6 @@ class RoomModal extends StatelessWidget {
                                                     margin: getMargin(
                                                         left: 14, right: 14))
                                               ]),
-                                          CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgLocation,
-                                              height: getVerticalSize(110),
-                                              width: getHorizontalSize(359),
-                                              margin: getMargin(top: 17)),
                                           Padding(
                                               padding: getPadding(top: 85),
                                               child: Text(
@@ -163,7 +157,8 @@ class RoomModal extends StatelessWidget {
                       child: Container(
                           padding: getPadding(
                               left: 30, top: 310, right: 30, bottom: 310),
-                          decoration: AppDecoration.fillGray900,
+                          // decoration: AppDecoration.fillGray900,
+                          color: ColorConstant.gray900.withOpacity(0.8),
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -229,28 +224,22 @@ class RoomModal extends StatelessWidget {
                                                             margin: getMargin(
                                                                 bottom: 2),
                                                             color: ColorConstant
-                                                                .whiteA700,
+                                                                .cyan600,
                                                             shape: RoundedRectangleBorder(
                                                                 borderRadius:
                                                                     BorderRadius.circular(
                                                                         getHorizontalSize(
-                                                                            15))),
+                                                                            50))),
                                                             child: Container(
                                                                 height:
                                                                     getVerticalSize(
-                                                                        40),
+                                                                        46),
                                                                 width:
                                                                     getHorizontalSize(
                                                                         55),
                                                                 padding:
                                                                     getPadding(
-                                                                        left:
-                                                                            16,
-                                                                        top: 8,
-                                                                        right:
-                                                                            16,
-                                                                        bottom:
-                                                                            8),
+                                                                        all: 9),
                                                                 decoration: AppDecoration
                                                                     .outlineIndigo3001c
                                                                     .copyWith(

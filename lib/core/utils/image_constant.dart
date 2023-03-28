@@ -34,8 +34,6 @@ class ImageConstant {
 
   static String imgPremiumad = 'assets/images/img_premiumad.png';
 
-  static String imgLocation = 'assets/images/img_location.svg';
-
   static String imgPoster1 = 'assets/images/img_poster_1.png';
 
   static String imgStar = 'assets/images/img_star.svg';
@@ -46,7 +44,7 @@ class ImageConstant {
 
   static String imgImage = 'assets/images/img_image.png';
 
-  static String imgComputer = 'assets/images/img_computer.svg';
+  static String imgThumbsDown = 'assets/images/img_computer.svg';
 
   static String imgPoster = 'assets/images/img_poster.png';
 
