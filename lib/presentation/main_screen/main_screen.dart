@@ -47,6 +47,8 @@ class MainScreen extends StatelessWidget {
                                                       onTapArrowleft(context)),
                                               actions: [
                                                 AppbarImage(
+                                                    onTap: () =>
+                                                        onTapMenu(context),
                                                     height: getVerticalSize(17),
                                                     width:
                                                         getHorizontalSize(23),
@@ -71,6 +73,7 @@ class MainScreen extends StatelessWidget {
                                                   style: AppStyle
                                                       .txtRobotoRomanRegular22)),
                                           CustomButton(
+                                              onTap: () => onDiscover(context),
                                               height: getVerticalSize(40),
                                               width: getHorizontalSize(181),
                                               text: "Discover it!",
@@ -80,32 +83,6 @@ class MainScreen extends StatelessWidget {
                                               fontStyle: ButtonFontStyle
                                                   .RobotoRomanRegular18),
                                           Spacer(),
-                                          Container(
-                                              height: getVerticalSize(80),
-                                              width: getHorizontalSize(359),
-                                              child: Stack(
-                                                  alignment: Alignment.topRight,
-                                                  children: [
-                                                    CustomImageView(
-                                                        imagePath: ImageConstant
-                                                            .imgImage,
-                                                        height:
-                                                            getVerticalSize(80),
-                                                        width:
-                                                            getHorizontalSize(
-                                                                359),
-                                                        alignment:
-                                                            Alignment.center),
-                                                    CustomImageView(
-                                                        svgPath: ImageConstant
-                                                            .imgClose,
-                                                        height: getSize(6),
-                                                        width: getSize(6),
-                                                        alignment:
-                                                            Alignment.topRight,
-                                                        margin: getMargin(
-                                                            top: 5, right: 2))
-                                                  ]))
                                         ])))
                           ]))),
                   Align(
@@ -159,11 +136,35 @@ class MainScreen extends StatelessWidget {
                                               radius: BorderRadius.circular(
                                                   getHorizontalSize(10)))
                                         ]))
-                              ])))
+                              ]))),
+                  Container(
+                      height: getVerticalSize(80),
+                      width: getHorizontalSize(359),
+                      child: Stack(alignment: Alignment.topRight, children: [
+                        CustomImageView(
+                            imagePath: ImageConstant.imgImage,
+                            height: getVerticalSize(80),
+                            width: getHorizontalSize(359),
+                            alignment: Alignment.center),
+                        CustomImageView(
+                            svgPath: ImageConstant.imgClose,
+                            height: getSize(6),
+                            width: getSize(6),
+                            alignment: Alignment.topRight,
+                            margin: getMargin(top: 5, right: 2))
+                      ]))
                 ]))));
   }
 
   onTapArrowleft(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  onTapMenu(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.accountPreferencesScreen);
+  }
+
+  onDiscover(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.roomModal);
   }
 }

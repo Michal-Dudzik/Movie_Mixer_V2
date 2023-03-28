@@ -207,35 +207,45 @@ class LoginScreen extends StatelessWidget {
                                                         //                       width: getHorizontalSize(19),
                                                         //                       alignment: Alignment.center)
                                                         //                 ])))),
-                                                        CustomButton(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    40),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    100),
-                                                            text: "Sign in",
-                                                            variant: ButtonVariant
-                                                                .OutlineBlack9003f_2,
-                                                            padding: ButtonPadding
-                                                                .PaddingAll12,
-                                                            fontStyle:
-                                                                ButtonFontStyle
-                                                                    .RobotoRomanRegular15,
-                                                            onTap: () =>
-                                                                onTapSignin(
-                                                                    context))
+                                                        // CustomButton(
+                                                        //     height:
+                                                        //         getVerticalSize(
+                                                        //             40),
+                                                        //     width:
+                                                        //         getHorizontalSize(
+                                                        //             100),
+                                                        //     text: "Sign in",
+                                                        //     variant: ButtonVariant
+                                                        //         .OutlineBlack9003f_2,
+                                                        //     padding: ButtonPadding
+                                                        //         .PaddingAll12,
+                                                        //     fontStyle:
+                                                        //         ButtonFontStyle
+                                                        //             .RobotoRomanRegular15,
+                                                        //     onTap: () =>
+                                                        //         onTapSignin(
+                                                        //             context))
                                                       ]),
                                                   CustomButton(
                                                       height:
-                                                          getVerticalSize(39),
-                                                      text: "Sign up",
-                                                      margin:
-                                                          getMargin(top: 26),
+                                                          getVerticalSize(40),
+                                                      text: "Sign in",
                                                       variant: ButtonVariant
                                                           .OutlineBlack9003f_2,
                                                       fontStyle: ButtonFontStyle
                                                           .RobotoRomanRegular18,
+                                                      onTap: () =>
+                                                          onTapSignin(context)),
+                                                  CustomButton(
+                                                      height:
+                                                          getVerticalSize(40),
+                                                      text: "Sign up",
+                                                      margin:
+                                                          getMargin(top: 15),
+                                                      variant: ButtonVariant
+                                                          .OutlineBlack9003f_1,
+                                                      fontStyle: ButtonFontStyle
+                                                          .RobotoRomanRegular18WhiteA700,
                                                       onTap: () =>
                                                           onTapSignup(context)),
                                                   // CustomButton(
