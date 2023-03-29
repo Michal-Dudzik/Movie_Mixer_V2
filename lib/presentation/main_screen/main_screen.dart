@@ -3,6 +3,7 @@ import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/widgets/custom_button.dart';
+import 'package:movie_mixer/widgets/room_modal.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -72,16 +73,7 @@ class MainScreen extends StatelessWidget {
                                                   textAlign: TextAlign.left,
                                                   style: AppStyle
                                                       .txtRobotoRomanRegular22)),
-                                          CustomButton(
-                                              onTap: () => onDiscover(context),
-                                              height: getVerticalSize(40),
-                                              width: getHorizontalSize(181),
-                                              text: "Discover it!",
-                                              margin: getMargin(top: 18),
-                                              variant: ButtonVariant
-                                                  .OutlineBlack9003f_2,
-                                              fontStyle: ButtonFontStyle
-                                                  .RobotoRomanRegular18),
+                                          AddTodoButton(),
                                           Spacer(),
                                         ])))
                           ]))),

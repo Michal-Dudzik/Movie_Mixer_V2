@@ -8,7 +8,6 @@ import 'package:movie_mixer/presentation/account_preferences_screen/account_pref
 import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
 import 'package:movie_mixer/presentation/movie_screen/movie_screen.dart';
 import 'package:movie_mixer/presentation/after_selection_screen/after_selection_screen.dart';
-import 'package:movie_mixer/presentation/room_modal/room_modal.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
@@ -41,6 +40,5 @@ class AppRoutes {
     waitingRoomScreen: (context) => WaitingRoomScreen(),
     movieScreen: (context) => MovieScreen(),
     afterSelectionScreen: (context) => AfterSelectionScreen(),
-    roomModal: (context) => RoomModal(),
   };
 }

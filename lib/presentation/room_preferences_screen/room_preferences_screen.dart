@@ -27,6 +27,14 @@ class RoomPreferencesScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          CustomImageView(
+                              svgPath: ImageConstant.imgArrowleft,
+                              height: getVerticalSize(17),
+                              width: getHorizontalSize(23),
+                              margin: getMargin(left: 1),
+                              onTap: () {
+                                onTapImgArrowleft(context);
+                              }),
                           Container(
                               height: getVerticalSize(577),
                               width: getHorizontalSize(334),
@@ -312,14 +320,6 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                       onTapOpenroom(context))
                                             ])))
                               ])),
-                          CustomImageView(
-                              svgPath: ImageConstant.imgArrowleft,
-                              height: getVerticalSize(17),
-                              width: getHorizontalSize(23),
-                              margin: getMargin(left: 1),
-                              onTap: () {
-                                onTapImgArrowleft(context);
-                              })
                         ])))));
   }
 

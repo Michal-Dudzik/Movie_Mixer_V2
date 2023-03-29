@@ -59,4 +59,6 @@ class ImageConstant {
   static String imgNeonMovie = 'assets/images/NeonMovie.png';
 
   static String imgNeonMixer = 'assets/images/NeonMixer.png';
+
+  static String imgCheck = 'assets/images/check.png';
 }

@@ -131,6 +131,8 @@ class CustomButton extends StatelessWidget {
         return ColorConstant.pink600;
       case ButtonVariant.OutlineWhiteA700_2:
         return ColorConstant.cyan600;
+      case ButtonVariant.Purple:
+        return ColorConstant.blueGray900;
       default:
         return ColorConstant.whiteA700;
     }
@@ -373,6 +375,7 @@ enum ButtonVariant {
   OutlineBlack9003f,
   OutlineWhiteA700_1,
   OutlineWhiteA700_2,
+  Purple,
 }
 
 enum ButtonFontStyle {
