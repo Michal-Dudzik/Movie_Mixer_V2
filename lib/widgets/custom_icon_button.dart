@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
+// ignore: must_be_immutable
 class CustomIconButton extends StatelessWidget {
   CustomIconButton(
       {this.shape,
@@ -84,9 +85,9 @@ class CustomIconButton extends StatelessWidget {
   _setColor() {
     switch (variant) {
       case IconButtonVariant.OutlineBlack9003f_1:
-        return ColorConstant.cyan600;
+        return ColorConstant.cyan;
       default:
-        return ColorConstant.pink600;
+        return ColorConstant.pink;
     }
   }
 
@@ -106,7 +107,7 @@ class CustomIconButton extends StatelessWidget {
       case IconButtonVariant.OutlineBlack9003f_1:
         return [
           BoxShadow(
-            color: ColorConstant.black9003f,
+            color: ColorConstant.black25,
             spreadRadius: getHorizontalSize(
               2.00,
             ),
@@ -122,7 +123,7 @@ class CustomIconButton extends StatelessWidget {
       default:
         return [
           BoxShadow(
-            color: ColorConstant.black9003f,
+            color: ColorConstant.black25,
             spreadRadius: getHorizontalSize(
               2.00,
             ),

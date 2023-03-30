@@ -1,7 +1,6 @@
 import '../after_selection_screen/widgets/movielist_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 
 class AfterSelectionScreen extends StatelessWidget {
   @override
@@ -10,12 +9,12 @@ class AfterSelectionScreen extends StatelessWidget {
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     image: DecorationImage(
                         image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),

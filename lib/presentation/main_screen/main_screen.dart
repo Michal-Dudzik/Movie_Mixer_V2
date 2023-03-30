@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 import 'package:movie_mixer/widgets/room_modal.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 height: size.height,
-                width: double.maxFinite,
+                width: MediaQuery.of(context).size.width,
                 child: Stack(alignment: Alignment.bottomCenter, children: [
                   Align(
                       alignment: Alignment.center,
@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
                             CustomImageView(
                                 imagePath: ImageConstant.imgPagebackground,
                                 height: getVerticalSize(800),
-                                width: getHorizontalSize(359),
+                                width: getHorizontalSize(360),
                                 alignment: Alignment.center),
                             Align(
                                 alignment: Alignment.center,
@@ -45,7 +45,8 @@ class MainScreen extends StatelessWidget {
                                                       .imgArrowleft,
                                                   margin: getMargin(left: 15),
                                                   onTap: () =>
-                                                      onTapArrowleft(context)),
+                                                      Navigator.of(context)
+                                                          .pop()),
                                               actions: [
                                                 AppbarImage(
                                                     onTap: () =>
@@ -60,7 +61,7 @@ class MainScreen extends StatelessWidget {
                                               ]),
                                           CustomImageView(
                                               imagePath:
-                                                  ImageConstant.imgPremiumad,
+                                                  ImageConstant.imgPremiumBaner,
                                               height: getVerticalSize(110),
                                               width: getHorizontalSize(359),
                                               margin: getMargin(top: 17)),
@@ -80,76 +81,98 @@ class MainScreen extends StatelessWidget {
                   Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                          padding: getPadding(bottom: 128),
+                          padding: getPadding(bottom: 100),
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                    padding: getPadding(left: 11),
+                                    padding: getPadding(left: 10),
                                     child: Text("Check featured collections",
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
                                 Padding(
-                                    padding: getPadding(top: 21),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgPoster,
-                                              height: getVerticalSize(216),
-                                              width: getHorizontalSize(21),
-                                              radius: BorderRadius.circular(
-                                                  getHorizontalSize(10))),
-                                          CustomImageView(
-                                              imagePath: ImageConstant
-                                                  .imgPoster216x144,
-                                              height: getVerticalSize(216),
-                                              width: getHorizontalSize(144),
-                                              radius: BorderRadius.circular(
-                                                  getHorizontalSize(10))),
-                                          CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgPoster1,
-                                              height: getVerticalSize(216),
-                                              width: getHorizontalSize(144),
-                                              radius: BorderRadius.circular(
-                                                  getHorizontalSize(10))),
-                                          CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgPoster216x21,
-                                              height: getVerticalSize(216),
-                                              width: getHorizontalSize(21),
-                                              radius: BorderRadius.circular(
-                                                  getHorizontalSize(10)))
-                                        ]))
+                                    padding: getPadding(top: 10),
+                                    child: Container(
+                                      height: getVerticalSize(230),
+                                      width: getHorizontalSize(360),
+                                      child: ListView.separated(
+                                        itemCount: 4,
+                                        itemBuilder: (BuildContext context,
+                                                int index) =>
+                                            Container(
+                                                height: getVerticalSize(230),
+                                                width: getHorizontalSize(360),
+                                                child: ListView.separated(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: 4,
+                                                    separatorBuilder: (BuildContext
+                                                                context,
+                                                            int index) =>
+                                                        SizedBox(
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    10)),
+                                                    itemBuilder: (BuildContext
+                                                                context,
+                                                            int index) =>
+                                                        CustomImageView(
+                                                          imagePath: index == 0
+                                                              ? ImageConstant
+                                                                  .imgPoster
+                                                              : index == 1
+                                                                  ? ImageConstant
+                                                                      .imgPoster216x144
+                                                                  : index == 2
+                                                                      ? ImageConstant
+                                                                          .imgPoster1
+                                                                      : ImageConstant
+                                                                          .imgPoster216x21,
+                                                          width: 144,
+                                                          radius: BorderRadius
+                                                              .circular(
+                                                                  getHorizontalSize(
+                                                                      10)),
+                                                        ))),
+                                        separatorBuilder:
+                                            (BuildContext context, int index) =>
+                                                const Divider(),
+                                      ),
+                                    ))
                               ]))),
-                  Container(
+                  GestureDetector(
+                    onTap: () => launch('https://raidshadowlegends.com/'),
+                    child: Container(
                       height: getVerticalSize(80),
-                      width: getHorizontalSize(359),
-                      child: Stack(alignment: Alignment.topRight, children: [
-                        CustomImageView(
-                            imagePath: ImageConstant.imgImage,
+                      width: getHorizontalSize(360),
+                      child: Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          CustomImageView(
+                            imagePath: ImageConstant.imgRaidSh,
                             height: getVerticalSize(80),
-                            width: getHorizontalSize(359),
-                            alignment: Alignment.center),
-                        CustomImageView(
-                            svgPath: ImageConstant.imgClose,
-                            height: getSize(6),
-                            width: getSize(6),
-                            alignment: Alignment.topRight,
-                            margin: getMargin(top: 5, right: 2))
-                      ]))
+                            width: getHorizontalSize(360),
+                            alignment: Alignment.center,
+                          ),
+                          Positioned(
+                            top: getVerticalSize(5),
+                            right: getHorizontalSize(5),
+                            child: CustomImageView(
+                              svgPath: ImageConstant.imgClose,
+                              height: getSize(6),
+                              width: getSize(6),
+                              alignment: Alignment.topRight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ]))));
-  }
-
-  onTapArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 
   onTapMenu(BuildContext context) {

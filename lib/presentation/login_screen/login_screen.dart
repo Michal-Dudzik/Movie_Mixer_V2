@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
+
 import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
@@ -13,16 +13,16 @@ class LoginScreen extends StatelessWidget {
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             resizeToAvoidBottomInset: false,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     boxShadow: [
                       BoxShadow(
-                          color: ColorConstant.black9003f,
+                          color: ColorConstant.black25,
                           spreadRadius: getHorizontalSize(2),
                           blurRadius: getHorizontalSize(2),
                           offset: Offset(0, 4))
@@ -70,8 +70,8 @@ class LoginScreen extends StatelessWidget {
                                                       alignment: Alignment
                                                           .bottomRight),
                                                   CustomImageView(
-                                                      imagePath: ImageConstant
-                                                          .imgLogo328x328,
+                                                      imagePath:
+                                                          ImageConstant.imgLogo,
                                                       height: getSize(130),
                                                       width: getSize(130),
                                                       alignment:
@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                                             isObscureText: false,
                                             // controller:
                                             //     guestbuttonController,
-                                            hintText: "E-Mail",
+                                            hintText: "Username",
                                             margin: getMargin(
                                                 left: 33, top: 16, right: 33),
                                             textInputAction:

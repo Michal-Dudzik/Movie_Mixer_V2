@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 
 class WaitingRoomScreen extends StatelessWidget {
   @override
@@ -10,12 +9,12 @@ class WaitingRoomScreen extends StatelessWidget {
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     image: DecorationImage(
                         image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
@@ -34,7 +33,7 @@ class WaitingRoomScreen extends StatelessWidget {
                               width: getHorizontalSize(23),
                               margin: getMargin(left: 1),
                               onTap: () {
-                                onTapImgArrowleft(context);
+                                Navigator.of(context).pop();
                               }),
                           Container(
                               height: getVerticalSize(556),
@@ -103,7 +102,7 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                             124),
                                                                         decoration: BoxDecoration(
                                                                             color:
-                                                                                ColorConstant.pink600,
+                                                                                ColorConstant.pink,
                                                                             borderRadius: BorderRadius.only(topLeft: Radius.circular(getHorizontalSize(15)), bottomLeft: Radius.circular(getHorizontalSize(15)))))),
                                                                 Align(
                                                                     alignment:
@@ -116,14 +115,14 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                             124),
                                                                         decoration: BoxDecoration(
                                                                             color:
-                                                                                ColorConstant.cyan600,
-                                                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(getHorizontalSize(15)), bottomLeft: Radius.circular(getHorizontalSize(15)))))),
+                                                                                ColorConstant.cyan,
+                                                                            borderRadius: BorderRadius.only(topRight: Radius.circular(getHorizontalSize(15)), bottomRight: Radius.circular(getHorizontalSize(15)))))),
                                                                 Align(
                                                                     alignment:
                                                                         Alignment
                                                                             .center,
                                                                     child: Container(
-                                                                        padding: getPadding(left: 67, right: 67),
+                                                                        padding: getPadding(left: 87, right: 87),
                                                                         decoration: AppDecoration.outlineWhiteA7001.copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
                                                                         child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
                                                                           Padding(
@@ -189,7 +188,7 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                                         height: getVerticalSize(239),
                                                                                         width: getHorizontalSize(212),
                                                                                         child: Stack(alignment: Alignment.bottomLeft, children: [
-                                                                                          CustomImageView(svgPath: ImageConstant.imgArrow, height: getVerticalSize(132), width: getHorizontalSize(65), alignment: Alignment.bottomLeft),
+                                                                                          CustomImageView(svgPath: ImageConstant.imgArrow1, height: getVerticalSize(132), width: getHorizontalSize(65), alignment: Alignment.bottomLeft),
                                                                                           Align(alignment: Alignment.bottomLeft, child: Container(width: getHorizontalSize(85), margin: getMargin(left: 20, bottom: 39), child: Text("Wait for everybody", maxLines: null, textAlign: TextAlign.center, style: AppStyle.txtLemonTuesday20))),
                                                                                           Align(
                                                                                               alignment: Alignment.topRight,
@@ -223,12 +222,12 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                           child: Stack(
                                                                               alignment: Alignment.topLeft,
                                                                               children: [
-                                                                                CustomImageView(svgPath: ImageConstant.imgArrow, height: getVerticalSize(132), width: getHorizontalSize(65), alignment: Alignment.centerRight),
+                                                                                CustomImageView(svgPath: ImageConstant.imgArrow1, height: getVerticalSize(132), width: getHorizontalSize(65), alignment: Alignment.centerRight),
                                                                                 Align(alignment: Alignment.topLeft, child: Container(width: getHorizontalSize(67), margin: getMargin(top: 29), child: Text("Send an invite", maxLines: null, textAlign: TextAlign.center, style: AppStyle.txtLemonTuesday20)))
                                                                               ])),
                                                                       CustomImageView(
                                                                           svgPath: ImageConstant
-                                                                              .imgBrightness,
+                                                                              .imgArrow2,
                                                                           height: getVerticalSize(
                                                                               77),
                                                                           width: getHorizontalSize(
@@ -251,10 +250,6 @@ class WaitingRoomScreen extends StatelessWidget {
                                         alignment: Alignment.bottomCenter)
                                   ]))
                         ])))));
-  }
-
-  onTapImgArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 
   onTapStart(BuildContext context) {

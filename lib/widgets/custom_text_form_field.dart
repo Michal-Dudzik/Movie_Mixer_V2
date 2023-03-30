@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
+// ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField(
       {this.shape,
@@ -114,7 +115,7 @@ class CustomTextFormField extends StatelessWidget {
     switch (fontStyle) {
       default:
         return TextStyle(
-          color: ColorConstant.black900,
+          color: ColorConstant.black,
           fontSize: getFontSize(
             12,
           ),
@@ -153,7 +154,7 @@ class CustomTextFormField extends StatelessWidget {
   _setFillColor() {
     switch (variant) {
       default:
-        return ColorConstant.whiteA700;
+        return ColorConstant.ghostWhite;
     }
   }
 

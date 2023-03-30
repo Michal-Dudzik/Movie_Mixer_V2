@@ -3,7 +3,7 @@ import 'package:movie_mixer/core/app_export.dart';
 
 class AppStyle {
   static TextStyle txtRobotoRomanRegular12Black900 = TextStyle(
-    color: ColorConstant.black900,
+    color: ColorConstant.black,
     fontSize: getFontSize(
       12,
     ),
@@ -12,7 +12,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanMedium35 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       35,
     ),
@@ -21,7 +21,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanLight15 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       15,
     ),
@@ -30,7 +30,7 @@ class AppStyle {
   );
 
   static TextStyle txtLemonTuesday15 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       15,
     ),
@@ -39,7 +39,7 @@ class AppStyle {
   );
 
   static TextStyle txtClip36Pink6001 = TextStyle(
-    color: ColorConstant.pink600,
+    color: ColorConstant.pink,
     fontSize: getFontSize(
       36,
     ),
@@ -48,7 +48,7 @@ class AppStyle {
   );
 
   static TextStyle txtLemonTuesday30 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       30,
     ),
@@ -57,7 +57,7 @@ class AppStyle {
   );
 
   static TextStyle txtClip36 = TextStyle(
-    color: ColorConstant.cyan600,
+    color: ColorConstant.cyan,
     fontSize: getFontSize(
       36,
     ),
@@ -66,7 +66,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular40 = TextStyle(
-    color: ColorConstant.whiteA70001,
+    color: ColorConstant.white,
     fontSize: getFontSize(
       40,
     ),
@@ -75,7 +75,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular20 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       20,
     ),
@@ -84,7 +84,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular22 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       22,
     ),
@@ -93,7 +93,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRegular20 = TextStyle(
-    color: ColorConstant.black900,
+    color: ColorConstant.black,
     fontSize: getFontSize(
       20,
     ),
@@ -102,7 +102,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular25 = TextStyle(
-    color: ColorConstant.cyan600,
+    color: ColorConstant.cyan,
     fontSize: getFontSize(
       25,
     ),
@@ -111,7 +111,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanLight10 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       10,
     ),
@@ -120,7 +120,7 @@ class AppStyle {
   );
 
   static TextStyle txtClip36WhiteA700b2 = TextStyle(
-    color: ColorConstant.whiteA700B2,
+    color: ColorConstant.ghostWhite70,
     fontSize: getFontSize(
       36,
     ),
@@ -129,7 +129,7 @@ class AppStyle {
   );
 
   static TextStyle txtClip36Pink600 = TextStyle(
-    color: ColorConstant.pink600,
+    color: ColorConstant.pink,
     fontSize: getFontSize(
       36,
     ),
@@ -138,7 +138,7 @@ class AppStyle {
   );
 
   static TextStyle txtLemonTuesday20 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       20,
     ),
@@ -147,7 +147,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanBold20 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       20,
     ),
@@ -156,7 +156,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular20WhiteA70001 = TextStyle(
-    color: ColorConstant.whiteA70001,
+    color: ColorConstant.white,
     fontSize: getFontSize(
       20,
     ),
@@ -165,7 +165,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular15 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       15,
     ),
@@ -174,7 +174,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular17Black900 = TextStyle(
-    color: ColorConstant.black900,
+    color: ColorConstant.black,
     fontSize: getFontSize(
       17,
     ),
@@ -183,7 +183,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular37 = TextStyle(
-    color: ColorConstant.whiteA70001,
+    color: ColorConstant.white,
     fontSize: getFontSize(
       37,
     ),
@@ -192,7 +192,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular18 = TextStyle(
-    color: ColorConstant.whiteA70001,
+    color: ColorConstant.white,
     fontSize: getFontSize(
       18,
     ),
@@ -201,7 +201,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular17 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       17,
     ),
@@ -210,7 +210,7 @@ class AppStyle {
   );
 
   static TextStyle txtClip36Cyan600 = TextStyle(
-    color: ColorConstant.cyan600,
+    color: ColorConstant.cyan,
     fontSize: getFontSize(
       36,
     ),
@@ -219,7 +219,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanExtraBold20 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       20,
     ),
@@ -227,17 +227,8 @@ class AppStyle {
     fontWeight: FontWeight.w800,
   );
 
-  static TextStyle txtRobotoRegular16 = TextStyle(
-    color: ColorConstant.bluegray400,
-    fontSize: getFontSize(
-      16,
-    ),
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w400,
-  );
-
   static TextStyle txtRobotoRomanRegular12 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       12,
     ),
@@ -246,7 +237,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular14 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       14,
     ),
@@ -255,7 +246,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanLight20 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       20,
     ),
@@ -264,7 +255,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanRegular35 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       35,
     ),
@@ -273,7 +264,7 @@ class AppStyle {
   );
 
   static TextStyle txtRobotoRomanBold25 = TextStyle(
-    color: ColorConstant.whiteA700,
+    color: ColorConstant.ghostWhite,
     fontSize: getFontSize(
       25,
     ),

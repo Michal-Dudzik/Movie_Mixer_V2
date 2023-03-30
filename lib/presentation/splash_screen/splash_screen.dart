@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/routes/app_routes.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -12,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     });
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorConstant.gray900,
+        backgroundColor: ColorConstant.gray,
         body: Container(
           width: double.maxFinite,
           padding: getPadding(
@@ -27,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             children: [
               Spacer(),
               CustomImageView(
-                imagePath: ImageConstant.imgLogo328x328,
+                imagePath: ImageConstant.imgLogo,
                 height: getSize(
                   328,
                 ),

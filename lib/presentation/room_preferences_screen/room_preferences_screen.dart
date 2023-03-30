@@ -1,20 +1,36 @@
+// import 'package:flutter/cupertino.dart';
+// ignore_for_file: unused_field, unused_element
+
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 
-class RoomPreferencesScreen extends StatelessWidget {
+class RoomPreferencesScreen extends StatefulWidget {
+  @override
+  State<RoomPreferencesScreen> createState() => _RoomPreferencesScreenState();
+}
+
+class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
+  int _selectedValue = 10;
+  List<String> _selectedGenres = [];
+
+  void _onGenresChanged(List<String> genres) {
+    setState(() {
+      _selectedGenres = genres;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     image: DecorationImage(
                         image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
@@ -33,7 +49,7 @@ class RoomPreferencesScreen extends StatelessWidget {
                               width: getHorizontalSize(23),
                               margin: getMargin(left: 1),
                               onTap: () {
-                                onTapImgArrowleft(context);
+                                Navigator.of(context).pop();
                               }),
                           Container(
                               height: getVerticalSize(577),
@@ -44,6 +60,7 @@ class RoomPreferencesScreen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.center,
                                     child: Container(
+                                        height: 536,
                                         padding: getPadding(
                                             left: 43,
                                             top: 49,
@@ -56,84 +73,73 @@ class RoomPreferencesScreen extends StatelessWidget {
                                         child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Padding(
-                                                  padding: getPadding(top: 18),
-                                                  child: Text(
-                                                      "How many movies do you want:",
+                                              SingleChildScrollView(
+                                                padding: EdgeInsets.all(16),
+                                                child: Column(
+                                                  children: [
+                                                    GenrePicker(
+                                                      onGenresChanged:
+                                                          (selectedGenres) {
+                                                        setState(() {
+                                                          _selectedGenres =
+                                                              selectedGenres;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text("List size:",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle
-                                                          .txtRobotoRomanRegular17)),
-                                              Padding(
-                                                  padding: getPadding(top: 12),
-                                                  child: Text("10",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular15)),
-                                              Padding(
-                                                  padding: getPadding(top: 5),
-                                                  child: Text("11",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular25)),
-                                              Padding(
-                                                  padding: getPadding(top: 5),
-                                                  child: Text("12",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular15)),
-                                              Padding(
-                                                  padding: getPadding(top: 29),
-                                                  child: Text(
-                                                      "How many people will join room:",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular17)),
-                                              Padding(
-                                                  padding: getPadding(top: 12),
-                                                  child: Text("4",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular15)),
-                                              Padding(
-                                                  padding: getPadding(top: 5),
-                                                  child: Text("5",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular25)),
-                                              Padding(
-                                                  padding: getPadding(top: 5),
-                                                  child: Text("6",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanRegular15)),
+                                                          .txtRobotoRomanRegular22),
+                                                  Container(
+                                                      height:
+                                                          getVerticalSize(80),
+                                                      width:
+                                                          getHorizontalSize(60),
+                                                      child: NumberPicker(
+                                                          selectedValue:
+                                                              _selectedValue,
+                                                          onValueChanged:
+                                                              (int value) {
+                                                            setState(() {
+                                                              _selectedValue =
+                                                                  value;
+                                                            });
+                                                          })),
+                                                ],
+                                              ),
                                               Padding(
                                                   padding: getPadding(
                                                       left: 21,
                                                       top: 28,
                                                       right: 21),
                                                   child: Row(
+                                                      // TODO: When the user clicks on the "Advanced options" button, If user has premium account the "Advanced options" section should be expanded, otherwise the user will get a popup to upgrade to premium account.
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
                                                       children: [
+                                                        CustomImageView(
+                                                            svgPath: ImageConstant
+                                                                .imgLockLocked,
+                                                            height:
+                                                                getVerticalSize(
+                                                                    35),
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    26),
+                                                            alignment: Alignment
+                                                                .center),
                                                         Padding(
                                                             padding: getPadding(
                                                                 left: 17,
@@ -149,185 +155,35 @@ class RoomPreferencesScreen extends StatelessWidget {
                                                                         .left,
                                                                 style: AppStyle
                                                                     .txtRobotoRomanBold20)),
-                                                        Container(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    35),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    26),
-                                                            child: Stack(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                children: [
-                                                                  CustomImageView(
-                                                                      svgPath:
-                                                                          ImageConstant
-                                                                              .imgLockWhiteA700,
-                                                                      height:
-                                                                          getVerticalSize(
-                                                                              35),
-                                                                      width:
-                                                                          getHorizontalSize(
-                                                                              26),
-                                                                      alignment:
-                                                                          Alignment
-                                                                              .center),
-                                                                  CustomImageView(
-                                                                      svgPath:
-                                                                          ImageConstant
-                                                                              .imgLockWhiteA70035x26,
-                                                                      height:
-                                                                          getVerticalSize(
-                                                                              35),
-                                                                      width:
-                                                                          getHorizontalSize(
-                                                                              26),
-                                                                      alignment:
-                                                                          Alignment
-                                                                              .center)
-                                                                ]))
                                                       ])),
-                                              Container(
-                                                  margin: getMargin(top: 26),
-                                                  padding: getPadding(
-                                                      left: 19,
-                                                      top: 11,
-                                                      right: 19,
-                                                      bottom: 11),
-                                                  decoration: AppDecoration
-                                                      .fillWhiteA700
-                                                      .copyWith(
-                                                          borderRadius:
-                                                              BorderRadiusStyle
-                                                                  .roundedBorder10),
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                top: 1),
-                                                            child: Text(
-                                                                "Preferred genres",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtRobotoRomanRegular17Black900)),
-                                                        CustomImageView(
-                                                            svgPath: ImageConstant
-                                                                .imgPlusBlack900,
-                                                            height: getSize(17),
-                                                            width: getSize(17),
-                                                            margin: getMargin(
-                                                                left: 24,
-                                                                top: 2,
-                                                                bottom: 2))
-                                                      ])),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Padding(
-                                                      padding:
-                                                          getPadding(top: 8),
-                                                      child: Row(children: [
-                                                        CustomButton(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    29),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    60),
-                                                            text: "Action",
-                                                            shape: ButtonShape
-                                                                .RoundedBorder10),
-                                                        CustomButton(
-                                                            height:
-                                                                getVerticalSize(
-                                                                    29),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    60),
-                                                            text: "Comedy",
-                                                            margin: getMargin(
-                                                                left: 4),
-                                                            shape: ButtonShape
-                                                                .RoundedBorder10)
-                                                      ])))
                                             ]))),
-                                Align(
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                        padding:
-                                            getPadding(left: 43, right: 43),
-                                        child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                  decoration: AppDecoration
-                                                      .outlineBlack9003f1,
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Expanded(
-                                                            child: CustomButton(
-                                                                height:
-                                                                    getVerticalSize(
-                                                                        42),
-                                                                text: "Movie",
-                                                                variant:
-                                                                    ButtonVariant
-                                                                        .OutlineWhiteA700,
-                                                                shape: ButtonShape
-                                                                    .CustomBorderTL10,
-                                                                fontStyle:
-                                                                    ButtonFontStyle
-                                                                        .RobotoRomanBold20WhiteA700)),
-                                                        Expanded(
-                                                            child: CustomButton(
-                                                                height:
-                                                                    getVerticalSize(
-                                                                        42),
-                                                                text:
-                                                                    "TV Series",
-                                                                variant:
-                                                                    ButtonVariant
-                                                                        .Cyan,
-                                                                shape: ButtonShape
-                                                                    .CustomBorderLR10,
-                                                                fontStyle:
-                                                                    ButtonFontStyle
-                                                                        .RobotoRomanBold20WhiteA700))
-                                                      ])),
-                                              Spacer(),
-                                              CustomButton(
-                                                  height: getVerticalSize(40),
-                                                  text: "Open Room",
-                                                  variant: ButtonVariant
-                                                      .OutlineBlack9003f,
-                                                  fontStyle: ButtonFontStyle
-                                                      .RobotoRomanMedium20,
-                                                  onTap: () =>
-                                                      onTapOpenroom(context))
-                                            ])))
+                                Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 43, vertical: 12),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CheckboxWidget(),
+                                        Spacer(),
+                                        CustomButton(
+                                          height: getVerticalSize(40),
+                                          text: "Open Room",
+                                          variant:
+                                              ButtonVariant.OutlineBlack9003f,
+                                          fontStyle: ButtonFontStyle
+                                              .RobotoRomanMedium20,
+                                          onTap: () => onTapOpenroom(context),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
                               ])),
                         ])))));
   }
 
   onTapOpenroom(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.waitingRoomScreen);
-  }
-
-  onTapImgArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 }

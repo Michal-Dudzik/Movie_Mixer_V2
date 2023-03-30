@@ -8,12 +8,12 @@ class AccountPreferencesScreen extends StatelessWidget {
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     image: DecorationImage(
                         image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
@@ -32,7 +32,7 @@ class AccountPreferencesScreen extends StatelessWidget {
                               width: getHorizontalSize(23),
                               margin: getMargin(left: 1),
                               onTap: () {
-                                onTapImgArrowleft(context);
+                                Navigator.of(context).pop();
                               }),
                           Container(
                               width: double.maxFinite,
@@ -67,7 +67,7 @@ class AccountPreferencesScreen extends StatelessWidget {
                                                     children: [
                                                       CustomImageView(
                                                           svgPath: ImageConstant
-                                                              .imgOffer,
+                                                              .imgSlider,
                                                           height:
                                                               getVerticalSize(
                                                                   24),
@@ -94,9 +94,5 @@ class AccountPreferencesScreen extends StatelessWidget {
                                                     ])))
                                       ])))
                         ])))));
-  }
-
-  onTapImgArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 }

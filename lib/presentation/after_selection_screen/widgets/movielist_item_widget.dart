@@ -27,7 +27,7 @@ class MovielistItemWidget extends StatelessWidget {
                 284,
               ),
               decoration: BoxDecoration(
-                color: ColorConstant.gray900,
+                color: ColorConstant.gray,
                 borderRadius: BorderRadius.circular(
                   getHorizontalSize(
                     15,
@@ -133,7 +133,7 @@ class MovielistItemWidget extends StatelessWidget {
                         child: Row(
                           children: [
                             CustomImageView(
-                              svgPath: ImageConstant.imgVector,
+                              svgPath: ImageConstant.imgPopularity,
                               height: getVerticalSize(
                                 15,
                               ),

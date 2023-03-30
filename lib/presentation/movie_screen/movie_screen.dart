@@ -7,7 +7,7 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: double.maxFinite,
                 child: Column(
@@ -115,8 +115,8 @@ class MovieScreen extends StatelessWidget {
                                               padding: getPadding(top: 8),
                                               child: Row(children: [
                                                 CustomImageView(
-                                                    svgPath:
-                                                        ImageConstant.imgVector,
+                                                    svgPath: ImageConstant
+                                                        .imgPopularity,
                                                     height: getVerticalSize(15),
                                                     width:
                                                         getHorizontalSize(27),

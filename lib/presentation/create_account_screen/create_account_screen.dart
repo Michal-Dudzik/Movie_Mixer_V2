@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 class CreateAccountScreen extends StatelessWidget {
@@ -10,12 +9,12 @@ class CreateAccountScreen extends StatelessWidget {
         child: Scaffold(
             extendBody: true,
             extendBodyBehindAppBar: true,
-            backgroundColor: ColorConstant.gray900,
+            backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
                 height: size.height,
                 decoration: BoxDecoration(
-                    color: ColorConstant.gray900,
+                    color: ColorConstant.gray,
                     image: DecorationImage(
                         image: AssetImage(ImageConstant.imgPagebackground),
                         fit: BoxFit.cover)),
@@ -34,7 +33,7 @@ class CreateAccountScreen extends StatelessWidget {
                               width: getHorizontalSize(23),
                               margin: getMargin(left: 1),
                               onTap: () {
-                                onTapImgArrowleft(context);
+                                Navigator.of(context).pop();
                               }),
                           Container(
                               width: double.maxFinite,
@@ -116,7 +115,7 @@ class CreateAccountScreen extends StatelessWidget {
                                                                   getVerticalSize(
                                                                       1),
                                                               color: ColorConstant
-                                                                  .whiteA700))),
+                                                                  .ghostWhite))),
                                                   Text("or continue with",
                                                       overflow:
                                                           TextOverflow.ellipsis,
@@ -138,7 +137,7 @@ class CreateAccountScreen extends StatelessWidget {
                                                                   getVerticalSize(
                                                                       1),
                                                               color: ColorConstant
-                                                                  .whiteA700)))
+                                                                  .ghostWhite)))
                                                 ])),
                                         Container(
                                             margin: getMargin(
@@ -202,7 +201,7 @@ class CreateAccountScreen extends StatelessWidget {
                                                 children: [
                                                   CustomImageView(
                                                       color: ColorConstant
-                                                          .whiteA700,
+                                                          .ghostWhite,
                                                       svgPath: ImageConstant
                                                           .imgApple,
                                                       height:
@@ -232,9 +231,5 @@ class CreateAccountScreen extends StatelessWidget {
 
   onTapCreateaccount(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainScreen);
-  }
-
-  onTapImgArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 }

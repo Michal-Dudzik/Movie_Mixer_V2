@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/widgets/custom_button.dart';
 import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 import 'hero_dialog_route.dart';
@@ -46,7 +45,7 @@ class _AddTodoPopupCard extends StatelessWidget {
         child: Hero(
           tag: _heroAddTodo,
           child: Material(
-            color: ColorConstant.blueGray900,
+            color: ColorConstant.purple,
             elevation: 2,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
@@ -66,7 +65,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                             textInputAction: TextInputAction.done),
                         IconButton(
                             icon: const Icon(Icons.check_circle_rounded),
-                            color: ColorConstant.cyan600,
+                            color: ColorConstant.cyan,
                             iconSize: 40,
                             onPressed: () => onJoinRoom(context)),
                       ],

@@ -3,22 +3,22 @@ import 'package:movie_mixer/core/app_export.dart';
 
 class AppDecoration {
   static BoxDecoration get fillGray900 => BoxDecoration(
-        color: ColorConstant.gray900,
+        color: ColorConstant.gray,
       );
   static BoxDecoration get purple => BoxDecoration(
-        color: ColorConstant.blueGray900,
+        color: ColorConstant.purple,
         border: Border.all(
-          color: ColorConstant.whiteA700B2,
+          color: ColorConstant.ghostWhite70,
           width: getHorizontalSize(
             1,
           ),
         ),
       );
   static BoxDecoration get outlineBlack9003f => BoxDecoration(
-        color: ColorConstant.gray900,
+        color: ColorConstant.gray,
         boxShadow: [
           BoxShadow(
-            color: ColorConstant.black9003f,
+            color: ColorConstant.black25,
             spreadRadius: getHorizontalSize(
               2,
             ),
@@ -33,38 +33,21 @@ class AppDecoration {
         ],
       );
   static BoxDecoration get outlineBlack9003f1 => BoxDecoration();
-  static BoxDecoration get outlineIndigo3001c => BoxDecoration(
-        color: ColorConstant.whiteA700,
-        boxShadow: [
-          BoxShadow(
-            color: ColorConstant.indigo3001c,
-            spreadRadius: getHorizontalSize(
-              2,
-            ),
-            blurRadius: getHorizontalSize(
-              2,
-            ),
-            offset: Offset(
-              0,
-              18,
-            ),
-          ),
-        ],
-      );
+
   static BoxDecoration get outlineWhiteA700 => BoxDecoration(
-        color: ColorConstant.whiteA700,
+        color: ColorConstant.ghostWhite,
         border: Border.all(
-          color: ColorConstant.whiteA700,
+          color: ColorConstant.ghostWhite,
           width: getHorizontalSize(
             1,
           ),
         ),
       );
   static BoxDecoration get black => BoxDecoration(
-        color: ColorConstant.black900,
+        color: ColorConstant.black,
         boxShadow: [
           BoxShadow(
-            color: ColorConstant.black9003f,
+            color: ColorConstant.black25,
             spreadRadius: getHorizontalSize(
               2,
             ),
@@ -79,15 +62,15 @@ class AppDecoration {
         ],
       );
   static BoxDecoration get fillWhiteA701 => BoxDecoration(
-        color: ColorConstant.whiteA701,
+        color: ColorConstant.white,
       );
   static BoxDecoration get fillWhiteA700 => BoxDecoration(
-        color: ColorConstant.whiteA700,
+        color: ColorConstant.ghostWhite,
       );
   static BoxDecoration get outlineWhiteA7001 => BoxDecoration(
-        color: ColorConstant.whiteA70026,
+        color: ColorConstant.ghostWhite15,
         border: Border.all(
-          color: ColorConstant.whiteA700,
+          color: ColorConstant.ghostWhite,
           width: getHorizontalSize(
             2,
           ),
