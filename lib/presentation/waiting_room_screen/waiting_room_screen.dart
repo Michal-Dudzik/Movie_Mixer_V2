@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class WaitingRoomScreen extends StatelessWidget {
   @override
@@ -73,63 +74,10 @@ class WaitingRoomScreen extends StatelessWidget {
                                                               TextAlign.left,
                                                           style: AppStyle
                                                               .txtLemonTuesday30)),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Container(
-                                                          height:
-                                                              getVerticalSize(
-                                                                  44),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  248),
-                                                          margin: getMargin(
-                                                              top: 12),
-                                                          decoration: AppDecoration
-                                                              .outlineBlack9003f1,
-                                                          child: Stack(
-                                                              alignment: Alignment
-                                                                  .centerRight,
-                                                              children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerLeft,
-                                                                    child: Container(
-                                                                        height: getVerticalSize(
-                                                                            44),
-                                                                        width: getHorizontalSize(
-                                                                            124),
-                                                                        decoration: BoxDecoration(
-                                                                            color:
-                                                                                ColorConstant.pink,
-                                                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(getHorizontalSize(15)), bottomLeft: Radius.circular(getHorizontalSize(15)))))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerRight,
-                                                                    child: Container(
-                                                                        height: getVerticalSize(
-                                                                            44),
-                                                                        width: getHorizontalSize(
-                                                                            124),
-                                                                        decoration: BoxDecoration(
-                                                                            color:
-                                                                                ColorConstant.cyan,
-                                                                            borderRadius: BorderRadius.only(topRight: Radius.circular(getHorizontalSize(15)), bottomRight: Radius.circular(getHorizontalSize(15)))))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    child: Container(
-                                                                        padding: getPadding(left: 87, right: 87),
-                                                                        decoration: AppDecoration.outlineWhiteA7001.copyWith(borderRadius: BorderRadiusStyle.roundedBorder15),
-                                                                        child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
-                                                                          Padding(
-                                                                              padding: getPadding(bottom: 1),
-                                                                              child: Text("XXXXX", overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtRobotoRomanRegular35))
-                                                                        ])))
-                                                              ]))),
+                                                  Center(
+                                                      child: CopyableText(
+                                                    text: 'XXXXX',
+                                                  )),
                                                   Padding(
                                                       padding: getPadding(
                                                           left: 9,
@@ -159,8 +107,6 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                                   21),
                                                                           child: Text(
                                                                               "Click to copy",
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                              textAlign: TextAlign.left,
                                                                               style: AppStyle.txtLemonTuesday15)),
                                                                       Container(
                                                                           height: getVerticalSize(
@@ -195,9 +141,25 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                                               child: Container(
                                                                                                   padding: getPadding(left: 36, top: 31, right: 36, bottom: 31),
                                                                                                   decoration: BoxDecoration(image: DecorationImage(image: fs.Svg(ImageConstant.imgCinematicket), fit: BoxFit.cover)),
-                                                                                                  child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.end, children: [
-                                                                                                    Padding(padding: getPadding(top: 51), child: Text("INVITE", overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtRobotoRomanExtraBold20))
-                                                                                                  ])))
+                                                                                                  child: GestureDetector(
+                                                                                                    onTap: () {
+                                                                                                      // TODO: napraw share
+                                                                                                      FlutterShare.share(title: 'Movie Mixer', text: 'Movie Mixer', linkUrl: 'https://flutter.dev/', chooserTitle: 'Movie Mixer');
+                                                                                                    },
+                                                                                                    child: Column(
+                                                                                                      mainAxisSize: MainAxisSize.min,
+                                                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                                                      children: [
+                                                                                                        Padding(
+                                                                                                          padding: getPadding(top: 51),
+                                                                                                          child: Text(
+                                                                                                            "INVITE",
+                                                                                                            style: AppStyle.txtRobotoRomanExtraBold20,
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ],
+                                                                                                    ),
+                                                                                                  )))
                                                                                         ])))
                                                                               ]))
                                                                     ])),

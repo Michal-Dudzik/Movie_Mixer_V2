@@ -10,3 +10,4 @@ export 'package:movie_mixer/widgets/number_picker.dart';
 export 'package:movie_mixer/widgets/genre_picker.dart';
 export 'package:movie_mixer/widgets/type_select.dart';
 export 'package:movie_mixer/widgets/custom_button.dart';
+export 'package:movie_mixer/widgets/room_code.dart';
