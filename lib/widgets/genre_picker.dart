@@ -35,6 +35,8 @@ class _GenrePickerState extends State<GenrePicker> {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(43))),
               title: Text('Select Genres'),
               content: SingleChildScrollView(
                 child: Column(

@@ -42,7 +42,7 @@ class MainScreen extends StatelessWidget {
                                                   height: getVerticalSize(17),
                                                   width: getHorizontalSize(23),
                                                   svgPath: ImageConstant
-                                                      .imgArrowleft,
+                                                      .imgArrowBack,
                                                   margin: getMargin(left: 15),
                                                   onTap: () =>
                                                       Navigator.of(context)

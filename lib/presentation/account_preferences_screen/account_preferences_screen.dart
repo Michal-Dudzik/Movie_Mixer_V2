@@ -27,7 +27,7 @@ class AccountPreferencesScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomImageView(
-                              svgPath: ImageConstant.imgArrowleft,
+                              svgPath: ImageConstant.imgArrowBack,
                               height: getVerticalSize(17),
                               width: getHorizontalSize(23),
                               margin: getMargin(left: 1),

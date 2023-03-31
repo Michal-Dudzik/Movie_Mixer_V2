@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_mixer/core/app_export.dart';
@@ -60,19 +62,27 @@ class CopyableText extends StatelessWidget {
                 decoration: AppDecoration.outlineWhiteA7001.copyWith(
                   borderRadius: BorderRadiusStyle.roundedBorder15,
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: getPadding(bottom: 1),
-                      child: Text(
-                        text,
-                        textAlign: TextAlign.center,
-                        style: AppStyle.txtRobotoRomanRegular35,
-                      ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: getPadding(bottom: 1),
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.center,
+                            style: AppStyle.txtRobotoRomanRegular35.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

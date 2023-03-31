@@ -13,14 +13,6 @@ class MovieScreen extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                          width: getHorizontalSize(312),
-                          margin: getMargin(left: 24, top: 21, right: 24),
-                          child: Text(
-                              "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead. Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Morbius attempts a desperate gamble.",
-                              maxLines: null,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtRobotoRomanRegular14)),
                       CustomImageView(
                           imagePath: ImageConstant.imgPoster376x360,
                           height: getVerticalSize(376),
@@ -132,11 +124,19 @@ class MovieScreen extends StatelessWidget {
                                                             TextAlign.left,
                                                         style: AppStyle
                                                             .txtRobotoRomanLight15))
-                                              ]))
+                                              ])),
                                         ]))
                               ])),
+                      Container(
+                          width: getHorizontalSize(312),
+                          margin: getMargin(left: 24, top: 21, right: 24),
+                          child: Text(
+                              "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead. Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Morbius attempts a desperate gamble.",
+                              maxLines: null,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtRobotoRomanRegular14)),
                       Padding(
-                          padding: getPadding(left: 24, top: 77, right: 24),
+                          padding: getPadding(left: 24, top: 125, right: 24),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

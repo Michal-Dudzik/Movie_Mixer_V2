@@ -3,13 +3,13 @@ class ImageConstant {
 
   static String imgPopularity = 'assets/images/img_vector.svg';
 
-  static String imgArrowleft = 'assets/images/img_arrowleft.svg';
+  static String imgArrowBack = 'assets/images/img_arrowleft.svg';
 
   static String imgClose = 'assets/images/img_close.svg';
 
   static String imgMenu = 'assets/images/img_menu.svg';
 
-  static String imgArrow1 = 'assets/images/img_arrow.svg';
+  // static String imgArrow1 = 'assets/images/img_arrow.svg';
 
   static String imgPoster216x21 = 'assets/images/img_poster_216x21.png';
 
@@ -17,13 +17,13 @@ class ImageConstant {
 
   static String imgPoster216x144 = 'assets/images/img_poster_216x144.png';
 
-  static String imgThumbsup = 'assets/images/img_thumbsup.svg';
-
   static String imgLockUnlocked = 'assets/images/img_lock_white_a700.svg';
+
+  static String imgLockLocked = 'assets/images/img_lock_white_a700_35x26.svg';
 
   static String imgApple = 'assets/images/img_apple.svg';
 
-  static String imgLockLocked = 'assets/images/img_lock_white_a700_35x26.svg';
+  static String imgGoogle = 'assets/images/img_google.svg';
 
   static String imgLogo = 'assets/images/img_logo_328x328.png';
 
@@ -37,17 +37,17 @@ class ImageConstant {
 
   static String imgStar = 'assets/images/img_star.svg';
 
-  static String imgGoogle = 'assets/images/img_google.svg';
-
   static String imgSlider = 'assets/images/img_offer.svg';
 
   static String imgRaidSh = 'assets/images/img_image.png';
+
+  static String imgThumbsup = 'assets/images/img_thumbsup.svg';
 
   static String imgThumbsDown = 'assets/images/img_computer.svg';
 
   static String imgPoster = 'assets/images/img_poster.png';
 
-  static String imgArrow2 = 'assets/images/img_brightness.svg';
+  // static String imgArrow2 = 'assets/images/img_brightness.svg';
 
   static String imgPoster376x360 = 'assets/images/img_poster_376x360.png';
 
@@ -60,4 +60,10 @@ class ImageConstant {
   static String imgNeonMixer = 'assets/images/NeonMixer.png';
 
   static String imgCheck = 'assets/images/check.png';
+
+  static String imgArrow1 = 'assets/images/Arrow1.png';
+
+  static String imgArrow2 = 'assets/images/Arrow2.png';
+
+  static String imgArrow3 = 'assets/images/Arrow3.png';
 }
