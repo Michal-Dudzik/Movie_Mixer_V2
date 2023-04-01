@@ -94,55 +94,16 @@ class MainScreen extends StatelessWidget {
                                         textAlign: TextAlign.left,
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
-                                Padding(
-                                    padding: getPadding(top: 10),
-                                    child: Container(
-                                      height: getVerticalSize(230),
-                                      width: getHorizontalSize(360),
-                                      child: ListView.separated(
-                                        itemCount: 4,
-                                        itemBuilder: (BuildContext context,
-                                                int index) =>
-                                            Container(
-                                                height: getVerticalSize(230),
-                                                width: getHorizontalSize(360),
-                                                child: ListView.separated(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: 4,
-                                                    separatorBuilder: (BuildContext
-                                                                context,
-                                                            int index) =>
-                                                        SizedBox(
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    10)),
-                                                    itemBuilder: (BuildContext
-                                                                context,
-                                                            int index) =>
-                                                        CustomImageView(
-                                                          imagePath: index == 0
-                                                              ? ImageConstant
-                                                                  .imgPoster
-                                                              : index == 1
-                                                                  ? ImageConstant
-                                                                      .imgPoster216x144
-                                                                  : index == 2
-                                                                      ? ImageConstant
-                                                                          .imgPoster1
-                                                                      : ImageConstant
-                                                                          .imgPoster216x21,
-                                                          width: 144,
-                                                          radius: BorderRadius
-                                                              .circular(
-                                                                  getHorizontalSize(
-                                                                      10)),
-                                                        ))),
-                                        separatorBuilder:
-                                            (BuildContext context, int index) =>
-                                                const Divider(),
-                                      ),
-                                    ))
+                                ImageCarousel(
+                                  imagePaths: [
+                                    ImageConstant.imgPoster,
+                                    ImageConstant.imgPoster216x144,
+                                    ImageConstant.imgPoster1,
+                                    ImageConstant.imgPoster216x21,
+                                  ],
+                                  scrollDirection: Axis.horizontal,
+                                  itemsVisible: 3,
+                                ),
                               ]))),
                   GestureDetector(
                     onTap: () => launch('https://raidshadowlegends.com/'),

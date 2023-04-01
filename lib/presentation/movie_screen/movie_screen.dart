@@ -147,7 +147,7 @@ class MovieScreen extends StatelessWidget {
                                       onTapBtnDisagreebutton(context);
                                     },
                                     child: CustomImageView(
-                                        svgPath: ImageConstant.imgThumbsup)),
+                                        svgPath: ImageConstant.imgThumbsDown)),
                                 CustomIconButton(
                                     height: 64,
                                     width: 64,
@@ -160,30 +160,12 @@ class MovieScreen extends StatelessWidget {
                                         svgPath: ImageConstant.imgThumbsup))
                               ])),
                       Padding(
-                          padding: getPadding(top: 13, bottom: 5),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("X",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle
-                                        .txtRobotoRomanRegular20WhiteA70001),
-                                Padding(
-                                    padding: getPadding(left: 1, top: 1),
-                                    child: Text("/",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style:
-                                            AppStyle.txtRobotoRomanRegular18)),
-                                Padding(
-                                    padding: getPadding(left: 1),
-                                    child: Text("X",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtRobotoRomanRegular20WhiteA70001))
-                              ]))
+                        padding: getPadding(top: 13, bottom: 5),
+                        child: Text("X/X",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            style: AppStyle.txtRobotoRomanRegular20WhiteA70001),
+                      )
                     ]))));
   }
 
