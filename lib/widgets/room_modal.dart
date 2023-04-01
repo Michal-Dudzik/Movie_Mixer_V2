@@ -4,8 +4,8 @@ import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 import 'hero_dialog_route.dart';
 
-class AddTodoButton extends StatelessWidget {
-  const AddTodoButton({Key? key}) : super(key: key);
+class RoomModal extends StatelessWidget {
+  const RoomModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

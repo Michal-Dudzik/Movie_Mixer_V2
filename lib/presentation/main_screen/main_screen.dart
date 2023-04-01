@@ -74,7 +74,7 @@ class MainScreen extends StatelessWidget {
                                                   textAlign: TextAlign.left,
                                                   style: AppStyle
                                                       .txtRobotoRomanRegular22)),
-                                          AddTodoButton(),
+                                          RoomModal(),
                                           Spacer(),
                                         ])))
                           ]))),

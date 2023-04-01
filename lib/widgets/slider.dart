@@ -29,20 +29,88 @@ class ImageCarousel extends StatelessWidget {
           itemCount: imagePaths.length,
           scrollDirection: scrollDirection,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: scrollDirection == Axis.horizontal ? itemHeight : null,
-              width: scrollDirection == Axis.vertical ? itemWidth : null,
-              child: Row(
-                children: [
-                  CustomImageView(
-                    imagePath: imagePaths[index],
-                    width: itemWidth,
-                    radius: BorderRadius.circular(10),
-                  ),
-                  SizedBox(
-                    width: spacing,
-                  ),
-                ],
+            return GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      backgroundColor: ColorConstant.purple,
+                      child: SizedBox(
+                        height: itemHeight,
+                        child: Row(
+                          children: [
+                            CustomImageView(
+                              imagePath: imagePaths[index],
+                              width: itemWidth,
+                              height: itemHeight,
+                              radius: BorderRadius.only(
+                                topLeft: Radius.circular(10.0),
+                                bottomLeft: Radius.circular(10.0),
+                              ),
+                            ),
+                            SizedBox(
+                              width: spacing,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Title',
+                                        style: AppStyle
+                                            .txtRobotoRomanRegular20WhiteA70001),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                        style:
+                                            AppStyle.txtRobotoRomanRegular12),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    CustomButton(
+                                        height: getVerticalSize(40),
+                                        width: getHorizontalSize(248),
+                                        text: "Create new room",
+                                        variant:
+                                            ButtonVariant.OutlineBlack9003f,
+                                        fontStyle:
+                                            ButtonFontStyle.RobotoRomanMedium20,
+                                        onTap: () {},
+                                        alignment: Alignment.bottomCenter)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Container(
+                height: scrollDirection == Axis.horizontal ? itemHeight : null,
+                width: scrollDirection == Axis.vertical ? itemWidth : null,
+                child: Row(
+                  children: [
+                    CustomImageView(
+                      imagePath: imagePaths[index],
+                      width: itemWidth,
+                      radius: BorderRadius.circular(10),
+                    ),
+                    SizedBox(
+                      width: spacing,
+                    ),
+                  ],
+                ),
               ),
             );
           },
