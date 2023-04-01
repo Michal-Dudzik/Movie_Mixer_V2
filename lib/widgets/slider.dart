@@ -78,7 +78,7 @@ class ImageCarousel extends StatelessWidget {
                                     CustomButton(
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(248),
-                                        text: "Create new room",
+                                        text: "Open room",
                                         variant:
                                             ButtonVariant.OutlineBlack9003f,
                                         fontStyle:
