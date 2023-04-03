@@ -101,6 +101,18 @@ class MainScreen extends StatelessWidget {
                                     ImageConstant.imgPoster1,
                                     ImageConstant.imgPoster216x21,
                                   ],
+                                  title: [
+                                    'Lorem ipsum',
+                                    'Lorem dipsum',
+                                    'Lorem kipsum',
+                                    'Lorem pipsum',
+                                  ],
+                                  description: [
+                                    'Lorem ipsum dolor sit amet1',
+                                    'Lorem ipsum dolor sit amet2',
+                                    'Lorem ipsum dolor sit amet3',
+                                    'Lorem ipsum dolor sit amet4',
+                                  ],
                                   scrollDirection: Axis.horizontal,
                                   itemsVisible: 3,
                                 ),

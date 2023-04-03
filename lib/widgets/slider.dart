@@ -3,6 +3,8 @@ import 'package:movie_mixer/core/app_export.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> imagePaths;
+  final List<String> title;
+  final List<String> description;
   final Axis scrollDirection;
   final int itemsVisible;
   final double spacing;
@@ -10,6 +12,8 @@ class ImageCarousel extends StatelessWidget {
   const ImageCarousel({
     Key? key,
     required this.imagePaths,
+    this.title = const [],
+    this.description = const [],
     this.scrollDirection = Axis.horizontal,
     this.itemsVisible = 3,
     this.spacing = 10,
@@ -62,14 +66,13 @@ class ImageCarousel extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Title',
+                                    Text(title[index],
                                         style: AppStyle
                                             .txtRobotoRomanRegular20WhiteA70001),
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    Text(
-                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                    Text(description[index],
                                         style:
                                             AppStyle.txtRobotoRomanRegular12),
                                     SizedBox(
