@@ -1,6 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class Movie {
+  final String title;
+  final String releaseDate;
+  final String director;
+  final String overview;
+  final double rating;
+  final int voteCount;
+  final int popularity;
+  final String posterUrl;
+
+  Movie({
+    required this.title,
+    required this.releaseDate,
+    required this.director,
+    required this.overview,
+    required this.rating,
+    required this.voteCount,
+    required this.popularity,
+    required this.posterUrl,
+  });
+}
+
+// final movieProvider = StateNotifierProvider<MovieNotifier>((ref) {
+//   return MovieNotifier();
+// });
+
+// class MovieNotifier extends StateNotifier<List<Movie>> {
+//   MovieNotifier() : super([]);
+
+//   Future<void> fetchMovies() async {
+//     final response = await http.get(Uri.parse('API_URL'));
+//     if (response.statusCode == 200) {
+//       final jsonData = json.decode(response.body);
+//       final movies = jsonData['movies'] as List<dynamic>;
+//       final movieList = movies
+//           .map((movie) => Movie(
+//                 title: movie['title'],
+//                 releaseDate: movie['release_date'],
+//                 director: movie['director'],
+//                 overview: movie['overview'],
+//                 rating: double.parse(movie['rating']),
+//                 voteCount: int.parse(movie['vote_count']),
+//                 popularity: int.parse(movie['popularity']),
+//                 posterUrl: movie['poster_url'],
+//               ))
+//           .toList();
+
+//       state = movieList;
+//     } else {
+//       throw Exception('Failed to load movies');
+//     }
+//   }
+// }
 
 class MovieScreen extends StatelessWidget {
   @override
