@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'movie_mixer',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.afterSelectionScreen,
+      initialRoute: AppRoutes.mainScreen,
       routes: AppRoutes.routes,
     );
   }

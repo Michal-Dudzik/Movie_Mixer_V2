@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
-import 'package:movie_mixer/widgets/room_modal.dart';
+import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatelessWidget {
