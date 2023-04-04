@@ -13,3 +13,4 @@ export 'package:movie_mixer/widgets/custom_button.dart';
 export 'package:movie_mixer/widgets/room_code.dart';
 export 'package:movie_mixer/widgets/invite_button.dart';
 export 'package:movie_mixer/widgets/slider.dart';
+export 'package:movie_mixer/presentation/after_selection_screen/widgets/movielist_item_widget.dart';
