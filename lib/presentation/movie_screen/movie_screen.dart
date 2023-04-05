@@ -202,7 +202,8 @@ class MovieScreen extends StatelessWidget {
                                       onTapBtnDisagreebutton(context);
                                     },
                                     child: CustomImageView(
-                                        svgPath: ImageConstant.imgThumbsDown)),
+                                        imagePath:
+                                            ImageConstant.imgThumbsDown)),
                                 CustomIconButton(
                                     height: 64,
                                     width: 64,
@@ -212,7 +213,7 @@ class MovieScreen extends StatelessWidget {
                                       onTapBtnThumbsup(context);
                                     },
                                     child: CustomImageView(
-                                        svgPath: ImageConstant.imgThumbsup))
+                                        imagePath: ImageConstant.imgThumbsup))
                               ])),
                       Padding(
                         padding: getPadding(top: 13, bottom: 5),

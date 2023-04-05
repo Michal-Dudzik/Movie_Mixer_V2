@@ -9,8 +9,6 @@ class ImageConstant {
 
   static String imgMenu = 'assets/images/img_menu.svg';
 
-  // static String imgArrow1 = 'assets/images/img_arrow.svg';
-
   static String imgPoster216x21 = 'assets/images/img_poster_216x21.png';
 
   static String imgPagebackground = 'assets/images/img_pagebackground.png';
@@ -37,17 +35,15 @@ class ImageConstant {
 
   static String imgStar = 'assets/images/img_star.svg';
 
-  static String imgSlider = 'assets/images/img_offer.svg';
+  // static String imgSlider = 'assets/images/img_offer.svg';
 
   static String imgRaidSh = 'assets/images/img_image.png';
 
-  static String imgThumbsup = 'assets/images/img_thumbsup.svg';
+  static String imgThumbsup = 'assets/images/thumbs_up.png';
 
-  static String imgThumbsDown = 'assets/images/img_computer.svg';
+  static String imgThumbsDown = 'assets/images/thumbs_down.png';
 
   static String imgPoster = 'assets/images/img_poster.png';
-
-  // static String imgArrow2 = 'assets/images/img_brightness.svg';
 
   static String imgPoster376x360 = 'assets/images/img_poster_376x360.png';
 

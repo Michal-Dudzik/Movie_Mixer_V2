@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
-class AccountPreferencesScreen extends StatelessWidget {
+class AccountPreferencesScreen extends StatefulWidget {
+  @override
+  _AccountPreferencesScreenState createState() =>
+      _AccountPreferencesScreenState();
+}
+
+class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
+  bool isNotified = true;
+  bool isPremium = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,37 +69,83 @@ class AccountPreferencesScreen extends StatelessWidget {
                                             child: Padding(
                                                 padding: getPadding(
                                                     top: 37, bottom: 404),
-                                                child: Row(
+                                                child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      CustomImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgSlider,
-                                                          height:
-                                                              getVerticalSize(
-                                                                  24),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  48),
-                                                          radius: BorderRadius
-                                                              .circular(
-                                                                  getHorizontalSize(
-                                                                      12))),
-                                                      Padding(
-                                                          padding: getPadding(
-                                                              left: 8),
-                                                          child: Text(
-                                                              "Notifications",
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: AppStyle
-                                                                  .txtRobotoRomanRegular20))
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Switch(
+                                                            value: isNotified,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                isNotified =
+                                                                    value;
+                                                              });
+                                                            },
+                                                            activeTrackColor:
+                                                                ColorConstant
+                                                                    .ghostWhite,
+                                                            activeColor:
+                                                                ColorConstant
+                                                                    .cyan,
+                                                          ),
+                                                          Padding(
+                                                              padding:
+                                                                  getPadding(
+                                                                      left: 8),
+                                                              child: Text(
+                                                                  "Notifications",
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .left,
+                                                                  style: AppStyle
+                                                                      .txtRobotoRomanRegular20))
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Switch(
+                                                            value: isPremium,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                isPremium =
+                                                                    value;
+                                                              });
+                                                            },
+                                                            activeTrackColor:
+                                                                ColorConstant
+                                                                    .ghostWhite,
+                                                            activeColor:
+                                                                ColorConstant
+                                                                    .cyan,
+                                                          ),
+                                                          Padding(
+                                                              padding:
+                                                                  getPadding(
+                                                                      left: 8),
+                                                              child: Text(
+                                                                  "Premium user",
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .left,
+                                                                  style: AppStyle
+                                                                      .txtRobotoRomanRegular20))
+                                                        ],
+                                                      ),
                                                     ])))
                                       ])))
                         ])))));

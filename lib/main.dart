@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_mixer/routes/app_routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
-  runApp(MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.standard,
       ),
-      title: 'movie_mixer',
+      title: 'Movie Mixer',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.mainScreen,
+      initialRoute: AppRoutes.loginScreen,
       routes: AppRoutes.routes,
     );
   }

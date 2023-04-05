@@ -118,44 +118,78 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                                           })),
                                                 ],
                                               ),
-                                              Padding(
-                                                  padding: getPadding(
-                                                      left: 21,
-                                                      top: 28,
-                                                      right: 21),
-                                                  child: Row(
-                                                      // TODO: When the user clicks on the "Advanced options" button, If user has premium account the "Advanced options" section should be expanded, otherwise the user will get a popup to upgrade to premium account.
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        CustomImageView(
-                                                            svgPath: ImageConstant
-                                                                .imgLockLocked,
-                                                            height:
-                                                                getVerticalSize(
-                                                                    35),
-                                                            width:
-                                                                getHorizontalSize(
-                                                                    26),
-                                                            alignment: Alignment
-                                                                .center),
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                left: 17,
-                                                                top: 7,
-                                                                bottom: 3),
-                                                            child: Text(
-                                                                "Advanced options",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtRobotoRomanBold20)),
-                                                      ])),
+                                              GestureDetector(
+                                                  onTap: () {
+                                                    // check if the user is a premium user
+                                                    // bool isPremiumUser = checkIfUserIsPremium();
+
+                                                    // if (!isPremiumUser) {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                              "Premium Feature"),
+                                                          content: Text(
+                                                              "This feature is locked for premium users only."),
+                                                          actions: [
+                                                            TextButton(
+                                                              child: Text("OK"),
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    // }
+                                                  },
+                                                  child: Padding(
+                                                      padding: getPadding(
+                                                          left: 21,
+                                                          top: 28,
+                                                          right: 21),
+                                                      child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            CustomImageView(
+                                                                svgPath:
+                                                                    ImageConstant
+                                                                        .imgLockLocked,
+                                                                height:
+                                                                    getVerticalSize(
+                                                                        35),
+                                                                width:
+                                                                    getHorizontalSize(
+                                                                        26),
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center),
+                                                            Padding(
+                                                                padding:
+                                                                    getPadding(
+                                                                        left:
+                                                                            17,
+                                                                        top: 7,
+                                                                        bottom:
+                                                                            3),
+                                                                child: Text(
+                                                                    "Advanced options",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .left,
+                                                                    style: AppStyle
+                                                                        .txtRobotoRomanBold20)),
+                                                          ])))
                                             ]))),
                                 Center(
                                   child: Padding(
