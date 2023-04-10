@@ -4,7 +4,6 @@ import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainScreen extends StatelessWidget {
   @override

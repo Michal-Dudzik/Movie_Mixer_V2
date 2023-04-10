@@ -1,61 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-class Movie {
-  final String title;
-  final String releaseDate;
-  final String director;
-  final String overview;
-  final double rating;
-  final int voteCount;
-  final int popularity;
-  final String posterUrl;
-
-  Movie({
-    required this.title,
-    required this.releaseDate,
-    required this.director,
-    required this.overview,
-    required this.rating,
-    required this.voteCount,
-    required this.popularity,
-    required this.posterUrl,
-  });
-}
-
-// final movieProvider = StateNotifierProvider<MovieNotifier>((ref) {
-//   return MovieNotifier();
-// });
-
-// class MovieNotifier extends StateNotifier<List<Movie>> {
-//   MovieNotifier() : super([]);
-
-//   Future<void> fetchMovies() async {
-//     final response = await http.get(Uri.parse('API_URL'));
-//     if (response.statusCode == 200) {
-//       final jsonData = json.decode(response.body);
-//       final movies = jsonData['movies'] as List<dynamic>;
-//       final movieList = movies
-//           .map((movie) => Movie(
-//                 title: movie['title'],
-//                 releaseDate: movie['release_date'],
-//                 director: movie['director'],
-//                 overview: movie['overview'],
-//                 rating: double.parse(movie['rating']),
-//                 voteCount: int.parse(movie['vote_count']),
-//                 popularity: int.parse(movie['popularity']),
-//                 posterUrl: movie['poster_url'],
-//               ))
-//           .toList();
-
-//       state = movieList;
-//     } else {
-//       throw Exception('Failed to load movies');
-//     }
-//   }
-// }
 
 class MovieScreen extends StatelessWidget {
   @override
@@ -78,33 +23,32 @@ class MovieScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        Text("Morbius",
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text("Morbius",
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle.txtRobotoRomanMedium35),
+                                    Row(
+                                      children: [
+                                        Text("Daniel Espinosa",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
-                                            style: AppStyle
-                                                .txtRobotoRomanMedium35),
+                                            style:
+                                                AppStyle.txtRobotoRomanLight15),
                                         Padding(
-                                            padding: getPadding(
-                                                left: 13, top: 15, bottom: 8),
-                                            child: Text("2022",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtRobotoRomanLight15))
-                                      ]),
-                                      Padding(
-                                          padding: getPadding(left: 12, top: 6),
-                                          child: Text("Daniel Espinosa",
+                                          padding: getPadding(left: 13),
+                                          child: Text("2022",
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style: AppStyle
-                                                  .txtRobotoRomanLight15))
-                                    ]),
+                                                  .txtRobotoRomanLight15),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                                 Padding(
                                     padding: getPadding(bottom: 1),
                                     child: Column(
@@ -185,8 +129,7 @@ class MovieScreen extends StatelessWidget {
                       Container(
                           width: getHorizontalSize(312),
                           margin: getMargin(left: 24, top: 21, right: 24),
-                          child: Text(
-                              "Biochemist Michael Morbius tries to cure himself of a rare blood disease, but he inadvertently infects himself with a form of vampirism instead. Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Morbius attempts a desperate gamble.",
+                          child: Text("Movie Description.",
                               maxLines: null,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtRobotoRomanRegular14)),
@@ -224,12 +167,12 @@ class MovieScreen extends StatelessWidget {
                       )
                     ]))));
   }
+}
 
-  onTapBtnDisagreebutton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
-  }
+onTapBtnDisagreebutton(BuildContext context) {
+  Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
+}
 
-  onTapBtnThumbsup(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
-  }
+onTapBtnThumbsup(BuildContext context) {
+  Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
 }
