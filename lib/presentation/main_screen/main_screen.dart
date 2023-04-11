@@ -5,9 +5,15 @@ import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MainScreen extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../provider/moviecollection_provider.dart';
+
+class MainScreen extends ConsumerWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(movieCollectionsProvider);
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.gray,
@@ -95,24 +101,15 @@ class MainScreen extends StatelessWidget {
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
                                 ImageCarousel(
-                                  imagePaths: [
-                                    ImageConstant.imgPoster,
-                                    ImageConstant.imgPoster216x144,
-                                    ImageConstant.imgPoster1,
-                                    ImageConstant.imgPoster216x21,
-                                  ],
-                                  title: [
-                                    'Lorem ipsum',
-                                    'Lorem dipsum',
-                                    'Lorem kipsum',
-                                    'Lorem pipsum',
-                                  ],
-                                  description: [
-                                    'Lorem ipsum dolor sit amet1',
-                                    'Lorem ipsum dolor sit amet2',
-                                    'Lorem ipsum dolor sit amet3',
-                                    'Lorem ipsum dolor sit amet4',
-                                  ],
+                                  imagePaths: data
+                                      .map((movie) => movie.imagePath!)
+                                      .toList(),
+                                  title: data
+                                      .map((movie) => movie.title!)
+                                      .toList(),
+                                  description: data
+                                      .map((movie) => movie.description!)
+                                      .toList(),
                                   scrollDirection: Axis.horizontal,
                                   itemsVisible: 3,
                                 ),
