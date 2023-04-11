@@ -5,7 +5,61 @@ import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MainScreen extends StatelessWidget {
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+Future<Collection> fetchCollection() async {
+  final response =
+      await http.get(Uri.parse('http://10.0.2.2:5039/api/MovieCollections'));
+
+  if (response.statusCode == 200) {
+    // return Collection.fromJson(jsonDecode(response.body));
+    return Collection.fromJson(jsonDecode(response.body)[0]);
+  } else {
+    throw Exception('Failed to load collections');
+  }
+}
+
+class Collection {
+  final int id;
+  final String title;
+  final String description;
+  final String imagePath;
+
+  const Collection({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.imagePath,
+  });
+
+  factory Collection.fromJson(Map<String, dynamic> json) {
+    return Collection(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      imagePath: json['imagePath'],
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  late Future<Collection> futureCollection;
+
+  @override
+  void initState() {
+    super.initState();
+    futureCollection = fetchCollection();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -94,24 +148,52 @@ class MainScreen extends StatelessWidget {
                                         textAlign: TextAlign.left,
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
-                                ImageCarousel(
-                                  imagePaths: [
-                                    'assets/images/img_poster_1.png',
-                                    'assets/images/img_poster_376x360.png',
-                                    'assets/images/img_poster_2.png',
-                                  ],
-                                  title: [
-                                    'The Shawshank Redemption',
-                                    'The Godfather',
-                                    'The Dark Knight'
-                                  ],
-                                  description: [
-                                    'Doremi',
-                                    'Doremi',
-                                    'Doremi',
-                                  ],
-                                  scrollDirection: Axis.horizontal,
-                                  itemsVisible: 3,
+                                // ImageCarousel(
+                                //   imagePaths: [
+                                //     'assets/images/img_poster_1.png',
+                                //     'assets/images/img_poster_376x360.png',
+                                //     'assets/images/img_poster_2.png',
+                                //   ],
+                                //   title: [
+                                //     'The Shawshank Redemption',
+                                //     'The Godfather',
+                                //     'The Dark Knight'
+                                //   ],
+                                //   description: [
+                                //     'Doremi',
+                                //     'Doremi',
+                                //     'Doremi',
+                                //   ],
+                                //   scrollDirection: Axis.horizontal,
+                                //   itemsVisible: 3,
+                                // ),
+
+                                FutureBuilder<Collection>(
+                                  future: futureCollection,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return ImageCarousel(
+                                        imagePaths: [
+                                          snapshot.data!.imagePath,
+                                        ],
+                                        title: [
+                                          snapshot.data!.title,
+                                        ],
+                                        description: [
+                                          snapshot.data!.title,
+                                        ],
+                                        scrollDirection: Axis.horizontal,
+                                        itemsVisible: 3,
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return Text('${snapshot.error}',
+                                          style:
+                                              AppStyle.txtRobotoRomanRegular20);
+                                    }
+
+                                    // By default, show a loading spinner.
+                                    return const CircularProgressIndicator();
+                                  },
                                 ),
                               ]))),
                   GestureDetector(
