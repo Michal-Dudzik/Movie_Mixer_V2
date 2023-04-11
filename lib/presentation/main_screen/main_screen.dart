@@ -9,13 +9,13 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-Future<Collection> fetchCollection() async {
+Future<List<Collection>> fetchCollection() async {
   final response =
       await http.get(Uri.parse('http://10.0.2.2:5039/api/MovieCollections'));
 
   if (response.statusCode == 200) {
-    // return Collection.fromJson(jsonDecode(response.body));
-    return Collection.fromJson(jsonDecode(response.body)[0]);
+    final jsonList = jsonDecode(response.body) as List<dynamic>;
+    return jsonList.map((json) => Collection.fromJson(json)).toList();
   } else {
     throw Exception('Failed to load collections');
   }
@@ -52,7 +52,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late Future<Collection> futureCollection;
+  late Future<List<Collection>> futureCollection;
 
   @override
   void initState() {
@@ -150,7 +150,7 @@ class _MainScreenState extends State<MainScreen> {
                                             AppStyle.txtRobotoRomanRegular20)),
                                 // ImageCarousel(
                                 //   imagePaths: [
-                                //     'assets/images/img_poster_1.png',
+                                //     'https://i.pinimg.com/736x/f2/74/a6/f274a668751e54f62b97a19bc6ce1c2e.jpg',
                                 //     'assets/images/img_poster_376x360.png',
                                 //     'assets/images/img_poster_2.png',
                                 //   ],
@@ -168,33 +168,31 @@ class _MainScreenState extends State<MainScreen> {
                                 //   itemsVisible: 3,
                                 // ),
 
-                                FutureBuilder<Collection>(
-                                  future: futureCollection,
+                                FutureBuilder<List<Collection>>(
+                                  future: fetchCollection(),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
+                                      final collections = snapshot.data!;
                                       return ImageCarousel(
-                                        imagePaths: [
-                                          snapshot.data!.imagePath,
-                                        ],
-                                        title: [
-                                          snapshot.data!.title,
-                                        ],
-                                        description: [
-                                          snapshot.data!.title,
-                                        ],
+                                        imagePaths: collections
+                                            .map((c) => c.imagePath)
+                                            .toList(),
+                                        title: collections
+                                            .map((c) => c.title)
+                                            .toList(),
+                                        description: collections
+                                            .map((c) => c.description)
+                                            .toList(),
                                         scrollDirection: Axis.horizontal,
                                         itemsVisible: 3,
                                       );
                                     } else if (snapshot.hasError) {
-                                      return Text('${snapshot.error}',
-                                          style:
-                                              AppStyle.txtRobotoRomanRegular20);
+                                      return Text('Error loading collections');
+                                    } else {
+                                      return CircularProgressIndicator();
                                     }
-
-                                    // By default, show a loading spinner.
-                                    return const CircularProgressIndicator();
                                   },
-                                ),
+                                )
                               ]))),
                   GestureDetector(
                     onTap: () => launch('https://raidshadowlegends.com/'),

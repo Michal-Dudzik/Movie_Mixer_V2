@@ -47,14 +47,11 @@ class ImageCarousel extends StatelessWidget {
                         height: itemHeight,
                         child: Row(
                           children: [
-                            CustomImageView(
-                              imagePath: imagePaths[index],
+                            Image.network(
+                              imagePaths[index],
                               width: itemWidth,
                               height: itemHeight,
-                              radius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                bottomLeft: Radius.circular(10.0),
-                              ),
+                              fit: BoxFit.cover,
                             ),
                             SizedBox(
                               width: spacing,
@@ -104,10 +101,14 @@ class ImageCarousel extends StatelessWidget {
                 width: scrollDirection == Axis.vertical ? itemWidth : null,
                 child: Row(
                   children: [
-                    CustomImageView(
-                      imagePath: imagePaths[index],
-                      width: itemWidth,
-                      radius: BorderRadius.circular(10),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        imagePaths[index],
+                        width: itemWidth,
+                        height: itemHeight,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     SizedBox(
                       width: spacing,
