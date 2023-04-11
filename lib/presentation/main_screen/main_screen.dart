@@ -5,15 +5,9 @@ import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../provider/moviecollection_provider.dart';
-
-class MainScreen extends ConsumerWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
+class MainScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(movieCollectionsProvider);
+  Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.gray,
@@ -101,15 +95,21 @@ class MainScreen extends ConsumerWidget {
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
                                 ImageCarousel(
-                                  imagePaths: data
-                                      .map((movie) => movie.imagePath!)
-                                      .toList(),
-                                  title: data
-                                      .map((movie) => movie.title!)
-                                      .toList(),
-                                  description: data
-                                      .map((movie) => movie.description!)
-                                      .toList(),
+                                  imagePaths: [
+                                    'assets/images/img_poster_1.png',
+                                    'assets/images/img_poster_376x360.png',
+                                    'assets/images/img_poster_2.png',
+                                  ],
+                                  title: [
+                                    'The Shawshank Redemption',
+                                    'The Godfather',
+                                    'The Dark Knight'
+                                  ],
+                                  description: [
+                                    'Doremi',
+                                    'Doremi',
+                                    'Doremi',
+                                  ],
                                   scrollDirection: Axis.horizontal,
                                   itemsVisible: 3,
                                 ),
