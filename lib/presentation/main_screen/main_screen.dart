@@ -1,48 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/models/movie_collection_model.dart';
 import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
-
-Future<List<Collection>> fetchCollection() async {
-  final response =
-      await http.get(Uri.parse('http://10.0.2.2:5039/api/MovieCollections'));
-
-  if (response.statusCode == 200) {
-    final jsonList = jsonDecode(response.body) as List<dynamic>;
-    return jsonList.map((json) => Collection.fromJson(json)).toList();
-  } else {
-    throw Exception('Failed to load collections');
-  }
-}
-
-class Collection {
-  final int id;
-  final String title;
-  final String description;
-  final String imagePath;
-
-  const Collection({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.imagePath,
-  });
-
-  factory Collection.fromJson(Map<String, dynamic> json) {
-    return Collection(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      imagePath: json['imagePath'],
-    );
-  }
-}
+import '../../services/providers.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -52,12 +16,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late Future<List<Collection>> futureCollection;
+  late ApiProvider provider = ApiProvider();
+  late Future<List<MovieCollectionModel>> futureCollection;
 
   @override
   void initState() {
     super.initState();
-    futureCollection = fetchCollection();
+
+    futureCollection = provider.fetchCollection();
   }
 
   @override
@@ -168,20 +134,20 @@ class _MainScreenState extends State<MainScreen> {
                                 //   itemsVisible: 3,
                                 // ),
 
-                                FutureBuilder<List<Collection>>(
-                                  future: fetchCollection(),
+                                FutureBuilder<List<MovieCollectionModel>>(
+                                  future: provider.fetchCollection(),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       final collections = snapshot.data!;
                                       return ImageCarousel(
                                         imagePaths: collections
-                                            .map((c) => c.imagePath)
+                                            .map((c) => c.imagePath!)
                                             .toList(),
                                         title: collections
-                                            .map((c) => c.title)
+                                            .map((c) => c.title!)
                                             .toList(),
                                         description: collections
-                                            .map((c) => c.description)
+                                            .map((c) => c.description!)
                                             .toList(),
                                         scrollDirection: Axis.horizontal,
                                         itemsVisible: 3,
