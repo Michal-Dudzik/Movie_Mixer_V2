@@ -54,8 +54,8 @@ class ApiProvider {
   }
 
   Future<void> joinRoom(String roomId) async {
-    final response =
-        await http.patch(Uri.parse(Endpoints.rooms + '/$roomId/users'));
+    final response = await http
+        .patch(Uri.parse(Endpoints.rooms + '/$roomId/users?option=add'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to join room');
@@ -63,6 +63,15 @@ class ApiProvider {
   }
 
   Future<void> leaveRoom(String roomId) async {
+    final response = await http
+        .patch(Uri.parse(Endpoints.rooms + '/$roomId/users?option=remove'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to leave room');
+    }
+  }
+
+  Future<void> deleteRoom(String roomId) async {
     final response = await http.delete(Uri.parse(Endpoints.rooms + '/$roomId'));
 
     if (response.statusCode != 200) {
