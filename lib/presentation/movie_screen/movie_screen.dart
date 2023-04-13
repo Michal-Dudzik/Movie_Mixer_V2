@@ -3,6 +3,10 @@ import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
 class MovieScreen extends StatelessWidget {
+  const MovieScreen({Key? key, required this.roomId}) : super(key: key);
+
+  final String roomId;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/presentation/movie_screen/movie_screen.dart';
+import 'package:movie_mixer/services/providers.dart';
 
-const _roomCode = '69692';
-const _currentUserNumber = 2;
-const _expectedUserNumber = 4;
+const _currentUserNumber = "?";
+const _expectedUserNumber = "?";
 
 class WaitingRoomScreen extends StatelessWidget {
+  WaitingRoomScreen({Key? key, required this.roomId}) : super(key: key);
+  final String roomId;
+  final ApiProvider provider = new ApiProvider();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,6 +35,8 @@ class WaitingRoomScreen extends StatelessWidget {
                               height: getVerticalSize(17),
                               width: getHorizontalSize(23),
                               onTap: () {
+                                //TODO: if the user is not the host then provider.leaveRoom(roomId); should be called
+                                provider.deleteRoom(roomId);
                                 Navigator.of(context).pop();
                               }),
                           Container(
@@ -68,7 +74,7 @@ class WaitingRoomScreen extends StatelessWidget {
                                                           .txtLemonTuesday30)),
                                               Center(
                                                   child: CopyableText(
-                                                text: '$_roomCode',
+                                                text: '$roomId',
                                               )),
                                               Padding(
                                                   padding: getPadding(
@@ -130,7 +136,7 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                                     child: Stack(alignment: Alignment.bottomLeft, children: [
                                                                                       CustomImageView(imagePath: ImageConstant.imgArrow2, height: getVerticalSize(142), width: getHorizontalSize(65), alignment: Alignment.bottomLeft),
                                                                                       Align(alignment: Alignment.bottomLeft, child: Container(width: getHorizontalSize(85), margin: getMargin(left: 20, bottom: 55), child: Text("Wait for everybody", style: AppStyle.txtLemonTuesday20))),
-                                                                                      Align(alignment: Alignment.topRight, child: InviteContainer(_roomCode))
+                                                                                      Align(alignment: Alignment.topRight, child: InviteContainer(roomId))
                                                                                     ])))
                                                                           ]))
                                                                 ])),
@@ -184,19 +190,46 @@ class WaitingRoomScreen extends StatelessWidget {
                                                       ]))
                                             ]))),
                                 CustomButton(
+                                    //TODO: if the user is not the host then this button shouldn't be shown
                                     height: getVerticalSize(40),
                                     width: getHorizontalSize(248),
                                     text: "Start",
                                     variant: ButtonVariant.OutlineBlack9003f,
                                     fontStyle:
                                         ButtonFontStyle.RobotoRomanMedium20,
-                                    onTap: () => onTapStart(context),
+                                    onTap: () async {
+                                      bool started =
+                                          await provider.startRoom(roomId);
+                                      if (!started) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text("Not enough users"),
+                                              content: Text(
+                                                  "Not enough users joined the room to start. Please wait for more users to join the room."),
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("OK"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MovieScreen(
+                                                        roomId: roomId)));
+                                      }
+                                    },
                                     alignment: Alignment.bottomCenter)
                               ]))
                         ])))));
-  }
-
-  onTapStart(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.movieScreen);
   }
 }

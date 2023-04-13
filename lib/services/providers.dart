@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import '../core/endpoints.dart';
 import '../models/movie_collection_model.dart';
@@ -101,12 +102,15 @@ class ApiProvider {
   //   }
   // }
 
-  Future<void> startRoom(String roomId) async {
-    final response = await http.patch(
-      Uri.parse(Endpoints.rooms + '/$roomId'),
-    );
+  Future<bool> startRoom(String roomId) async {
+    final response = await http.patch(Uri.parse(Endpoints.rooms + '/$roomId'));
 
-    if (response.statusCode != 200) {
+    if (response.statusCode == 200) {
+      return true;
+    } else if (response.statusCode == 400 &&
+        response.body == "Not Enough People Joined The Room") {
+      return false;
+    } else {
       throw Exception('Failed to start room');
     }
   }

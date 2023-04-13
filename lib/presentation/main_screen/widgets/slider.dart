@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
+import 'package:movie_mixer/services/providers.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> imagePaths;
@@ -23,6 +26,8 @@ class ImageCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemWidth = MediaQuery.of(context).size.width / itemsVisible;
     final itemHeight = itemWidth * 1.5;
+    late String roomId;
+    ApiProvider provider = new ApiProvider();
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),
@@ -83,7 +88,16 @@ class ImageCarousel extends StatelessWidget {
                                             ButtonVariant.OutlineBlack9003f,
                                         fontStyle:
                                             ButtonFontStyle.RobotoRomanMedium20,
-                                        onTap: () {},
+                                        onTap: () async {
+                                          roomId = await provider.createRoom();
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      WaitingRoomScreen(
+                                                          roomId: roomId)));
+                                        },
                                         alignment: Alignment.bottomCenter)
                                   ],
                                 ),
