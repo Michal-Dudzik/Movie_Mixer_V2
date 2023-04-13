@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import '../core/endpoints.dart';
 import '../models/movie_collection_model.dart';
@@ -41,8 +42,40 @@ class ApiProvider {
     }
   }
 
-  Future<String> createRoom() async {
-    final response = await http.post(Uri.parse(Endpoints.rooms));
+  Future<MovieListModel?> fetchStarterMovieList(String roomId) async {
+    final response = await http.get(Uri.parse(Endpoints.rooms + '/$roomId'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final RoomModel room = RoomModel.fromJson(responseBody);
+
+      final String starterMovieListId = '${room.id}starter';
+      final MovieListModel? starterMovieList = room.movieLists?.firstWhere(
+          (list) => list.id == starterMovieListId,
+          orElse: () => throw Exception('Failed to fetch starter movie list'));
+
+      return starterMovieList;
+    } else {
+      throw Exception('Failed to fetch room');
+    }
+  }
+
+  Future<String> createRoomCollection(int colllectionId) async {
+    final response = await http.post(Uri.parse(
+        Endpoints.rooms + '?option=collection&collectionId=$colllectionId'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final RoomModel room = RoomModel.fromJson(responseBody);
+      return room.id!;
+    } else {
+      throw Exception('Failed to create room');
+    }
+  }
+
+  Future<String> createRoomDiscover() async {
+    final response =
+        await http.post(Uri.parse(Endpoints.rooms + '?option=discover'));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseBody = json.decode(response.body);
@@ -101,12 +134,15 @@ class ApiProvider {
   //   }
   // }
 
-  Future<void> startRoom(String roomId) async {
-    final response = await http.patch(
-      Uri.parse(Endpoints.rooms + '/$roomId'),
-    );
+  Future<bool> startRoom(String roomId) async {
+    final response = await http.patch(Uri.parse(Endpoints.rooms + '/$roomId'));
 
-    if (response.statusCode != 200) {
+    if (response.statusCode == 200) {
+      return true;
+    } else if (response.statusCode == 400 &&
+        response.body == "Not Enough People Joined The Room") {
+      return false;
+    } else {
       throw Exception('Failed to start room');
     }
   }

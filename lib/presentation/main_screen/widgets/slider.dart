@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
+import 'package:movie_mixer/services/providers.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> imagePaths;
   final List<String> title;
   final List<String> description;
+  final List<int> collectionId;
   final Axis scrollDirection;
   final int itemsVisible;
   final double spacing;
@@ -13,6 +17,7 @@ class ImageCarousel extends StatelessWidget {
     Key? key,
     required this.imagePaths,
     this.title = const [],
+    this.collectionId = const [],
     this.description = const [],
     this.scrollDirection = Axis.horizontal,
     this.itemsVisible = 3,
@@ -23,6 +28,8 @@ class ImageCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemWidth = MediaQuery.of(context).size.width / itemsVisible;
     final itemHeight = itemWidth * 1.5;
+    late String roomId;
+    ApiProvider provider = new ApiProvider();
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),
@@ -83,7 +90,18 @@ class ImageCarousel extends StatelessWidget {
                                             ButtonVariant.OutlineBlack9003f,
                                         fontStyle:
                                             ButtonFontStyle.RobotoRomanMedium20,
-                                        onTap: () {},
+                                        onTap: () async {
+                                          int id = collectionId[index];
+                                          roomId = await provider
+                                              .createRoomCollection(id);
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      WaitingRoomScreen(
+                                                          roomId: roomId)));
+                                        },
                                         alignment: Alignment.bottomCenter)
                                   ],
                                 ),

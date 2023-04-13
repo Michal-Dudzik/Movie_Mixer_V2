@@ -37,8 +37,12 @@ class AppRoutes {
     roomPreferencesScreen: (context) => RoomPreferencesScreen(),
     mainScreen: (context) => MainScreen(),
     accountPreferencesScreen: (context) => AccountPreferencesScreen(),
-    waitingRoomScreen: (context) => WaitingRoomScreen(),
-    movieScreen: (context) => MovieScreen(),
+    waitingRoomScreen: (context) => WaitingRoomScreen(
+          roomId: '',
+        ),
+    movieScreen: (context) => MovieScreen(
+          roomId: '',
+        ),
     afterSelectionScreen: (context) => AfterSelectionScreen(),
   };
 }

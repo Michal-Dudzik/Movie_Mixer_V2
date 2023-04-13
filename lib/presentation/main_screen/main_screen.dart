@@ -116,6 +116,9 @@ class _MainScreenState extends State<MainScreen> {
                                     if (snapshot.hasData) {
                                       final collections = snapshot.data!;
                                       return ImageCarousel(
+                                        collectionId: collections
+                                            .map((c) => c.id!)
+                                            .toList(),
                                         imagePaths: collections
                                             .map((c) => c.imagePath!)
                                             .toList(),
