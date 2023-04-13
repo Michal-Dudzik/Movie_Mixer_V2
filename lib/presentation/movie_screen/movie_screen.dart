@@ -39,7 +39,7 @@ class _MovieScreenState extends State<MovieScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.network(
-                              movieList.movies![_selectedIndex].posterPath!,
+                              'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}',
                               width: 360,
                               height: 376,
                               fit: BoxFit.cover,

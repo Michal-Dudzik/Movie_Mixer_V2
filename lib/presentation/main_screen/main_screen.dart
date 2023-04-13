@@ -16,12 +16,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late ApiProvider provider = ApiProvider();
-  late Future<List<MovieCollectionModel>> futureCollection;
 
   @override
   void initState() {
     super.initState();
-    futureCollection = provider.fetchCollection();
   }
 
   @override
