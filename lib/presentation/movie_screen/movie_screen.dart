@@ -13,7 +13,7 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreen> {
   int _selectedIndex = 0;
-  String _roomID = '1';
+  String _roomID = 'AO7HC';
   late ApiProvider provider = ApiProvider();
   late Future<MovieListModel?> futureMovieList;
 
@@ -21,12 +21,6 @@ class _MovieScreenState extends State<MovieScreen> {
   void initState() {
     super.initState();
     futureMovieList = provider.fetchFinalMovieList(_roomID);
-  }
-
-  void _incrementIndex() {
-    setState(() {
-      _selectedIndex++;
-    });
   }
 
   @override
@@ -46,8 +40,8 @@ class _MovieScreenState extends State<MovieScreen> {
                           children: [
                             Image.network(
                               'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}',
-                              width: 360,
-                              height: 376,
+                              width: 500,
+                              height: 490,
                               fit: BoxFit.cover,
                             ),
                             Padding(
@@ -75,7 +69,8 @@ class _MovieScreenState extends State<MovieScreen> {
                                               Text(
                                                   movieList
                                                       .movies![_selectedIndex]
-                                                      .releaseDate!,
+                                                      .releaseDate!
+                                                      .substring(0, 4),
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -166,7 +161,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                                               movieList
                                                                   .movies![
                                                                       _selectedIndex]
-                                                                  .popularity!,
+                                                                  .popularity!
+                                                                  .split(
+                                                                      ".")[0],
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -187,8 +184,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                     textAlign: TextAlign.left,
                                     style: AppStyle.txtRobotoRomanRegular14)),
                             Padding(
-                                padding:
-                                    getPadding(left: 24, top: 125, right: 24),
+                                padding: getPadding(left: 24, right: 24),
                                 child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
