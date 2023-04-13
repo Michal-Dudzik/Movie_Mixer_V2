@@ -5,8 +5,7 @@ import 'package:movie_mixer/widgets/app_bar/appbar_image.dart';
 import 'package:movie_mixer/widgets/app_bar/custom_app_bar.dart';
 import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:async';
-import '../../services/providers.dart';
+import 'package:movie_mixer/services/providers.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -22,7 +21,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-
     futureCollection = provider.fetchCollection();
   }
 
@@ -114,26 +112,6 @@ class _MainScreenState extends State<MainScreen> {
                                         textAlign: TextAlign.left,
                                         style:
                                             AppStyle.txtRobotoRomanRegular20)),
-                                // ImageCarousel(
-                                //   imagePaths: [
-                                //     'https://i.pinimg.com/736x/f2/74/a6/f274a668751e54f62b97a19bc6ce1c2e.jpg',
-                                //     'assets/images/img_poster_376x360.png',
-                                //     'assets/images/img_poster_2.png',
-                                //   ],
-                                //   title: [
-                                //     'The Shawshank Redemption',
-                                //     'The Godfather',
-                                //     'The Dark Knight'
-                                //   ],
-                                //   description: [
-                                //     'Doremi',
-                                //     'Doremi',
-                                //     'Doremi',
-                                //   ],
-                                //   scrollDirection: Axis.horizontal,
-                                //   itemsVisible: 3,
-                                // ),
-
                                 FutureBuilder<List<MovieCollectionModel>>(
                                   future: provider.fetchCollection(),
                                   builder: (context, snapshot) {

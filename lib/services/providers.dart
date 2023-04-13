@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movie_mixer/models/room_model.dart';
 import '../core/endpoints.dart';
 import '../models/movie_collection_model.dart';
+import '../models/movie_list_model.dart';
+import '../models/movie_model.dart';
+import '../models/room_model.dart';
 
 class ApiProvider {
   Future<List<MovieCollectionModel>> fetchCollection() async {
