@@ -5,22 +5,23 @@ import 'package:movie_mixer/services/providers.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
 class MovieScreen extends StatefulWidget {
-  const MovieScreen({Key? key}) : super(key: key);
-
+  MovieScreen({Key? key, required this.roomId}) : super(key: key);
+  final String roomId;
   @override
   State<MovieScreen> createState() => _MovieScreenState();
 }
 
 class _MovieScreenState extends State<MovieScreen> {
   int _selectedIndex = 0;
-  String _roomID = '1';
+  late String roomId = '';
   late ApiProvider provider = ApiProvider();
   late Future<MovieListModel?> futureMovieList;
 
   @override
   void initState() {
     super.initState();
-    futureMovieList = provider.fetchFinalMovieList(_roomID);
+    roomId = widget.roomId;
+    futureMovieList = provider.fetchStarterMovieList(roomId);
   }
 
   void _incrementIndex() {
@@ -28,10 +29,6 @@ class _MovieScreenState extends State<MovieScreen> {
       _selectedIndex++;
     });
   }
-
-  const MovieScreen({Key? key, required this.roomId}) : super(key: key);
-
-  final String roomId;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,7 @@ class _MovieScreenState extends State<MovieScreen> {
             body: Container(
                 width: double.maxFinite,
                 child: FutureBuilder<MovieListModel?>(
-                  future: provider.fetchFinalMovieList(_roomID),
+                  future: provider.fetchStarterMovieList(roomId),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final movieList = snapshot.data!;

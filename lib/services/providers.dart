@@ -42,6 +42,24 @@ class ApiProvider {
     }
   }
 
+  Future<MovieListModel?> fetchStarterMovieList(String roomId) async {
+    final response = await http.get(Uri.parse(Endpoints.rooms + '/$roomId'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final RoomModel room = RoomModel.fromJson(responseBody);
+
+      final String starterMovieListId = '${room.id}starter';
+      final MovieListModel? starterMovieList = room.movieLists?.firstWhere(
+          (list) => list.id == starterMovieListId,
+          orElse: () => throw Exception('Failed to fetch starter movie list'));
+
+      return starterMovieList;
+    } else {
+      throw Exception('Failed to fetch room');
+    }
+  }
+
   Future<String> createRoom() async {
     final response = await http.post(Uri.parse(Endpoints.rooms));
 
