@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/models/movie_list_model.dart';
-import 'package:movie_mixer/models/movie_model.dart';
-import 'package:movie_mixer/models/room_model.dart';
-import 'package:movie_mixer/presentation/after_selection_screen/after_selection_screen.dart';
 import 'package:movie_mixer/services/providers.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
@@ -16,13 +13,14 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreen> {
   int _selectedIndex = 0;
+  String _roomID = '1';
   late ApiProvider provider = ApiProvider();
-  late Future<List<MovieListModel>> futureMovieList;
+  late Future<MovieListModel?> futureMovieList;
 
   @override
   void initState() {
     super.initState();
-    futureMovieList = provider.fetchMovieList();
+    futureMovieList = provider.fetchFinalMovieList(_roomID);
   }
 
   @override
@@ -32,17 +30,16 @@ class _MovieScreenState extends State<MovieScreen> {
             backgroundColor: ColorConstant.gray,
             body: Container(
                 width: double.maxFinite,
-                child: FutureBuilder<List<MovieListModel>>(
-                  future: provider.fetchMovieList(),
+                child: FutureBuilder<MovieListModel?>(
+                  future: provider.fetchFinalMovieList(_roomID),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      final movies = snapshot.data!;
-                    } else if (snapshot.hasError) {
+                      final movieList = snapshot.data!;
                       return Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.network(
-                              movies[_selectedIndex].posterPath!,
+                              movieList.movies![_selectedIndex].posterPath!,
                               width: 360,
                               height: 376,
                               fit: BoxFit.cover,
@@ -60,7 +57,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Text(movies[_selectedIndex].title!,
+                                          Text(
+                                              movieList.movies![_selectedIndex]
+                                                  .title!,
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style: AppStyle
@@ -68,7 +67,8 @@ class _MovieScreenState extends State<MovieScreen> {
                                           Row(
                                             children: [
                                               Text(
-                                                  movies[_selectedIndex]
+                                                  movieList
+                                                      .movies![_selectedIndex]
                                                       .releaseDate!,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -115,7 +115,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                                                           .start,
                                                                   children: [
                                                                     Text(
-                                                                        movies[_selectedIndex]
+                                                                        movieList
+                                                                            .movies![
+                                                                                _selectedIndex]
                                                                             .voteAvredge!,
                                                                         overflow:
                                                                             TextOverflow
@@ -130,10 +132,8 @@ class _MovieScreenState extends State<MovieScreen> {
                                                                             top:
                                                                                 1),
                                                                         child: Text(
-                                                                            movies[_selectedIndex]
-                                                                                .voteCount!,
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
+                                                                            movieList.movies![_selectedIndex].voteCount!,
+                                                                            overflow: TextOverflow.ellipsis,
                                                                             textAlign: TextAlign.left,
                                                                             style: AppStyle.txtRobotoRomanLight10))
                                                                   ]))
@@ -157,7 +157,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                                           padding: getPadding(
                                                               left: 6),
                                                           child: Text(
-                                                              movies[_selectedIndex]
+                                                              movieList
+                                                                  .movies![
+                                                                      _selectedIndex]
                                                                   .popularity!,
                                                               overflow:
                                                                   TextOverflow
@@ -173,7 +175,8 @@ class _MovieScreenState extends State<MovieScreen> {
                             Container(
                                 width: getHorizontalSize(312),
                                 margin: getMargin(left: 24, top: 21, right: 24),
-                                child: Text(movies[_selectedIndex].overview!,
+                                child: Text(
+                                    movieList.movies![_selectedIndex].overview!,
                                     maxLines: null,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.txtRobotoRomanRegular14)),
@@ -214,6 +217,8 @@ class _MovieScreenState extends State<MovieScreen> {
                                       .txtRobotoRomanRegular20WhiteA70001),
                             )
                           ]);
+                    } else if (snapshot.hasError) {
+                      throw Exception('Error');
                     } else {
                       return CircularProgressIndicator();
                     }
