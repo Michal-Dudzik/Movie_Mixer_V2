@@ -23,6 +23,12 @@ class _MovieScreenState extends State<MovieScreen> {
     futureMovieList = provider.fetchFinalMovieList(_roomID);
   }
 
+  void _incrementIndex() {
+    setState(() {
+      _selectedIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -191,7 +197,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                           height: 64,
                                           width: 64,
                                           onTap: () {
-                                            onTapBtnDisagreebutton(context);
+                                            setState(() {
+                                              _selectedIndex--;
+                                            });
                                           },
                                           child: CustomImageView(
                                               imagePath:
@@ -202,7 +210,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                           variant: IconButtonVariant
                                               .OutlineBlack9003f_1,
                                           onTap: () {
-                                            onTapBtnThumbsup(context);
+                                            setState(() {
+                                              _selectedIndex++;
+                                            });
                                           },
                                           child: CustomImageView(
                                               imagePath:
@@ -225,12 +235,4 @@ class _MovieScreenState extends State<MovieScreen> {
                   },
                 ))));
   }
-}
-
-onTapBtnDisagreebutton(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
-}
-
-onTapBtnThumbsup(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.afterSelectionScreen);
 }
