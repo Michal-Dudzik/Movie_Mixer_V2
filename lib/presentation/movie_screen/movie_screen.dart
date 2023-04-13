@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/models/movie_list_model.dart';
+import 'package:movie_mixer/models/movie_model.dart';
 import 'package:movie_mixer/services/providers.dart';
 import 'package:movie_mixer/widgets/custom_icon_button.dart';
 
@@ -16,12 +17,13 @@ class _MovieScreenState extends State<MovieScreen> {
   late String roomId = '';
   late ApiProvider provider = ApiProvider();
   late Future<MovieListModel?> futureMovieList;
-
+  late List<MovieModel> movies = [];
   @override
   void initState() {
     super.initState();
     roomId = widget.roomId;
     futureMovieList = provider.fetchStarterMovieList(roomId);
+    
   }
 
   void _incrementIndex() {
@@ -76,7 +78,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                               Text(
                                                   movieList
                                                       .movies![_selectedIndex]
-                                                      .releaseDate!,
+                                                      .releaseDate!.substring(0,4),
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -167,7 +169,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                                               movieList
                                                                   .movies![
                                                                       _selectedIndex]
-                                                                  .popularity!,
+                                                                  .popularity!.split(".")[0],
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -198,9 +200,17 @@ class _MovieScreenState extends State<MovieScreen> {
                                           height: 64,
                                           width: 64,
                                           onTap: () {
+                                            if(_selectedIndex +1 >= movieList.movies!.length){
+                                                    provider.addMovieList(roomId, movies);
+                                                  }
+                                                  else{
                                             setState(() {
-                                              _selectedIndex--;
+                                              
+                                                  
+                                                    _selectedIndex++;
+                                                   
                                             });
+                                            }
                                           },
                                           child: CustomImageView(
                                               imagePath:
@@ -211,9 +221,16 @@ class _MovieScreenState extends State<MovieScreen> {
                                           variant: IconButtonVariant
                                               .OutlineBlack9003f_1,
                                           onTap: () {
+                                            movies.add(movieList
+                                                  .movies![_selectedIndex]);
+                                                  if(_selectedIndex +1 >= movieList.movies!.length){
+                                                    provider.addMovieList(roomId, movies);
+                                                  }
+                                                  else{
                                             setState(() {
-                                              _selectedIndex++;
+                                                    _selectedIndex++;                                                                                          
                                             });
+                                            }
                                           },
                                           child: CustomImageView(
                                               imagePath:
