@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
+import 'package:movie_mixer/services/providers.dart';
 import 'package:movie_mixer/widgets/custom_text_form_field.dart';
 
 import 'hero_dialog_route.dart';
@@ -14,7 +16,7 @@ class RoomModal extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-            return const _AddTodoPopupCard();
+            return _AddTodoPopupCard();
           }));
         },
         child: Hero(
@@ -35,8 +37,9 @@ class RoomModal extends StatelessWidget {
 const String _heroAddTodo = 'add-todo-hero';
 
 class _AddTodoPopupCard extends StatelessWidget {
-  const _AddTodoPopupCard({Key? key}) : super(key: key);
-
+  _AddTodoPopupCard({Key? key}) : super(key: key);
+  final TextEditingController _textController = TextEditingController();
+  final ApiProvider provider = new ApiProvider();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -59,6 +62,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                       children: [
                         CustomTextFormField(
                             focusNode: FocusNode(),
+                            controller: _textController,
                             hintText: "Room code",
                             width: getHorizontalSize(180),
                             margin: getMargin(right: 15),
@@ -67,7 +71,38 @@ class _AddTodoPopupCard extends StatelessWidget {
                             icon: const Icon(Icons.check_circle_rounded),
                             color: ColorConstant.cyan,
                             iconSize: 40,
-                            onPressed: () => onJoinRoom(context)),
+                            onPressed: () async {
+                              String data = _textController.text;
+                              if (data.isNotEmpty) {
+                                bool success = await provider.joinRoom(data);
+                                if (!success) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Failed To Join Room"),
+                                        actions: [
+                                          TextButton(
+                                            child: Text("OK"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              WaitingRoomScreen(
+                                                roomId: data,
+                                              )));
+                                }
+                              }
+                            }),
                       ],
                     ),
                     CustomButton(
@@ -87,10 +122,6 @@ class _AddTodoPopupCard extends StatelessWidget {
       ),
     );
   }
-}
-
-onJoinRoom(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.waitingRoomScreen);
 }
 
 onRoomCreate(BuildContext context) {

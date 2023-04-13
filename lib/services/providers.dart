@@ -86,13 +86,14 @@ class ApiProvider {
     }
   }
 
-  Future<void> joinRoom(String roomId) async {
+  Future<bool> joinRoom(String roomId) async {
     final response = await http
         .patch(Uri.parse(Endpoints.rooms + '/$roomId/users?option=add'));
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to join room');
+      return false;
     }
+    return true;
   }
 
   Future<void> leaveRoom(String roomId) async {
