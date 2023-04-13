@@ -60,8 +60,22 @@ class ApiProvider {
     }
   }
 
-  Future<String> createRoom() async {
-    final response = await http.post(Uri.parse(Endpoints.rooms));
+  Future<String> createRoomCollection(int colllectionId) async {
+    final response = await http.post(Uri.parse(
+        Endpoints.rooms + '?option=collection&collectionId=$colllectionId'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final RoomModel room = RoomModel.fromJson(responseBody);
+      return room.id!;
+    } else {
+      throw Exception('Failed to create room');
+    }
+  }
+
+  Future<String> createRoomDiscover() async {
+    final response =
+        await http.post(Uri.parse(Endpoints.rooms + '?option=discover'));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseBody = json.decode(response.body);

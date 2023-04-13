@@ -8,6 +8,7 @@ class ImageCarousel extends StatelessWidget {
   final List<String> imagePaths;
   final List<String> title;
   final List<String> description;
+  final List<int> collectionId;
   final Axis scrollDirection;
   final int itemsVisible;
   final double spacing;
@@ -16,6 +17,7 @@ class ImageCarousel extends StatelessWidget {
     Key? key,
     required this.imagePaths,
     this.title = const [],
+    this.collectionId = const [],
     this.description = const [],
     this.scrollDirection = Axis.horizontal,
     this.itemsVisible = 3,
@@ -89,7 +91,9 @@ class ImageCarousel extends StatelessWidget {
                                         fontStyle:
                                             ButtonFontStyle.RobotoRomanMedium20,
                                         onTap: () async {
-                                          roomId = await provider.createRoom();
+                                          int id = collectionId[index];
+                                          roomId = await provider
+                                              .createRoomCollection(id);
 
                                           Navigator.push(
                                               context,
