@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:movie_mixer/models/movie_model.dart';
 import '../core/endpoints.dart';
 import '../models/movie_collection_model.dart';
 import '../models/movie_list_model.dart';
@@ -86,13 +87,14 @@ class ApiProvider {
     }
   }
 
-  Future<void> joinRoom(String roomId) async {
+  Future<bool> joinRoom(String roomId) async {
     final response = await http
         .patch(Uri.parse(Endpoints.rooms + '/$roomId/users?option=add'));
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to join room');
+      return false;
     }
+    return true;
   }
 
   Future<void> leaveRoom(String roomId) async {
@@ -112,10 +114,11 @@ class ApiProvider {
     }
   }
 
-  Future<void> addMovieList(String roomId, String movieListId) async {
+  Future<void> addMovieList(String roomId, List<MovieModel> movieListId) async {
     final response = await http.post(
       Uri.parse(Endpoints.rooms + '/$roomId/movielists'),
-
+      body: jsonEncode(movieListId),
+      headers: {'Content-Type': 'application/json'},
       //TODO: if response = 200 picking phase completed and final movie list is available send socket message to all clients in room
     );
 

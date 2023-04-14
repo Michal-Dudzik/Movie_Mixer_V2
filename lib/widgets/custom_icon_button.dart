@@ -69,7 +69,6 @@ class CustomIconButton extends StatelessWidget {
     return BoxDecoration(
       color: _setColor(),
       borderRadius: _setBorderRadius(),
-      boxShadow: _setBoxShadow(),
     );
   }
 
@@ -84,10 +83,12 @@ class CustomIconButton extends StatelessWidget {
 
   _setColor() {
     switch (variant) {
-      case IconButtonVariant.OutlineBlack9003f_1:
+      case IconButtonVariant.RoundCyan:
         return ColorConstant.cyan;
-      default:
+      case IconButtonVariant.RoundPink:
         return ColorConstant.pink;
+      default:
+        return ColorConstant.transparent;
     }
   }
 
@@ -101,43 +102,6 @@ class CustomIconButton extends StatelessWidget {
         );
     }
   }
-
-  _setBoxShadow() {
-    switch (variant) {
-      case IconButtonVariant.OutlineBlack9003f_1:
-        return [
-          BoxShadow(
-            color: ColorConstant.black25,
-            spreadRadius: getHorizontalSize(
-              2.00,
-            ),
-            blurRadius: getHorizontalSize(
-              2.00,
-            ),
-            offset: Offset(
-              0,
-              4,
-            ),
-          )
-        ];
-      default:
-        return [
-          BoxShadow(
-            color: ColorConstant.black25,
-            spreadRadius: getHorizontalSize(
-              2.00,
-            ),
-            blurRadius: getHorizontalSize(
-              2.00,
-            ),
-            offset: Offset(
-              0,
-              4,
-            ),
-          )
-        ];
-    }
-  }
 }
 
 enum IconButtonShape {
@@ -149,6 +113,6 @@ enum IconButtonPadding {
 }
 
 enum IconButtonVariant {
-  OutlineBlack9003f,
-  OutlineBlack9003f_1,
+  RoundPink,
+  RoundCyan,
 }
