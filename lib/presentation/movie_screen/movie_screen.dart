@@ -24,7 +24,7 @@ class _MovieScreenState extends State<MovieScreen> {
   @override
   void initState() {
     super.initState();
-    futureMovieList = provider.fetchFinalMovieList(_roomID);
+    futureMovieList = provider.fetchFinalMovieList(roomId);
   }
 
   void _scrollToBottom() {
