@@ -62,4 +62,6 @@ class ImageConstant {
   static String imgArrow2 = 'assets/images/Arrow2.png';
 
   static String imgArrow3 = 'assets/images/Arrow3.png';
+
+  static String imgUpArrow = 'assets/images/Up_button.png';
 }
