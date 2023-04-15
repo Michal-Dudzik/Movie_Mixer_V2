@@ -97,6 +97,18 @@ class ApiProvider {
     return true;
   }
 
+  Future<RoomModel> fetchRoom(String roomId) async {
+    final response = await http.get(Uri.parse(Endpoints.rooms + '/$roomId'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final RoomModel room = RoomModel.fromJson(responseBody);
+      return room;
+    } else {
+      throw Exception('Failed to fetch room');
+    }
+  }
+
   Future<void> leaveRoom(String roomId) async {
     final response = await http
         .patch(Uri.parse(Endpoints.rooms + '/$roomId/users?option=remove'));

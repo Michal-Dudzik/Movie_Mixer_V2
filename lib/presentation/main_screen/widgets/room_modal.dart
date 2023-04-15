@@ -3,7 +3,9 @@ import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
 import 'package:movie_mixer/services/providers.dart';
 import 'package:movie_mixer/widgets/custom_text_form_field.dart';
+import 'package:signalr_netcore/hub_connection_builder.dart';
 
+import '../../../core/endpoints.dart';
 import 'hero_dialog_route.dart';
 
 class RoomModal extends StatelessWidget {
@@ -40,6 +42,7 @@ class _AddTodoPopupCard extends StatelessWidget {
   _AddTodoPopupCard({Key? key}) : super(key: key);
   final TextEditingController _textController = TextEditingController();
   final ApiProvider provider = new ApiProvider();
+  final connection = HubConnectionBuilder().withUrl(Endpoints.Socket).build();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -75,6 +78,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                               String data = _textController.text;
                               if (data.isNotEmpty) {
                                 bool success = await provider.joinRoom(data);
+
                                 if (!success) {
                                   showDialog(
                                     context: context,
@@ -99,6 +103,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                                           builder: (context) =>
                                               WaitingRoomScreen(
                                                 roomId: data,
+                                                isHost: false,
                                               )));
                                 }
                               }

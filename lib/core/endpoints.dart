@@ -9,4 +9,6 @@ class Endpoints {
   static const String Tokens = 'http://10.0.2.2:5039/api/Tokens';
 
   static const String Users = 'http://10.0.2.2:5039/api/Users';
+
+  static const String Socket = 'http://10.0.2.2:5228/roomhub';
 }

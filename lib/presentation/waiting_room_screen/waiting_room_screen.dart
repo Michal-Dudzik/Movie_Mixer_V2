@@ -1,15 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/models/movie_model.dart';
+import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:movie_mixer/presentation/movie_screen/movie_screen.dart';
 import 'package:movie_mixer/services/providers.dart';
+import 'package:signalr_netcore/hub_connection_builder.dart';
 
-const _currentUserNumber = "?";
-const _expectedUserNumber = "?";
+import '../../core/endpoints.dart';
+import '../../models/room_model.dart';
 
-class WaitingRoomScreen extends StatelessWidget {
-  WaitingRoomScreen({Key? key, required this.roomId}) : super(key: key);
+class WaitingRoomScreen extends StatefulWidget {
+  WaitingRoomScreen({Key? key, required this.roomId, required this.isHost})
+      : super(key: key);
   final String roomId;
+  final bool isHost;
+
+  @override
+  State<WaitingRoomScreen> createState() => _WaitingRoomScreenState();
+}
+
+class _WaitingRoomScreenState extends State<WaitingRoomScreen> {
+  late String? _currentUserNumber;
+
   final ApiProvider provider = new ApiProvider();
+
+  final connection = HubConnectionBuilder().withUrl(Endpoints.Socket).build();
+  Future<void> handleOnJoin(List<Object?>? args) async {
+    final value = await provider.fetchRoom(widget.roomId);
+    setState(() {
+      _currentUserNumber = value.usersInRoom.toString();
+    });
+  }
+
+  Future<void> handleOnStart(List<Object?>? args) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MovieScreen(roomId: widget.roomId)));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    connection.start()?.then((_) {
+      connection.invoke('JoinRoom', args: [widget.roomId]);
+      connection.on("onJoin", handleOnJoin);
+      connection.on("onLeave", handleOnJoin);
+      connection.on("onStart", handleOnStart);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,8 +75,11 @@ class WaitingRoomScreen extends StatelessWidget {
                               height: getVerticalSize(17),
                               width: getHorizontalSize(23),
                               onTap: () {
-                                //TODO: if the user is not the host then provider.leaveRoom(roomId); should be called
-                                provider.deleteRoom(roomId);
+                                if (widget.isHost) {
+                                  provider.deleteRoom(widget.roomId);
+                                } else {
+                                  provider.leaveRoom(widget.roomId);
+                                }
                                 Navigator.of(context).pop();
                               }),
                           Container(
@@ -74,7 +117,7 @@ class WaitingRoomScreen extends StatelessWidget {
                                                           .txtLemonTuesday30)),
                                               Center(
                                                   child: CopyableText(
-                                                text: '$roomId',
+                                                text: '${widget.roomId}',
                                               )),
                                               Padding(
                                                   padding: getPadding(
@@ -114,31 +157,47 @@ class WaitingRoomScreen extends StatelessWidget {
                                                                       margin: getMargin(
                                                                           top:
                                                                               24),
-                                                                      child: Stack(
-                                                                          alignment:
-                                                                              Alignment.topCenter,
-                                                                          children: [
-                                                                            Align(
-                                                                              alignment: Alignment.bottomRight,
-                                                                              child: Padding(
-                                                                                padding: EdgeInsets.only(right: 23),
-                                                                                child: Text(
-                                                                                  "$_currentUserNumber / $_expectedUserNumber",
-                                                                                  style: AppStyle.txtRobotoRomanRegular40,
+                                                                      child: FutureBuilder<
+                                                                          RoomModel>(
+                                                                        future:
+                                                                            provider.fetchRoom(widget.roomId),
+                                                                        builder:
+                                                                            (context,
+                                                                                snapshot) {
+                                                                          if (snapshot
+                                                                              .hasData) {
+                                                                            _currentUserNumber =
+                                                                                snapshot.data!.usersInRoom.toString();
+                                                                            return Stack(alignment: Alignment.topCenter, children: [
+                                                                              Align(
+                                                                                alignment: Alignment.bottomRight,
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsets.only(right: 23),
+                                                                                  child: Text(
+                                                                                    "$_currentUserNumber",
+                                                                                    style: AppStyle.txtRobotoRomanRegular40,
+                                                                                  ),
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                            Align(
-                                                                                alignment: Alignment.topCenter,
-                                                                                child: Container(
-                                                                                    height: getVerticalSize(240),
-                                                                                    width: getHorizontalSize(212),
-                                                                                    child: Stack(alignment: Alignment.bottomLeft, children: [
-                                                                                      CustomImageView(imagePath: ImageConstant.imgArrow2, height: getVerticalSize(142), width: getHorizontalSize(65), alignment: Alignment.bottomLeft),
-                                                                                      Align(alignment: Alignment.bottomLeft, child: Container(width: getHorizontalSize(85), margin: getMargin(left: 20, bottom: 55), child: Text("Wait for everybody", style: AppStyle.txtLemonTuesday20))),
-                                                                                      Align(alignment: Alignment.topRight, child: InviteContainer(roomId))
-                                                                                    ])))
-                                                                          ]))
+                                                                              Align(
+                                                                                  alignment: Alignment.topCenter,
+                                                                                  child: Container(
+                                                                                      height: getVerticalSize(240),
+                                                                                      width: getHorizontalSize(212),
+                                                                                      child: Stack(alignment: Alignment.bottomLeft, children: [
+                                                                                        CustomImageView(imagePath: ImageConstant.imgArrow2, height: getVerticalSize(142), width: getHorizontalSize(65), alignment: Alignment.bottomLeft),
+                                                                                        Align(alignment: Alignment.bottomLeft, child: Container(width: getHorizontalSize(85), margin: getMargin(left: 20, bottom: 55), child: Text("Wait for everybody", style: AppStyle.txtLemonTuesday20))),
+                                                                                        Align(alignment: Alignment.topRight, child: InviteContainer(widget.roomId))
+                                                                                      ])))
+                                                                            ]);
+                                                                          } else if (snapshot
+                                                                              .hasError) {
+                                                                            return Text('Error loading collections');
+                                                                          } else {
+                                                                            return CircularProgressIndicator();
+                                                                          }
+                                                                        },
+                                                                      ))
                                                                 ])),
                                                         Column(children: [
                                                           Stack(children: [
@@ -189,46 +248,54 @@ class WaitingRoomScreen extends StatelessWidget {
                                                         ])
                                                       ]))
                                             ]))),
-                                CustomButton(
-                                    //TODO: if the user is not the host then this button shouldn't be shown
-                                    height: getVerticalSize(40),
-                                    width: getHorizontalSize(248),
-                                    text: "Start",
-                                    variant: ButtonVariant.OutlineBlack9003f,
-                                    fontStyle:
-                                        ButtonFontStyle.RobotoRomanMedium20,
-                                    onTap: () async {
-                                      bool started =
-                                          await provider.startRoom(roomId);
-                                      if (!started) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: Text("Not enough users"),
-                                              content: Text(
-                                                  "Not enough users joined the room to start. Please wait for more users to join the room."),
-                                              actions: [
-                                                TextButton(
-                                                  child: Text("OK"),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                              ],
+                                widget.isHost
+                                    ? CustomButton(
+                                        //TODO: if the user is not the host then this button shouldn't be shown
+                                        height: getVerticalSize(40),
+                                        width: getHorizontalSize(248),
+                                        text: "Start",
+                                        variant:
+                                            ButtonVariant.OutlineBlack9003f,
+                                        fontStyle:
+                                            ButtonFontStyle.RobotoRomanMedium20,
+                                        onTap: () async {
+                                          bool started = await provider
+                                              .startRoom(widget.roomId);
+                                          if (!started) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      Text("Not enough users"),
+                                                  content: Text(
+                                                      "Not enough users joined the room to start. Please wait for more users to join the room."),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text("OK"),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
                                             );
-                                          },
-                                        );
-                                      } else {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MovieScreen(
-                                                        roomId: roomId)));
-                                      }
-                                    },
-                                    alignment: Alignment.bottomCenter)
+                                          } else {
+                                            connection.invoke("StartRoom",
+                                                args: <Object>[widget.roomId]);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MovieScreen(
+                                                            roomId: widget
+                                                                .roomId)));
+                                          }
+                                        },
+                                        alignment: Alignment.bottomCenter)
+                                    : SizedBox.shrink()
                               ]))
                         ])))));
   }

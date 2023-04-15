@@ -23,13 +23,6 @@ class _MovieScreenState extends State<MovieScreen> {
     super.initState();
     roomId = widget.roomId;
     futureMovieList = provider.fetchStarterMovieList(roomId);
-    
-  }
-
-  void _incrementIndex() {
-    setState(() {
-      _selectedIndex++;
-    });
   }
 
   @override
@@ -78,7 +71,8 @@ class _MovieScreenState extends State<MovieScreen> {
                                               Text(
                                                   movieList
                                                       .movies![_selectedIndex]
-                                                      .releaseDate!.substring(0,4),
+                                                      .releaseDate!
+                                                      .substring(0, 4),
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -169,7 +163,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                                               movieList
                                                                   .movies![
                                                                       _selectedIndex]
-                                                                  .popularity!.split(".")[0],
+                                                                  .popularity!
+                                                                  .split(
+                                                                      ".")[0],
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -200,16 +196,14 @@ class _MovieScreenState extends State<MovieScreen> {
                                           height: 64,
                                           width: 64,
                                           onTap: () {
-                                            if(_selectedIndex +1 >= movieList.movies!.length){
-                                                    provider.addMovieList(roomId, movies);
-                                                  }
-                                                  else{
-                                            setState(() {
-                                              
-                                                  
-                                                    _selectedIndex++;
-                                                   
-                                            });
+                                            if (_selectedIndex + 1 >=
+                                                movieList.movies!.length) {
+                                              provider.addMovieList(
+                                                  roomId, movies);
+                                            } else {
+                                              setState(() {
+                                                _selectedIndex++;
+                                              });
                                             }
                                           },
                                           child: CustomImageView(
@@ -222,14 +216,15 @@ class _MovieScreenState extends State<MovieScreen> {
                                               .OutlineBlack9003f_1,
                                           onTap: () {
                                             movies.add(movieList
-                                                  .movies![_selectedIndex]);
-                                                  if(_selectedIndex +1 >= movieList.movies!.length){
-                                                    provider.addMovieList(roomId, movies);
-                                                  }
-                                                  else{
-                                            setState(() {
-                                                    _selectedIndex++;                                                                                          
-                                            });
+                                                .movies![_selectedIndex]);
+                                            if (_selectedIndex + 1 >=
+                                                movieList.movies!.length) {
+                                              provider.addMovieList(
+                                                  roomId, movies);
+                                            } else {
+                                              setState(() {
+                                                _selectedIndex++;
+                                              });
                                             }
                                           },
                                           child: CustomImageView(

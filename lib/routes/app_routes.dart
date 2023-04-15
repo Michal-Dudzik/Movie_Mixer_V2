@@ -39,6 +39,7 @@ class AppRoutes {
     accountPreferencesScreen: (context) => AccountPreferencesScreen(),
     waitingRoomScreen: (context) => WaitingRoomScreen(
           roomId: '',
+          isHost: false,
         ),
     movieScreen: (context) => MovieScreen(
           roomId: '',
