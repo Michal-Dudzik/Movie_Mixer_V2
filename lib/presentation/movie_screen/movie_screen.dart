@@ -8,244 +8,204 @@ import 'package:movie_mixer/widgets/custom_icon_button.dart';
 class MovieScreen extends StatefulWidget {
   MovieScreen({Key? key, required this.roomId}) : super(key: key);
   final String roomId;
+
   @override
   State<MovieScreen> createState() => _MovieScreenState();
 }
 
 class _MovieScreenState extends State<MovieScreen> {
+  ScrollController _scrollController = ScrollController();
   int _selectedIndex = 0;
   late String roomId = '';
   late ApiProvider provider = ApiProvider();
   late Future<MovieListModel?> futureMovieList;
   late List<MovieModel> movies = [];
+
   @override
   void initState() {
     super.initState();
-    roomId = widget.roomId;
-    futureMovieList = provider.fetchStarterMovieList(roomId);
+    futureMovieList = provider.fetchFinalMovieList(roomId);
+  }
+
+  void _scrollToBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: ColorConstant.gray,
-            body: Container(
-                width: double.maxFinite,
-                child: FutureBuilder<MovieListModel?>(
-                  future: provider.fetchStarterMovieList(roomId),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final movieList = snapshot.data!;
-                      return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.network(
-                              'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}',
-                              width: 360,
-                              height: 376,
-                              fit: BoxFit.cover,
+    return Scaffold(
+      body: FutureBuilder<MovieListModel?>(
+        future: provider.fetchStarterMovieList(roomId),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final movieList = snapshot.data!;
+            return Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorConstant.gray,
+                    image: DecorationImage(
+                      opacity: 120,
+                      image: NetworkImage(
+                          'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.9,
+                    width: MediaQuery.of(context).size.width * 0.85,
+                    decoration: AppDecoration.fillGray900.copyWith(
+                      borderRadius: BorderRadiusStyle.roundedBorder43,
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}',
+                            width: MediaQuery.of(context).size.width,
+                          ),
+                          // CustomImageView(
+                          //   imagePath: ImageConstant.imgPoster,
+                          //   width: MediaQuery.of(context).size.width,
+                          //   radius: BorderRadius.only(
+                          //     topLeft: Radius.circular(43),
+                          //     topRight: Radius.circular(43),
+                          //   ),
+                          // ),
+                          SizedBox(height: 30),
+                          Text(
+                            movieList.movies![_selectedIndex].title!,
+                            style: AppStyle.txtRobotoRomanRegular25,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                children: [
+                                  CustomImageView(
+                                    svgPath: ImageConstant.imgStar,
+                                    height: 32,
+                                    width: 34,
+                                    margin:
+                                        EdgeInsets.only(right: 6, bottom: 3),
+                                  ),
+                                  Text(
+                                    movieList
+                                        .movies![_selectedIndex].voteAvredge!,
+                                    style: AppStyle.txtRobotoRomanLight20,
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                movieList.movies![_selectedIndex].releaseDate!,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppStyle.txtRobotoRomanLight20,
+                              ),
+                              Row(
+                                children: [
+                                  CustomImageView(
+                                    svgPath: ImageConstant.imgPopularity,
+                                    height: 20,
+                                    width: 35,
+                                    margin:
+                                        EdgeInsets.only(right: 6, bottom: 3),
+                                  ),
+                                  Text(
+                                    movieList
+                                        .movies![_selectedIndex].popularity!
+                                        .split(".")[0],
+                                    style: AppStyle.txtRobotoRomanLight20,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CustomIconButton(
+                                height: 64,
+                                width: 64,
+                                variant: IconButtonVariant.RoundPink,
+                                onTap: () {
+                                  if (_selectedIndex + 1 >=
+                                      movieList.movies!.length) {
+                                    provider.addMovieList(roomId, movies);
+                                  } else {
+                                    setState(() {
+                                      _selectedIndex++;
+                                    });
+                                  }
+                                },
+                                child: CustomImageView(
+                                  imagePath: ImageConstant.imgThumbsDown,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 40),
+                                child: CustomIconButton(
+                                  height: 48,
+                                  width: 48,
+                                  onTap: _scrollToBottom,
+                                  child: CustomImageView(
+                                    imagePath: ImageConstant.imgUpArrow,
+                                  ),
+                                ),
+                              ),
+                              CustomIconButton(
+                                height: 64,
+                                width: 64,
+                                variant: IconButtonVariant.RoundCyan,
+                                onTap: () {
+                                  movies.add(movieList.movies![_selectedIndex]);
+                                  if (_selectedIndex + 1 >=
+                                      movieList.movies!.length) {
+                                    provider.addMovieList(roomId, movies);
+                                  } else {
+                                    setState(() {
+                                      _selectedIndex++;
+                                    });
+                                  }
+                                },
+                                child: CustomImageView(
+                                  imagePath: ImageConstant.imgThumbsup,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 40),
+                            child: Text(
+                              movieList.movies![_selectedIndex].overview!,
+                              style: AppStyle.txtRobotoRomanRegular14,
+                              textAlign: TextAlign.left,
                             ),
-                            Padding(
-                                padding:
-                                    getPadding(left: 24, top: 5, right: 24),
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              movieList.movies![_selectedIndex]
-                                                  .title!,
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.left,
-                                              style: AppStyle
-                                                  .txtRobotoRomanMedium35),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                  movieList
-                                                      .movies![_selectedIndex]
-                                                      .releaseDate!
-                                                      .substring(0, 4),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.left,
-                                                  style: AppStyle
-                                                      .txtRobotoRomanLight15),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Padding(
-                                          padding: getPadding(bottom: 1),
-                                          child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Align(
-                                                    alignment: Alignment.center,
-                                                    child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          CustomImageView(
-                                                              svgPath:
-                                                                  ImageConstant
-                                                                      .imgStar,
-                                                              height:
-                                                                  getSize(27),
-                                                              width:
-                                                                  getSize(27),
-                                                              margin: getMargin(
-                                                                  top: 6,
-                                                                  bottom: 4)),
-                                                          Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      left: 6),
-                                                              child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                        movieList
-                                                                            .movies![
-                                                                                _selectedIndex]
-                                                                            .voteAvredge!,
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .left,
-                                                                        style: AppStyle
-                                                                            .txtRobotoRomanLight20),
-                                                                    Padding(
-                                                                        padding: getPadding(
-                                                                            top:
-                                                                                1),
-                                                                        child: Text(
-                                                                            movieList.movies![_selectedIndex].voteCount!,
-                                                                            overflow: TextOverflow.ellipsis,
-                                                                            textAlign: TextAlign.left,
-                                                                            style: AppStyle.txtRobotoRomanLight10))
-                                                                  ]))
-                                                        ])),
-                                                Padding(
-                                                    padding: getPadding(top: 8),
-                                                    child: Row(children: [
-                                                      CustomImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgPopularity,
-                                                          height:
-                                                              getVerticalSize(
-                                                                  15),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  27),
-                                                          margin: getMargin(
-                                                              top: 1,
-                                                              bottom: 1)),
-                                                      Padding(
-                                                          padding: getPadding(
-                                                              left: 6),
-                                                          child: Text(
-                                                              movieList
-                                                                  .movies![
-                                                                      _selectedIndex]
-                                                                  .popularity!
-                                                                  .split(
-                                                                      ".")[0],
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: AppStyle
-                                                                  .txtRobotoRomanLight15))
-                                                    ])),
-                                              ]))
-                                    ])),
-                            Container(
-                                width: getHorizontalSize(312),
-                                margin: getMargin(left: 24, top: 21, right: 24),
-                                child: Text(
-                                    movieList.movies![_selectedIndex].overview!,
-                                    maxLines: null,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtRobotoRomanRegular14)),
-                            Padding(
-                                padding:
-                                    getPadding(left: 24, top: 125, right: 24),
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      CustomIconButton(
-                                          height: 64,
-                                          width: 64,
-                                          onTap: () {
-                                            if (_selectedIndex + 1 >=
-                                                movieList.movies!.length) {
-                                              provider.addMovieList(
-                                                  roomId, movies);
-                                            } else {
-                                              setState(() {
-                                                _selectedIndex++;
-                                              });
-                                            }
-                                          },
-                                          child: CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgThumbsDown)),
-                                      CustomIconButton(
-                                          height: 64,
-                                          width: 64,
-                                          variant: IconButtonVariant
-                                              .OutlineBlack9003f_1,
-                                          onTap: () {
-                                            movies.add(movieList
-                                                .movies![_selectedIndex]);
-                                            if (_selectedIndex + 1 >=
-                                                movieList.movies!.length) {
-                                              provider.addMovieList(
-                                                  roomId, movies);
-                                            } else {
-                                              setState(() {
-                                                _selectedIndex++;
-                                              });
-                                            }
-                                          },
-                                          child: CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgThumbsup))
-                                    ])),
-                            Padding(
-                              padding: getPadding(top: 13, bottom: 5),
-                              child: Text("X/X",
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: AppStyle
-                                      .txtRobotoRomanRegular20WhiteA70001),
-                            )
-                          ]);
-                    } else if (snapshot.hasError) {
-                      throw Exception('Error');
-                    } else {
-                      return CircularProgressIndicator();
-                    }
-                  },
-                ))));
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ColorConstant {
   static Color ghostWhite70 = fromHex('#b2fffaff');
@@ -21,6 +22,8 @@ class ColorConstant {
   static Color white = fromHex('#ffffff');
 
   static Color ghostWhite = fromHex('#fffaff');
+
+  static Color transparent = fromHex('#00000000');
 
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();
