@@ -128,24 +128,109 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                                       context: context,
                                                       builder: (BuildContext
                                                           context) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                              "Premium Feature"),
-                                                          content: Text(
-                                                              "This feature is locked for premium users only."),
-                                                          actions: [
-                                                            TextButton(
-                                                              child: Text("OK"),
-                                                              onPressed: () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                            ),
-                                                          ],
+                                                        return Dialog(
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          child: Stack(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            children: [
+                                                              Container(
+                                                                padding:
+                                                                    getPadding(
+                                                                  left: 42,
+                                                                  top: 20,
+                                                                  right: 42,
+                                                                  bottom: 20,
+                                                                ),
+                                                                decoration:
+                                                                    AppDecoration
+                                                                        .purple
+                                                                        .copyWith(
+                                                                  borderRadius:
+                                                                      BorderRadiusStyle
+                                                                          .roundedBorder43,
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Container(
+                                                                      width:
+                                                                          getHorizontalSize(
+                                                                        214,
+                                                                      ),
+                                                                      margin:
+                                                                          getMargin(
+                                                                        bottom:
+                                                                            68,
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        "Uh oh it seems you’re not a premium user, you can’t do that ",
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: AppStyle
+                                                                            .txtRobotoRomanRegular15,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Positioned(
+                                                                left: 10,
+                                                                bottom: 35,
+                                                                child: Row(
+                                                                  children: [
+                                                                    CustomImageView(
+                                                                      imagePath:
+                                                                          ImageConstant
+                                                                              .imgDoge,
+                                                                      height:
+                                                                          getSize(
+                                                                        100,
+                                                                      ),
+                                                                      width:
+                                                                          getSize(
+                                                                        100,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              CustomButton(
+                                                                margin:
+                                                                    getMargin(
+                                                                        top:
+                                                                            135),
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.4,
+                                                                text:
+                                                                    "Get Premium Now!",
+                                                                variant:
+                                                                    ButtonVariant
+                                                                        .OutlineWhiteA700_1,
+                                                                padding:
+                                                                    ButtonPadding
+                                                                        .PaddingAll12,
+                                                                fontStyle:
+                                                                    ButtonFontStyle
+                                                                        .RobotoRomanBold15WhiteA700,
+                                                              ),
+                                                            ],
+                                                          ),
                                                         );
                                                       },
                                                     );
+
                                                     // }
                                                   },
                                                   child: Padding(

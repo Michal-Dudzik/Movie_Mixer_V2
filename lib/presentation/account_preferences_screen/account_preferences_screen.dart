@@ -143,9 +143,23 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                                       TextAlign
                                                                           .left,
                                                                   style: AppStyle
-                                                                      .txtRobotoRomanRegular20))
+                                                                      .txtRobotoRomanRegular20)),
                                                         ],
                                                       ),
+                                                      CustomButton(
+                                                          height:
+                                                              getVerticalSize(
+                                                                  40),
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  150),
+                                                          text: "Log out",
+                                                          variant: ButtonVariant
+                                                              .OutlineBlack9003f_1,
+                                                          fontStyle: ButtonFontStyle
+                                                              .RobotoRomanMedium20,
+                                                          alignment: Alignment
+                                                              .bottomCenter)
                                                     ])))
                                       ])))
                         ])))));

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/models/movie_model.dart';
-import 'package:movie_mixer/presentation/main_screen/widgets/room_modal.dart';
 import 'package:movie_mixer/presentation/movie_screen/movie_screen.dart';
 import 'package:movie_mixer/services/providers.dart';
 import 'package:signalr_netcore/hub_connection_builder.dart';
@@ -250,7 +248,6 @@ class _WaitingRoomScreenState extends State<WaitingRoomScreen> {
                                             ]))),
                                 widget.isHost
                                     ? CustomButton(
-                                        //TODO: if the user is not the host then this button shouldn't be shown
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(248),
                                         text: "Start",

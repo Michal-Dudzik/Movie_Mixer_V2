@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/core/endpoints.dart';
 import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
