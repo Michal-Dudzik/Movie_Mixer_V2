@@ -75,9 +75,17 @@ class ApiProvider {
     }
   }
 
-  Future<String> createRoomDiscover() async {
-    final response =
-        await http.post(Uri.parse(Endpoints.rooms + '?option=discover'));
+  Future<String> createRoomDiscover(
+      List<int> genreList, bool movie, int ammount) async {
+    if (genreList.isEmpty) {
+      throw Exception("Genre list can't be empty");
+    }
+
+    final response = await http.post(
+      Uri.parse(
+          Endpoints.rooms + '?option=discover&movie=$movie&ammount=$ammount'),
+      body: jsonEncode(genreList),
+    );
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> responseBody = json.decode(response.body);
@@ -185,5 +193,52 @@ class ApiProvider {
     } else {
       throw Exception('Failed to fetch room');
     }
+  }
+
+  //------------------Account------------------
+
+  Future<String> login(String username, String password) async {
+    final response = await http.post(
+      Uri.parse(Endpoints.Tokens),
+      body: jsonEncode({'username': username, 'password': password}),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final String token = responseBody['token'];
+      return token;
+    } else {
+      throw Exception('Failed to login');
+    }
+  }
+}
+
+Future<void> register(String username, String password) async {
+  final response = await http.post(
+    Uri.parse(Endpoints.Users),
+    body: jsonEncode({'username': username, 'password': password}),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to register');
+  }
+}
+
+Future<void> changePassword(
+    String username, String oldPassword, String newPassword) async {
+  final response = await http.patch(
+    Uri.parse(Endpoints.Users),
+    body: jsonEncode({
+      'username': username,
+      'oldPassword': oldPassword,
+      'newPassword': newPassword
+    }),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to change password');
   }
 }
