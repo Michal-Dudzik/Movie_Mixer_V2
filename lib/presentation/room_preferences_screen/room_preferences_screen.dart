@@ -4,6 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
+import '../../services/providers.dart';
+import '../waiting_room_screen/waiting_room_screen.dart';
+
 class RoomPreferencesScreen extends StatefulWidget {
   @override
   State<RoomPreferencesScreen> createState() => _RoomPreferencesScreenState();
@@ -11,9 +14,11 @@ class RoomPreferencesScreen extends StatefulWidget {
 
 class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   int _selectedValue = 10;
-  List<String> _selectedGenres = [];
-
-  void _onGenresChanged(List<String> genres) {
+  bool isMovie = true;
+  List<int> _selectedGenres = [];
+  ApiProvider provider = new ApiProvider();
+  String roomId = "";
+  void _onGenresChanged(List<int> genres) {
     setState(() {
       _selectedGenres = genres;
     });
@@ -292,7 +297,21 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                               ButtonVariant.OutlineBlack9003f,
                                           fontStyle: ButtonFontStyle
                                               .RobotoRomanMedium20,
-                                          onTap: () => onTapOpenroom(context),
+                                          onTap: () async {
+                                            roomId = await provider
+                                                .createRoomDiscover(
+                                                    _selectedGenres,
+                                                    isMovie,
+                                                    _selectedValue);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        WaitingRoomScreen(
+                                                          roomId: roomId,
+                                                          isHost: true,
+                                                        )));
+                                          },
                                         ),
                                       ],
                                     ),
@@ -300,9 +319,5 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                 )
                               ])),
                         ])))));
-  }
-
-  onTapOpenroom(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.waitingRoomScreen);
   }
 }
