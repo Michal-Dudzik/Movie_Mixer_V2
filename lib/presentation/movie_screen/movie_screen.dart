@@ -124,8 +124,19 @@ class _MovieScreenState extends State<MovieScreen> {
                                 variant: IconButtonVariant.RoundPink,
                                 onTap: () {
                                   if (_selectedIndex + 1 >=
-                                      movieList.movies!.length) {
+                                          movieList.movies!.length &&
+                                      clickblock == false) {
+                                    setState(() {
+                                      clickblock = true;
+                                    });
+
                                     provider.addMovieList(roomId, movies);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AfterSelectionScreen(
+                                                    roomId: widget.roomId)));
                                   } else {
                                     setState(() {
                                       _selectedIndex++;
@@ -154,8 +165,19 @@ class _MovieScreenState extends State<MovieScreen> {
                                 onTap: () {
                                   movies.add(movieList.movies![_selectedIndex]);
                                   if (_selectedIndex + 1 >=
-                                      movieList.movies!.length) {
+                                          movieList.movies!.length &&
+                                      clickblock == false) {
+                                    setState(() {
+                                      clickblock = true;
+                                    });
+
                                     provider.addMovieList(roomId, movies);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AfterSelectionScreen(
+                                                    roomId: widget.roomId)));
                                   } else {
                                     setState(() {
                                       _selectedIndex++;
