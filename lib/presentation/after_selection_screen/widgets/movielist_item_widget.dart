@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-
-class Movie {
-  final String name;
-  final String imageUrl;
-
-  Movie({
-    required this.name,
-    required this.imageUrl,
-  });
-}
+import 'package:movie_mixer/models/movie_model.dart';
 
 class MovieListItemWidget extends StatelessWidget {
-  final Movie movie;
+  final MovieModel movie;
 
   const MovieListItemWidget({required this.movie});
 
@@ -42,7 +33,8 @@ class MovieListItemWidget extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image(
-                        image: NetworkImage(movie.imageUrl),
+                        image: NetworkImage(
+                            'https://image.tmdb.org/t/p/w500${movie.posterPath}'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -56,7 +48,7 @@ class MovieListItemWidget extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        movie.name,
+                        movie.title!,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtRobotoRomanRegular20,
                       ),

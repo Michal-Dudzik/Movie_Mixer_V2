@@ -44,6 +44,8 @@ class AppRoutes {
     movieScreen: (context) => MovieScreen(
           roomId: '',
         ),
-    afterSelectionScreen: (context) => AfterSelectionScreen(),
+    afterSelectionScreen: (context) => AfterSelectionScreen(
+          roomId: '',
+        ),
   };
 }

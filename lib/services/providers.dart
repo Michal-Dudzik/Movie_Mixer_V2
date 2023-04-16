@@ -33,9 +33,10 @@ class ApiProvider {
       final RoomModel room = RoomModel.fromJson(responseBody);
 
       final String finalMovieListId = '${room.id}final';
-      final MovieListModel? finalMovieList = room.movieLists?.firstWhere(
-          (list) => list.id == finalMovieListId,
-          orElse: () => throw Exception('Failed to fetch final movie list'));
+      final MovieListModel? finalMovieList = room.movieLists
+          ?.firstWhere((list) => list.id == finalMovieListId, orElse: () {
+        return MovieListModel(id: "notready", movies: []);
+      });
 
       return finalMovieList;
     } else {
