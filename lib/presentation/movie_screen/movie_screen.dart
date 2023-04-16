@@ -20,11 +20,18 @@ class _MovieScreenState extends State<MovieScreen> {
   late Future<MovieListModel?> futureMovieList;
   late List<MovieModel> movies = [];
   bool clickblock = false;
+  ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     roomId = widget.roomId;
     futureMovieList = provider.fetchStarterMovieList(roomId);
+  }
+
+  void _scrollToBottom() {
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 500), curve: Curves.ease);
   }
 
   @override
