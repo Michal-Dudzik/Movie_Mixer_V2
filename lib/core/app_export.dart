@@ -5,7 +5,6 @@ export 'package:movie_mixer/widgets/custom_image_view.dart';
 export 'package:movie_mixer/theme/app_style.dart';
 export 'package:movie_mixer/theme/app_decoration.dart';
 export 'package:movie_mixer/routes/app_routes.dart';
-export 'package:movie_mixer/core/utils/date_time_utils.dart';
 export 'package:movie_mixer/presentation/room_preferences_screen/widgets/number_picker.dart';
 export 'package:movie_mixer/presentation/room_preferences_screen/widgets/genre_picker.dart';
 export 'package:movie_mixer/presentation/room_preferences_screen/widgets/type_select.dart';

@@ -72,14 +72,6 @@ class _MovieScreenState extends State<MovieScreen> {
                             'https://image.tmdb.org/t/p/w500${movieList.movies![_selectedIndex].posterPath}',
                             width: MediaQuery.of(context).size.width,
                           ),
-                          // CustomImageView(
-                          //   imagePath: ImageConstant.imgPoster,
-                          //   width: MediaQuery.of(context).size.width,
-                          //   radius: BorderRadius.only(
-                          //     topLeft: Radius.circular(43),
-                          //     topRight: Radius.circular(43),
-                          //   ),
-                          // ),
                           SizedBox(height: 30),
                           Text(
                             movieList.movies![_selectedIndex].title!,
