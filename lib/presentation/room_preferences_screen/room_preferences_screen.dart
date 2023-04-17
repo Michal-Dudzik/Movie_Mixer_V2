@@ -18,6 +18,7 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   List<int> _selectedGenres = [];
   ApiProvider provider = new ApiProvider();
   String roomId = "";
+
   void _onGenresChanged(List<int> genres) {
     setState(() {
       _selectedGenres = genres;
@@ -89,7 +90,8 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                                           (selectedGenres) {
                                                         setState(() {
                                                           _selectedGenres =
-                                                              selectedGenres;
+                                                              selectedGenres
+                                                                  .cast<int>();
                                                         });
                                                       },
                                                     ),

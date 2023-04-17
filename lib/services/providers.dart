@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:movie_mixer/models/genre_model.dart';
 import 'package:movie_mixer/models/movie_model.dart';
 import '../core/endpoints.dart';
 import '../models/movie_collection_model.dart';
@@ -212,33 +212,47 @@ class ApiProvider {
       throw Exception('Failed to login');
     }
   }
-}
 
-Future<void> register(String username, String password) async {
-  final response = await http.post(
-    Uri.parse(Endpoints.Users),
-    body: jsonEncode({'username': username, 'password': password}),
-    headers: {'Content-Type': 'application/json'},
-  );
+  Future<void> register(String username, String password) async {
+    final response = await http.post(
+      Uri.parse(Endpoints.Users),
+      body: jsonEncode({'username': username, 'password': password}),
+      headers: {'Content-Type': 'application/json'},
+    );
 
-  if (response.statusCode != 200) {
-    throw Exception('Failed to register');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to register');
+    }
   }
-}
 
-Future<void> changePassword(
-    String username, String oldPassword, String newPassword) async {
-  final response = await http.patch(
-    Uri.parse(Endpoints.Users),
-    body: jsonEncode({
-      'username': username,
-      'oldPassword': oldPassword,
-      'newPassword': newPassword
-    }),
-    headers: {'Content-Type': 'application/json'},
-  );
+  Future<void> changePassword(
+      String username, String oldPassword, String newPassword) async {
+    final response = await http.patch(
+      Uri.parse(Endpoints.Users),
+      body: jsonEncode({
+        'username': username,
+        'oldPassword': oldPassword,
+        'newPassword': newPassword
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
 
-  if (response.statusCode != 200) {
-    throw Exception('Failed to change password');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to change password');
+    }
+  }
+
+  // ------------------Genres------------------
+  Future<List<GenreModel>> fetchGenres() async {
+    final response = await http.get(Uri.parse(Endpoints.genres));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> responseBody = json.decode(response.body);
+      final List<GenreModel> genres =
+          responseBody.map((e) => GenreModel.fromJson(e)).toList();
+      return genres;
+    } else {
+      throw Exception('Failed to fetch genres');
+    }
   }
 }

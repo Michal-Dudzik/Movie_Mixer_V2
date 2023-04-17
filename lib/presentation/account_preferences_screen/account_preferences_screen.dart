@@ -159,6 +159,21 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                           fontStyle: ButtonFontStyle
                                                               .RobotoRomanMedium20,
                                                           alignment: Alignment
+                                                              .bottomCenter),
+                                                      CustomButton(
+                                                          height:
+                                                              getVerticalSize(
+                                                                  40),
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  150),
+                                                          text:
+                                                              "Change Password",
+                                                          variant: ButtonVariant
+                                                              .OutlineBlack9003f_1,
+                                                          fontStyle: ButtonFontStyle
+                                                              .RobotoRomanMedium20,
+                                                          alignment: Alignment
                                                               .bottomCenter)
                                                     ])))
                                       ])))

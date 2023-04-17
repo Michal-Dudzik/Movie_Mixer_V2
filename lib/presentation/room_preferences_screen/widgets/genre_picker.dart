@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/models/genre_model.dart';
+import 'package:movie_mixer/services/providers.dart';
 
-final List<String> allGenres = [
-  'Action',
-  'Comedy',
-  'Drama',
-  'Horror',
-  'Romance',
-  'Sci-Fi',
-];
+// final List<GenreModel> allGenres = [
+//   GenreModel(tmdbId: 28, name: 'Action'),
+//   GenreModel(tmdbId: 35, name: 'Comedy'),
+//   GenreModel(tmdbId: 18, name: 'Drama'),
+//   GenreModel(tmdbId: 27, name: 'Horror'),
+//   GenreModel(tmdbId: 10749, name: 'Romance'),
+//   GenreModel(tmdbId: 878, name: 'Sci-Fi'),
+// ];
 
 class GenrePicker extends StatefulWidget {
-  final Function(List<String>) onGenresChanged;
+  final Function(List<GenreModel>) onGenresChanged;
 
   GenrePicker({required this.onGenresChanged});
 
@@ -20,13 +22,13 @@ class GenrePicker extends StatefulWidget {
 }
 
 class _GenrePickerState extends State<GenrePicker> {
-  List<String> _selectedGenres = [];
+  List<GenreModel> _selectedGenres = [];
 
-  Future<List<String>> _showGenreModal() async {
+  Future<List<GenreModel>> _showGenreModal() async {
     // List of available genres
-
+    final List<GenreModel> allGenres = await ApiProvider().fetchGenres();
     // Set of selected genres
-    final Set<String> selectedGenres = Set();
+    final Set<GenreModel> selectedGenres = Set();
 
     // Show the genre selection dialog
     return await showDialog(
@@ -42,7 +44,7 @@ class _GenrePickerState extends State<GenrePicker> {
                 child: Column(
                   children: allGenres
                       .map((genre) => CheckboxListTile(
-                            title: Text(genre),
+                            title: Text(genre.name!),
                             value: selectedGenres.contains(genre),
                             onChanged: (bool? value) {
                               if (value != null && value) {
@@ -71,7 +73,7 @@ class _GenrePickerState extends State<GenrePicker> {
     );
   }
 
-  void _handleGenresChanged(List<String> genres) {
+  void _handleGenresChanged(List<GenreModel> genres) {
     setState(() {
       _selectedGenres = genres;
     });
@@ -116,7 +118,7 @@ class _GenrePickerState extends State<GenrePicker> {
                   .map((genre) => GestureDetector(
                         onTap: () {
                           _handleGenresChanged(_selectedGenres
-                              .where((g) => g != genre)
+                              .where((g) => g.dbId != genre.dbId)
                               .toList());
                         },
                         child: Container(
@@ -127,7 +129,7 @@ class _GenrePickerState extends State<GenrePicker> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            genre,
+                            genre.name!,
                             style: AppStyle.txtRobotoRomanRegular12Black900,
                           ),
                         ),
