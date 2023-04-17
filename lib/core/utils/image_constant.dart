@@ -68,4 +68,6 @@ class ImageConstant {
   static String imgProfile = 'assets/images/profile.png';
 
   static String imgDoge = 'assets/images/doge.png';
+
+  static String imgWaiting = 'assets/images/eat-mochi.gif';
 }
