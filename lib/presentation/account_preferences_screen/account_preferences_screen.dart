@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/services/providers.dart';
 
 class AccountPreferencesScreen extends StatefulWidget {
   @override
@@ -8,8 +9,35 @@ class AccountPreferencesScreen extends StatefulWidget {
 }
 
 class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _oldPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+
   bool isNotified = true;
   bool isPremium = false;
+  bool isLogged = true;
+
+  Future<void> _changePassword() async {
+    final String username = _usernameController.text;
+    final String oldPassword = _oldPasswordController.text;
+    final String newPassword = _newPasswordController.text;
+
+    try {
+      await ApiProvider().changePassword(username, oldPassword, newPassword);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Password changed successfully!'),
+        ),
+      );
+      Navigator.pushNamed(context, AppRoutes.loginScreen);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Something went wrong!'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +202,9 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                           fontStyle: ButtonFontStyle
                                                               .RobotoRomanMedium20,
                                                           alignment: Alignment
-                                                              .bottomCenter)
+                                                              .bottomCenter,
+                                                          onTap: () =>
+                                                              _changePassword)
                                                     ])))
                                       ])))
                         ])))));

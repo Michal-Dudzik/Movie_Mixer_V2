@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/core/endpoints.dart';
 import 'package:movie_mixer/models/movie_list_model.dart';
-import 'package:movie_mixer/models/movie_model.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
 import '../../services/providers.dart';
@@ -13,7 +12,7 @@ class AfterSelectionScreen extends StatefulWidget {
   @override
   State<AfterSelectionScreen> createState() => _AfterSelectionScreenState();
   final String roomId;
-  late bool isFinished = false;
+  late bool isFinished = true;
 }
 
 class _AfterSelectionScreenState extends State<AfterSelectionScreen> {
@@ -44,77 +43,79 @@ class _AfterSelectionScreenState extends State<AfterSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isFinished == false) {
-      return Center(
-          child: Stack(
-        children: [
-          Container(
-            width: getHorizontalSize(1000),
-            height: getVerticalSize(500),
-            child: Text("Waiting for other players to finish"),
+    return SafeArea(
+      child: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        backgroundColor: ColorConstant.gray,
+        body: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            color: ColorConstant.gray,
+            image: DecorationImage(
+              image: AssetImage(ImageConstant.imgPagebackground),
+              fit: BoxFit.cover,
+            ),
           ),
-          CircularProgressIndicator(),
-        ],
-      ));
-    } else {
-      return FutureBuilder<MovieListModel?>(
-        future: provider.fetchFinalMovieList(widget.roomId),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final movies = snapshot.data!.movies;
-            return SafeArea(
-              child: Scaffold(
-                extendBody: true,
-                extendBodyBehindAppBar: true,
-                backgroundColor: ColorConstant.gray,
-                body: Container(
-                  width: size.width,
-                  height: size.height,
-                  decoration: BoxDecoration(
-                    color: ColorConstant.gray,
-                    image: DecorationImage(
-                      image: AssetImage(ImageConstant.imgPagebackground),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: double.maxFinite,
-                        padding: getPadding(left: 13, right: 13),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: getVerticalSize(556),
-                              width: getHorizontalSize(334),
-                              child: Stack(
-                                alignment: Alignment.bottomCenter,
+          child: Stack(
+            children: [
+              Container(
+                width: double.maxFinite,
+                padding: getPadding(left: 13, right: 13),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: getVerticalSize(550),
+                      width: getHorizontalSize(330),
+                      child: Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              padding: getPadding(all: 22),
+                              decoration: AppDecoration.purple.copyWith(
+                                borderRadius: BorderRadiusStyle.roundedBorder43,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Container(
-                                      padding: getPadding(all: 22),
-                                      decoration: AppDecoration.purple.copyWith(
-                                        borderRadius:
-                                            BorderRadiusStyle.roundedBorder43,
-                                      ),
+                                  if (widget.isFinished == false) ...[
+                                    Center(
                                       child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "People have spoken",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style:
-                                                AppStyle.txtRobotoRomanBold20,
+                                            "Waiting for others...",
+                                            textAlign: TextAlign.center,
+                                            style: AppStyle
+                                                .txtRobotoRomanRegular25,
                                           ),
-                                          SizedBox(height: 10),
-                                          Expanded(
+                                          Image.asset(
+                                            ImageConstant.imgWaiting,
+                                            height: getVerticalSize(200),
+                                            width: getHorizontalSize(200),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ] else if (widget.isFinished == true) ...[
+                                    Text(
+                                      "People have spoken",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtRobotoRomanBold20,
+                                    ),
+                                    SizedBox(height: 10),
+                                    FutureBuilder<MovieListModel?>(
+                                      future: provider
+                                          .fetchFinalMovieList(widget.roomId),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          final movies = snapshot.data!.movies;
+                                          return Expanded(
                                             child: ListView.builder(
                                               itemCount: movies!.length,
                                               itemBuilder:
@@ -125,96 +126,53 @@ class _AfterSelectionScreenState extends State<AfterSelectionScreen> {
                                                 );
                                               },
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          );
+                                        } else if (snapshot.hasError) {
+                                          return Text(
+                                              'Error loading collections');
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        }
+                                      },
                                     ),
-                                  ),
+                                  ],
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: getPadding(left: 40, right: 40, bottom: 105),
-                          child: SizedBox(
-                            height: getVerticalSize(40),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: CustomButton(
-                                    height: getVerticalSize(40),
-                                    text: "Try Again",
-                                    margin: getMargin(right: 23),
-                                    variant: ButtonVariant.OutlineWhiteA700_1,
-                                    padding: ButtonPadding.PaddingAll12,
-                                    fontStyle: ButtonFontStyle
-                                        .RobotoRomanBold15WhiteA700,
-                                    onTap: () => onTapTryagain(context),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: CustomButton(
-                                    height: getVerticalSize(40),
-                                    text: "Done",
-                                    margin: getMargin(left: 23),
-                                    variant: ButtonVariant.OutlineWhiteA700_2,
-                                    padding: ButtonPadding.PaddingAll12,
-                                    fontStyle: ButtonFontStyle
-                                        .RobotoRomanBold15WhiteA700,
-                                    onTap: () {
-                                      connection.invoke("LeaveRoom",
-                                          args: [widget.roomId]);
-                                      connection.stop();
-                                      onTapDone(context);
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          } else if (snapshot.hasError) {
-            return Text('Error loading collections');
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
-      );
-    }
-  }
-}
-
-onTapTryagain(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Sorry!"),
-        content: Text("This feature is not implemented yet."),
-        actions: [
-          TextButton(
-            child: Text("OK"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+              if (widget.isFinished == true) ...[
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Expanded(
+                    child: CustomButton(
+                      height: getVerticalSize(40),
+                      width: getHorizontalSize(160),
+                      margin: getMargin(bottom: 100),
+                      text: "Awesome!",
+                      variant: ButtonVariant.OutlineWhiteA700_2,
+                      padding: ButtonPadding.PaddingAll12,
+                      fontStyle: ButtonFontStyle.RobotoRomanBold15WhiteA700,
+                      onTap: () {
+                        connection.invoke("LeaveRoom", args: [widget.roomId]);
+                        connection.stop();
+                        Navigator.pushNamed(context, AppRoutes.mainScreen);
+                      },
+                    ),
+                  ),
+                ),
+              ]
+            ],
           ),
-        ],
-      );
-    },
-  );
-}
-
-onTapDone(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.mainScreen);
+        ),
+      ),
+    );
+  }
 }
