@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       try {
-        final String token = await ApiProvider()
+        await ApiProvider()
             .login(_usernameController.text, _passwordController.text);
         // await ApiProvider().setToken(token);
         Navigator.pushReplacementNamed(context, AppRoutes.mainScreen);
