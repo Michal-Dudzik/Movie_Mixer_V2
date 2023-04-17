@@ -124,9 +124,9 @@ class CustomButton extends StatelessWidget {
         return ColorConstant.pink;
       case ButtonVariant.OutlineWhiteA700:
         return ColorConstant.pink;
-      case ButtonVariant.Cyan:
+      case ButtonVariant.CyanWithBorder:
         return ColorConstant.cyan;
-      case ButtonVariant.OutlineBlack9003f:
+      case ButtonVariant.Cyan:
         return ColorConstant.cyan;
       case ButtonVariant.OutlineWhiteA700_1:
         return ColorConstant.pink;
@@ -155,7 +155,7 @@ class CustomButton extends StatelessWidget {
             1.00,
           ),
         );
-      case ButtonVariant.Cyan:
+      case ButtonVariant.CyanWithBorder:
         return BorderSide(
           color: ColorConstant.ghostWhite,
           width: getHorizontalSize(
@@ -187,7 +187,7 @@ class CustomButton extends StatelessWidget {
         return ColorConstant.black25;
       case ButtonVariant.OutlineBlack9003f_1:
         return ColorConstant.black25;
-      case ButtonVariant.OutlineBlack9003f:
+      case ButtonVariant.Cyan:
         return ColorConstant.black25;
       case ButtonVariant.OutlineWhiteA700_1:
         return ColorConstant.black25;
@@ -372,8 +372,8 @@ enum ButtonVariant {
   OutlineWhiteA700_3,
   OutlineBlack9003f_1,
   OutlineWhiteA700,
+  CyanWithBorder,
   Cyan,
-  OutlineBlack9003f,
   OutlineWhiteA700_1,
   OutlineWhiteA700_2,
   Purple,

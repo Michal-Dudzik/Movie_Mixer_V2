@@ -251,8 +251,7 @@ class _WaitingRoomScreenState extends State<WaitingRoomScreen> {
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(248),
                                         text: "Start",
-                                        variant:
-                                            ButtonVariant.OutlineBlack9003f,
+                                        variant: ButtonVariant.Cyan,
                                         fontStyle:
                                             ButtonFontStyle.RobotoRomanMedium20,
                                         onTap: () async {

@@ -37,6 +37,7 @@ class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: false,
       body: FutureBuilder<MovieListModel?>(
         future: provider.fetchStarterMovieList(roomId),
         builder: (context, snapshot) {

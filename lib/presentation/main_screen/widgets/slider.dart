@@ -88,8 +88,7 @@ class ImageCarousel extends StatelessWidget {
                                         height: getVerticalSize(40),
                                         width: getHorizontalSize(248),
                                         text: "Open room",
-                                        variant:
-                                            ButtonVariant.OutlineBlack9003f,
+                                        variant: ButtonVariant.Cyan,
                                         fontStyle:
                                             ButtonFontStyle.RobotoRomanMedium20,
                                         onTap: () async {

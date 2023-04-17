@@ -114,7 +114,7 @@ class _AddTodoPopupCard extends StatelessWidget {
                         height: getVerticalSize(40),
                         width: getHorizontalSize(248),
                         text: "Create new room",
-                        variant: ButtonVariant.OutlineBlack9003f,
+                        variant: ButtonVariant.Cyan,
                         fontStyle: ButtonFontStyle.RobotoRomanMedium20,
                         onTap: () => onRoomCreate(context),
                         alignment: Alignment.bottomCenter)

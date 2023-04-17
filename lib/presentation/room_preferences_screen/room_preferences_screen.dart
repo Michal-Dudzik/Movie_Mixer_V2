@@ -295,8 +295,7 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                         CustomButton(
                                           height: getVerticalSize(40),
                                           text: "Open Room",
-                                          variant:
-                                              ButtonVariant.OutlineBlack9003f,
+                                          variant: ButtonVariant.Cyan,
                                           fontStyle: ButtonFontStyle
                                               .RobotoRomanMedium20,
                                           onTap: () async {

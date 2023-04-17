@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/services/providers.dart';
 
+import 'widgets/change_password.dart';
+
 class AccountPreferencesScreen extends StatefulWidget {
   @override
   _AccountPreferencesScreenState createState() =>
@@ -9,42 +11,15 @@ class AccountPreferencesScreen extends StatefulWidget {
 }
 
 class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _oldPasswordController = TextEditingController();
-  final TextEditingController _newPasswordController = TextEditingController();
-
   bool isNotified = true;
   bool isPremium = false;
   bool isLogged = true;
-
-  Future<void> _changePassword() async {
-    final String username = _usernameController.text;
-    final String oldPassword = _oldPasswordController.text;
-    final String newPassword = _newPasswordController.text;
-
-    try {
-      await ApiProvider().changePassword(username, oldPassword, newPassword);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Password changed successfully!'),
-        ),
-      );
-      Navigator.pushNamed(context, AppRoutes.loginScreen);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Something went wrong!'),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            extendBody: true,
-            extendBodyBehindAppBar: true,
+            resizeToAvoidBottomInset: false,
             backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
@@ -74,7 +49,7 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                           Container(
                               width: double.maxFinite,
                               child: Container(
-                                  width: getHorizontalSize(334),
+                                  height: getVerticalSize(530),
                                   margin: getMargin(top: 97, bottom: 5),
                                   padding: getPadding(all: 22),
                                   decoration: AppDecoration.purple.copyWith(
@@ -96,7 +71,8 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                             alignment: Alignment.center,
                                             child: Padding(
                                                 padding: getPadding(
-                                                    top: 37, bottom: 404),
+                                                  top: 37,
+                                                ),
                                                 child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -180,7 +156,35 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                                   40),
                                                           width:
                                                               getHorizontalSize(
-                                                                  150),
+                                                                  180),
+                                                          text:
+                                                              "Change Password",
+                                                          variant: ButtonVariant
+                                                              .Cyan,
+                                                          fontStyle: ButtonFontStyle
+                                                              .RobotoRomanMedium20,
+                                                          alignment: Alignment
+                                                              .bottomCenter,
+                                                          onTap: () =>
+                                                              showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder: (_) =>
+                                                                    ChangePasswordDialog(
+                                                                        username:
+                                                                            'your_username_here'),
+                                                              )),
+                                                      SizedBox(
+                                                          height:
+                                                              getVerticalSize(
+                                                                  230)),
+                                                      CustomButton(
+                                                          height:
+                                                              getVerticalSize(
+                                                                  40),
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  180),
                                                           text: "Log out",
                                                           variant: ButtonVariant
                                                               .OutlineBlack9003f_1,
@@ -188,23 +192,6 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                               .RobotoRomanMedium20,
                                                           alignment: Alignment
                                                               .bottomCenter),
-                                                      CustomButton(
-                                                          height:
-                                                              getVerticalSize(
-                                                                  40),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  150),
-                                                          text:
-                                                              "Change Password",
-                                                          variant: ButtonVariant
-                                                              .OutlineBlack9003f_1,
-                                                          fontStyle: ButtonFontStyle
-                                                              .RobotoRomanMedium20,
-                                                          alignment: Alignment
-                                                              .bottomCenter,
-                                                          onTap: () =>
-                                                              _changePassword)
                                                     ])))
                                       ])))
                         ])))));
