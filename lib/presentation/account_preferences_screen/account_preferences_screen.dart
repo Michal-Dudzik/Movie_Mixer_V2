@@ -170,9 +170,7 @@ class _AccountPreferencesScreenState extends State<AccountPreferencesScreen> {
                                                                 context:
                                                                     context,
                                                                 builder: (_) =>
-                                                                    ChangePasswordDialog(
-                                                                        username:
-                                                                            'your_username_here'),
+                                                                    ChangePasswordDialog(),
                                                               )),
                                                       SizedBox(
                                                           height:

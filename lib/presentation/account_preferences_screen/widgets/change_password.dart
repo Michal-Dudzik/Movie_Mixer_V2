@@ -3,10 +3,9 @@ import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/services/providers.dart';
 
 class ChangePasswordDialog extends StatefulWidget {
-  final String username;
-
-  const ChangePasswordDialog({Key? key, required this.username})
-      : super(key: key);
+  const ChangePasswordDialog({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ChangePasswordDialogState createState() => _ChangePasswordDialogState();

@@ -191,14 +191,38 @@ class _LoginScreenState extends State<LoginScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    CustomButton(
-                                        height: getVerticalSize(40),
-                                        text: "Sign in",
-                                        variant:
-                                            ButtonVariant.OutlineBlack9003f_2,
-                                        fontStyle: ButtonFontStyle
-                                            .RobotoRomanRegular18,
-                                        onTap: () => _login()),
+                                    SizedBox(
+                                      height: getVerticalSize(40),
+                                      width: getHorizontalSize(260),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              ColorConstant.ghostWhite,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                        ),
+                                        onPressed: _isLoading ? null : _login,
+                                        child: _isLoading
+                                            ? Container(
+                                                height: 20,
+                                                width: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: ColorConstant.cyan,
+                                                  strokeWidth: 3,
+                                                ),
+                                              )
+                                            : Text(
+                                                'Sign in',
+                                                style: TextStyle(
+                                                    fontFamily: 'Roboto',
+                                                    fontSize: 18,
+                                                    color: ColorConstant.black),
+                                              ),
+                                      ),
+                                    ),
                                     SizedBox(
                                       height: getVerticalSize(10),
                                     ),

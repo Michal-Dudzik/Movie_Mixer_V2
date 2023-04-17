@@ -78,7 +78,7 @@ class _MovieScreenState extends State<MovieScreen> {
                             style: AppStyle.txtRobotoRomanRegular25,
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
