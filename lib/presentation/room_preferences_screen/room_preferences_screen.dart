@@ -14,7 +14,7 @@ class RoomPreferencesScreen extends StatefulWidget {
 
 class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   int _selectedValue = 10;
-  bool isMovie = true;
+  bool _isMovie = true;
   List<int> _selectedGenres = [];
   ApiProvider provider = new ApiProvider();
   String roomId = "";
@@ -29,8 +29,6 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            extendBody: true,
-            extendBodyBehindAppBar: true,
             backgroundColor: ColorConstant.gray,
             body: Container(
                 width: size.width,
@@ -47,7 +45,6 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomImageView(
                               svgPath: ImageConstant.imgArrowBack,
@@ -61,8 +58,7 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                               height: getVerticalSize(577),
                               width: getHorizontalSize(334),
                               margin: getMargin(top: 76, bottom: 5),
-                              child:
-                                  Stack(alignment: Alignment.center, children: [
+                              child: Stack(children: [
                                 Align(
                                     alignment: Alignment.center,
                                     child: Container(
@@ -285,12 +281,16 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                             ]))),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 43, vertical: 12),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 43),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        CheckboxWidget(),
+                                        CheckboxWidget(
+                                          onCheckboxChanged: (value) {
+                                            _isMovie = value;
+                                          },
+                                        ),
                                         Spacer(),
                                         CustomButton(
                                           height: getVerticalSize(40),
@@ -302,7 +302,7 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                             roomId = await provider
                                                 .createRoomDiscover(
                                                     _selectedGenres,
-                                                    isMovie,
+                                                    _isMovie,
                                                     _selectedValue);
                                             Navigator.push(
                                                 context,

@@ -3,15 +3,6 @@ import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/models/genre_model.dart';
 import 'package:movie_mixer/services/providers.dart';
 
-// final List<GenreModel> allGenres = [
-//   GenreModel(tmdbId: 28, name: 'Action'),
-//   GenreModel(tmdbId: 35, name: 'Comedy'),
-//   GenreModel(tmdbId: 18, name: 'Drama'),
-//   GenreModel(tmdbId: 27, name: 'Horror'),
-//   GenreModel(tmdbId: 10749, name: 'Romance'),
-//   GenreModel(tmdbId: 878, name: 'Sci-Fi'),
-// ];
-
 class GenrePicker extends StatefulWidget {
   final Function(List<GenreModel>) onGenresChanged;
 
@@ -24,13 +15,14 @@ class GenrePicker extends StatefulWidget {
 class _GenrePickerState extends State<GenrePicker> {
   List<GenreModel> _selectedGenres = [];
 
+  Future<List<GenreModel>> _fetchGenres() async {
+    return ApiProvider().fetchGenres();
+  }
+
   Future<List<GenreModel>> _showGenreModal() async {
-    // List of available genres
-    final List<GenreModel> allGenres = await ApiProvider().fetchGenres();
-    // Set of selected genres
+    final List<GenreModel> allGenres = await _fetchGenres();
     final Set<GenreModel> selectedGenres = Set();
 
-    // Show the genre selection dialog
     return await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -108,16 +100,37 @@ class _GenrePickerState extends State<GenrePicker> {
             ],
           ),
         ),
-        if (_selectedGenres.isNotEmpty)
-          Padding(
+        FutureBuilder<List<GenreModel>>(
+          future: _fetchGenres(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              return _buildSelectedGenres(_selectedGenres);
+            } else if (snapshot.hasError) {
+              return Text('Error loading genres.');
+            } else {
+              return Container();
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSelectedGenres(List<GenreModel> selectedGenres) {
+    return selectedGenres.isNotEmpty
+        ? Padding(
             padding: EdgeInsets.only(top: 8),
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: _selectedGenres
+              children: selectedGenres
                   .map((genre) => GestureDetector(
                         onTap: () {
-                          _handleGenresChanged(_selectedGenres
+                          _handleGenresChanged(selectedGenres
                               .where((g) => g.dbId != genre.dbId)
                               .toList());
                         },
@@ -136,8 +149,7 @@ class _GenrePickerState extends State<GenrePicker> {
                       ))
                   .toList(),
             ),
-          ),
-      ],
-    );
+          )
+        : Container();
   }
 }

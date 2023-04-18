@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
 
 class CheckboxWidget extends StatefulWidget {
+  final ValueChanged<bool> onCheckboxChanged;
+
+  CheckboxWidget({required this.onCheckboxChanged});
+
   @override
   _CheckboxWidgetState createState() => _CheckboxWidgetState();
 }
@@ -21,6 +25,7 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
               setState(() {
                 _isMovieSelected = true;
                 _isTvSelected = false;
+                widget.onCheckboxChanged(_isMovieSelected);
               });
             },
             child: Container(
@@ -50,6 +55,7 @@ class _CheckboxWidgetState extends State<CheckboxWidget> {
               setState(() {
                 _isMovieSelected = false;
                 _isTvSelected = true;
+                widget.onCheckboxChanged(_isMovieSelected);
               });
             },
             child: Container(

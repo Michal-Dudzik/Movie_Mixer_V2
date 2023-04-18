@@ -169,12 +169,9 @@ class _WaitingRoomScreenState extends State<WaitingRoomScreen> {
                                                                             return Stack(alignment: Alignment.topCenter, children: [
                                                                               Align(
                                                                                 alignment: Alignment.bottomRight,
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsets.only(right: 23),
-                                                                                  child: Text(
-                                                                                    "$_currentUserNumber",
-                                                                                    style: AppStyle.txtRobotoRomanRegular40,
-                                                                                  ),
+                                                                                child: Text(
+                                                                                  "$_currentUserNumber",
+                                                                                  style: AppStyle.txtRobotoRomanRegular40,
                                                                                 ),
                                                                               ),
                                                                               Align(
