@@ -12,7 +12,7 @@ class AfterSelectionScreen extends StatefulWidget {
   @override
   State<AfterSelectionScreen> createState() => _AfterSelectionScreenState();
   final String roomId;
-  late bool isFinished = true;
+  late bool isFinished = false;
 }
 
 class _AfterSelectionScreenState extends State<AfterSelectionScreen> {
