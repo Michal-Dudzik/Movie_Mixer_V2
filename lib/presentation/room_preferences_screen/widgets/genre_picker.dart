@@ -20,7 +20,6 @@ class _GenrePickerState extends State<GenrePicker> {
   }
 
   Future<List<GenreModel>> _showGenreModal() async {
-    final List<GenreModel> allGenres = await _fetchGenres();
     final Set<GenreModel> selectedGenres = Set();
 
     return await showDialog(
@@ -28,36 +27,53 @@ class _GenrePickerState extends State<GenrePicker> {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(43))),
-              title: Text('Select Genres'),
-              content: SingleChildScrollView(
-                child: Column(
-                  children: allGenres
-                      .map((genre) => CheckboxListTile(
-                            title: Text(genre.name!),
-                            value: selectedGenres.contains(genre),
-                            onChanged: (bool? value) {
-                              if (value != null && value) {
-                                selectedGenres.add(genre);
-                              } else {
-                                selectedGenres.remove(genre);
-                              }
-                              setState(() {});
-                            },
-                          ))
-                      .toList(),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, selectedGenres.toList());
-                  },
-                  child: Text('OK'),
-                ),
-              ],
+            return FutureBuilder<List<GenreModel>>(
+              future: _fetchGenres(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final allGenres = snapshot.data!;
+
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(43))),
+                    title: Text('Select Genres'),
+                    content: SingleChildScrollView(
+                      child: Column(
+                        children: allGenres
+                            .map((genre) => CheckboxListTile(
+                                  title: Text(genre.name!),
+                                  value: selectedGenres.contains(genre),
+                                  onChanged: (bool? value) {
+                                    if (value != null && value) {
+                                      selectedGenres.add(genre);
+                                    } else {
+                                      selectedGenres.remove(genre);
+                                    }
+                                    setState(() {});
+                                  },
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, selectedGenres.toList());
+                        },
+                        child: Text('OK'),
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
             );
           },
         );
@@ -100,22 +116,7 @@ class _GenrePickerState extends State<GenrePicker> {
             ],
           ),
         ),
-        FutureBuilder<List<GenreModel>>(
-          future: _fetchGenres(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasData) {
-              return _buildSelectedGenres(_selectedGenres);
-            } else if (snapshot.hasError) {
-              return Text('Error loading genres.');
-            } else {
-              return Container();
-            }
-          },
-        ),
+        _buildSelectedGenres(_selectedGenres)
       ],
     );
   }

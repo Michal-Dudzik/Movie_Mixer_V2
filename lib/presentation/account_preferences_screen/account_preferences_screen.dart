@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/services/providers.dart';
 
 import 'widgets/change_password.dart';
 
