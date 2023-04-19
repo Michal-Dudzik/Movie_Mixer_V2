@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Movie Mixer',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.roomPreferencesScreen,
+      initialRoute: AppRoutes.loginScreen,
       routes: AppRoutes.routes,
     );
   }

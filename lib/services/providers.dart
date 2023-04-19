@@ -288,10 +288,17 @@ class ApiProvider {
         headers: {'Authorization': 'Bearer $token'});
 
     if (response.statusCode == 200) {
-      final List<dynamic> responseBody = json.decode(response.body);
-      final List<GenreModel> genres =
-          responseBody.map((e) => GenreModel.fromJson(e)).toList();
-      return genres;
+      final Map<String, dynamic>? responseBody = json.decode(response.body);
+      final List<dynamic>? genresList = responseBody?['value'];
+
+      if (genresList != null) {
+        final List<GenreModel> genres = genresList
+            .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return genres;
+      } else {
+        throw Exception('No genres found');
+      }
     } else {
       throw Exception('Failed to fetch genres');
     }

@@ -19,10 +19,10 @@ class _GenrePickerState extends State<GenrePicker> {
     return ApiProvider().fetchGenres();
   }
 
-  Future<void> _showGenreModal() async {
+  Future<List<GenreModel>> _showGenreModal() async {
     final Set<GenreModel> selectedGenres = Set();
 
-    await showDialog(
+    return await showDialog(
       context: context,
       builder: (BuildContext context) {
         return StatefulBuilder(
@@ -58,8 +58,7 @@ class _GenrePickerState extends State<GenrePicker> {
                     actions: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
-                          widget.onGenresChanged(selectedGenres.toList());
+                          Navigator.pop(context, selectedGenres.toList());
                         },
                         child: Text('OK'),
                       ),
@@ -103,21 +102,21 @@ class _GenrePickerState extends State<GenrePicker> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Preferred genres",
-                textAlign: TextAlign.left,
-                style: AppStyle.txtRobotoRegular20,
-              ),
+              Text("Preferred genres",
+                  textAlign: TextAlign.left,
+                  style: AppStyle.txtRobotoRegular20),
               IconButton(
-                icon: const Icon(Icons.add_circle_outline_rounded),
-                color: ColorConstant.cyan,
-                iconSize: 40,
-                onPressed: _showGenreModal,
-              ),
+                  icon: const Icon(Icons.add_circle_outline_rounded),
+                  color: ColorConstant.cyan,
+                  iconSize: 40,
+                  onPressed: () async {
+                    final selectedGenres = await _showGenreModal();
+                    _handleGenresChanged(selectedGenres);
+                  }),
             ],
           ),
         ),
-        _buildSelectedGenres(_selectedGenres),
+        _buildSelectedGenres(_selectedGenres)
       ],
     );
   }

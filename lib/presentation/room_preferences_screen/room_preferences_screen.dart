@@ -1,8 +1,6 @@
-// import 'package:flutter/cupertino.dart';
-// ignore_for_file: unused_field, unused_element
-
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/models/genre_model.dart';
 
 import '../../services/providers.dart';
 import '../waiting_room_screen/waiting_room_screen.dart';
