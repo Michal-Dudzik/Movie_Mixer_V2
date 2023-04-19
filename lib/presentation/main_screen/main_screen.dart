@@ -306,6 +306,7 @@ class _MainScreenState extends State<MainScreen> {
                                 )
                               ]))),
                   GestureDetector(
+                    // ignore: deprecated_member_use
                     onTap: () => launch('https://raidshadowlegends.com/'),
                     child: Container(
                       height: getVerticalSize(80),

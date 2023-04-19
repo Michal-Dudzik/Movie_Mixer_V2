@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/core/endpoints.dart';
+// import 'package:movie_mixer/core/endpoints.dart';
 import 'package:movie_mixer/presentation/waiting_room_screen/waiting_room_screen.dart';
 import 'package:movie_mixer/services/providers.dart';
-import 'package:signalr_netcore/signalr_client.dart';
+// import 'package:signalr_netcore/signalr_client.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> imagePaths;
@@ -31,7 +31,7 @@ class ImageCarousel extends StatelessWidget {
     final itemHeight = itemWidth * 1.5;
     late String roomId;
     ApiProvider provider = new ApiProvider();
-    final connection = HubConnectionBuilder().withUrl(Endpoints.Socket).build();
+    // final connection = HubConnectionBuilder().withUrl(Endpoints.Socket).build();
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),

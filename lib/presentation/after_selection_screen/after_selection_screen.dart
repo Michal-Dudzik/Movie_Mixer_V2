@@ -6,6 +6,7 @@ import 'package:signalr_netcore/signalr_client.dart';
 
 import '../../services/providers.dart';
 
+// ignore: must_be_immutable
 class AfterSelectionScreen extends StatefulWidget {
   AfterSelectionScreen({Key? key, required this.roomId}) : super(key: key);
 

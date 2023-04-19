@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
-import 'package:movie_mixer/models/genre_model.dart';
-
 import '../../services/providers.dart';
 import '../waiting_room_screen/waiting_room_screen.dart';
 
@@ -17,11 +15,11 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   ApiProvider provider = new ApiProvider();
   String roomId = "";
 
-  void _onGenresChanged(List<int> genres) {
-    setState(() {
-      _selectedGenres = genres;
-    });
-  }
+  // void _onGenresChanged(List<int> genres) {
+  //   setState(() {
+  //     _selectedGenres = genres;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
