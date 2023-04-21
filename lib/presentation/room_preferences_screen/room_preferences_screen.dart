@@ -15,11 +15,11 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   ApiProvider provider = new ApiProvider();
   String roomId = "";
 
-  // void _onGenresChanged(List<int> genres) {
-  //   setState(() {
-  //     _selectedGenres = genres;
-  //   });
-  // }
+  void _onGenresChanged(List<int> genres) {
+    setState(() {
+      _selectedGenres = genres;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

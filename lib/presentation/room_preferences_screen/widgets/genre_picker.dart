@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/models/genre_model.dart';
 import 'package:movie_mixer/services/providers.dart';
@@ -34,14 +35,37 @@ class _GenrePickerState extends State<GenrePicker> {
                   final allGenres = snapshot.data!;
 
                   return AlertDialog(
+                    backgroundColor: ColorConstant.purple,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(43))),
-                    title: Text('Select Genres'),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        children: allGenres
-                            .map((genre) => CheckboxListTile(
-                                  title: Text(genre.name!),
+                      borderRadius: BorderRadius.all(Radius.circular(43)),
+                      side: BorderSide(
+                        width: 1,
+                        color: ColorConstant.ghostWhite,
+                      ),
+                    ),
+                    title: Text(
+                      'Select Genres',
+                      style: TextStyle(
+                        color: ColorConstant.ghostWhite,
+                        fontFamily: 'Roboto',
+                        fontSize: 25,
+                      ),
+                    ),
+                    content: Container(
+                      height: 350,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: allGenres
+                              .map(
+                                (genre) => CheckboxListTile(
+                                  title: Text(
+                                    genre.name!,
+                                    style: TextStyle(
+                                      color: ColorConstant.ghostWhite,
+                                      fontFamily: 'Roboto',
+                                      fontSize: 25,
+                                    ),
+                                  ),
                                   value: selectedGenres.contains(genre),
                                   onChanged: (bool? value) {
                                     if (value != null && value) {
@@ -49,10 +73,14 @@ class _GenrePickerState extends State<GenrePicker> {
                                     } else {
                                       selectedGenres.remove(genre);
                                     }
-                                    setState(() {});
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback(
+                                            (_) => setState(() {}));
                                   },
-                                ))
-                            .toList(),
+                                ),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ),
                     actions: [
@@ -60,13 +88,27 @@ class _GenrePickerState extends State<GenrePicker> {
                         onPressed: () {
                           Navigator.pop(context, selectedGenres.toList());
                         },
-                        child: Text('OK'),
+                        child: Text(
+                          'OK',
+                          style: TextStyle(
+                            color: ColorConstant.ghostWhite,
+                            fontFamily: 'Roboto',
+                            fontSize: 25,
+                          ),
+                        ),
                       ),
                     ],
                   );
                 } else if (snapshot.hasError) {
                   return Center(
-                    child: Text('Error: ${snapshot.error}'),
+                    child: Text(
+                      'Error: ${snapshot.error}',
+                      style: TextStyle(
+                        color: ColorConstant.ghostWhite,
+                        fontFamily: 'Roboto',
+                        fontSize: 25,
+                      ),
+                    ),
                   );
                 } else {
                   return Center(
@@ -85,7 +127,6 @@ class _GenrePickerState extends State<GenrePicker> {
     setState(() {
       _selectedGenres = genres;
     });
-    widget.onGenresChanged(genres);
   }
 
   @override

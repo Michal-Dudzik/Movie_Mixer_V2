@@ -17,7 +17,7 @@ class NumberPicker extends StatelessWidget {
         looping: false,
         squeeze: 1,
         children: List<Widget>.generate(31, (int index) {
-          final value = index + 10;
+          final value = index + 10; // fixed here
           final isSelected = (value == selectedValue);
           final color =
               isSelected ? ColorConstant.cyan : ColorConstant.ghostWhite;
