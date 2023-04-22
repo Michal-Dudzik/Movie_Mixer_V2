@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:movie_mixer/core/app_export.dart';
 import 'package:movie_mixer/models/genre_model.dart';
 import 'package:movie_mixer/services/providers.dart';
@@ -73,9 +72,6 @@ class _GenrePickerState extends State<GenrePicker> {
                                     } else {
                                       selectedGenres.remove(genre);
                                     }
-                                    SchedulerBinding.instance
-                                        .addPostFrameCallback(
-                                            (_) => setState(() {}));
                                   },
                                 ),
                               )
@@ -127,6 +123,9 @@ class _GenrePickerState extends State<GenrePicker> {
     setState(() {
       _selectedGenres = genres;
     });
+
+    widget
+        .onGenresChanged(genres); // Pass selected genres list to parent widget
   }
 
   @override

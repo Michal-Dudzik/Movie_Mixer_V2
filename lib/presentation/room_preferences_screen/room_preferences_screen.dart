@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mixer/core/app_export.dart';
+import 'package:movie_mixer/models/genre_model.dart';
 import '../../services/providers.dart';
 import '../waiting_room_screen/waiting_room_screen.dart';
 
@@ -11,13 +12,16 @@ class RoomPreferencesScreen extends StatefulWidget {
 class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
   int _selectedValue = 10;
   bool _isMovie = true;
-  List<int> _selectedGenres = [];
+  List<GenreModel> _selectedGenres = [];
+  List<int> _selectedGenresIds = [];
   ApiProvider provider = new ApiProvider();
   String roomId = "";
 
-  void _onGenresChanged(List<int> genres) {
+  void _handleGenresChanged(List<GenreModel> genres) {
     setState(() {
       _selectedGenres = genres;
+      _selectedGenresIds =
+          _selectedGenres.map((genre) => genre.tmdbId!).toList();
     });
   }
 
@@ -73,22 +77,9 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              SingleChildScrollView(
-                                                padding: EdgeInsets.all(16),
-                                                child: Column(
-                                                  children: [
-                                                    GenrePicker(
-                                                      onGenresChanged:
-                                                          (selectedGenres) {
-                                                        setState(() {
-                                                          _selectedGenres =
-                                                              selectedGenres
-                                                                  .cast<int>();
-                                                        });
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
+                                              GenrePicker(
+                                                onGenresChanged:
+                                                    _handleGenresChanged,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -297,7 +288,7 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                           onTap: () async {
                                             roomId = await provider
                                                 .createRoomDiscover(
-                                                    _selectedGenres,
+                                                    _selectedGenresIds,
                                                     _isMovie,
                                                     _selectedValue);
                                             Navigator.push(
