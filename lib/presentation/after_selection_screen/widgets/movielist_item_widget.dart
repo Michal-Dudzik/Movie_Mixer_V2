@@ -43,8 +43,7 @@ class MovieListItemWidget extends StatelessWidget {
                 SizedBox(width: getHorizontalSize(10)),
                 Expanded(
                   child: Container(
-                    height:
-                        itemHeight, // set height of container to match the parent SizedBox
+                    height: itemHeight,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -60,8 +59,7 @@ class MovieListItemWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-            height: 10), // add a gap of 10 between MovieListItemWidget widgets
+        SizedBox(height: 10),
       ],
     );
   }

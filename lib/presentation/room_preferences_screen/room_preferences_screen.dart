@@ -55,8 +55,8 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                 Navigator.of(context).pop();
                               }),
                           Container(
-                              height: getVerticalSize(577),
-                              width: getHorizontalSize(334),
+                              height: getVerticalSize(580),
+                              width: getHorizontalSize(335),
                               margin: getMargin(top: 76, bottom: 5),
                               child: Stack(children: [
                                 Align(
@@ -64,10 +64,9 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                     child: Container(
                                         height: 536,
                                         padding: getPadding(
-                                            left: 43,
-                                            top: 49,
-                                            right: 43,
-                                            bottom: 49),
+                                          left: 43,
+                                          right: 43,
+                                        ),
                                         decoration: AppDecoration.purple
                                             .copyWith(
                                                 borderRadius: BorderRadiusStyle
@@ -77,6 +76,11 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              CheckboxWidget(
+                                                onCheckboxChanged: (value) {
+                                                  _isMovie = value;
+                                                },
+                                              ),
                                               GenrePicker(
                                                 onGenresChanged:
                                                     _handleGenresChanged,
@@ -220,8 +224,6 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                                         );
                                                       },
                                                     );
-
-                                                    // }
                                                   },
                                                   child: Padding(
                                                       padding: getPadding(
@@ -264,47 +266,30 @@ class _RoomPreferencesScreenState extends State<RoomPreferencesScreen> {
                                                                             .left,
                                                                     style: AppStyle
                                                                         .txtRobotoRomanBold20)),
-                                                          ])))
+                                                          ]))),
+                                              CustomButton(
+                                                height: getVerticalSize(40),
+                                                text: "Open Room",
+                                                variant: ButtonVariant.Cyan,
+                                                fontStyle: ButtonFontStyle
+                                                    .RobotoRomanMedium20,
+                                                onTap: () async {
+                                                  roomId = await provider
+                                                      .createRoomDiscover(
+                                                          _selectedGenresIds,
+                                                          _isMovie,
+                                                          _selectedValue);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WaitingRoomScreen(
+                                                                roomId: roomId,
+                                                                isHost: true,
+                                                              )));
+                                                },
+                                              ),
                                             ]))),
-                                Center(
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 43),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        CheckboxWidget(
-                                          onCheckboxChanged: (value) {
-                                            _isMovie = value;
-                                          },
-                                        ),
-                                        Spacer(),
-                                        CustomButton(
-                                          height: getVerticalSize(40),
-                                          text: "Open Room",
-                                          variant: ButtonVariant.Cyan,
-                                          fontStyle: ButtonFontStyle
-                                              .RobotoRomanMedium20,
-                                          onTap: () async {
-                                            roomId = await provider
-                                                .createRoomDiscover(
-                                                    _selectedGenresIds,
-                                                    _isMovie,
-                                                    _selectedValue);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        WaitingRoomScreen(
-                                                          roomId: roomId,
-                                                          isHost: true,
-                                                        )));
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
                               ])),
                         ])))));
   }

@@ -25,7 +25,7 @@ void main() {
     testWidgets('should display movie title and poster', (tester) async {
       final movie =
           MovieModel(title: 'Test Movie', posterPath: '/test_poster.jpg');
-      final imageBytes = Uint8List.fromList([0, 1, 2, 3]); // mock image bytes
+      final imageBytes = Uint8List.fromList([0, 1, 2, 3]);
 
       when(client.get(
               Uri.parse('https://image.tmdb.org/t/p/w500${movie.posterPath}')))

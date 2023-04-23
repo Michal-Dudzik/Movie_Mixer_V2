@@ -21,13 +21,18 @@ void main() {
       final collections = [collection1, collection2];
 
       await tester.pumpWidget(
-        ImageCarousel(
-          collectionId: collections.map((c) => c.id!).toList(),
-          imagePaths: collections.map((c) => c.imagePath!).toList(),
-          title: collections.map((c) => c.title!).toList(),
-          description: collections.map((c) => c.description!).toList(),
-          scrollDirection: Axis.horizontal,
-          itemsVisible: 2,
+        MaterialApp(
+          home: MediaQuery(
+            data: MediaQueryData(),
+            child: ImageCarousel(
+              collectionId: collections.map((c) => c.id!).toList(),
+              imagePaths: collections.map((c) => c.imagePath!).toList(),
+              title: collections.map((c) => c.title!).toList(),
+              description: collections.map((c) => c.description!).toList(),
+              scrollDirection: Axis.horizontal,
+              itemsVisible: 2,
+            ),
+          ),
         ),
       );
 

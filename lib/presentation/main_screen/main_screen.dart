@@ -210,27 +210,23 @@ class _MainScreenState extends State<MainScreen> {
                                                                           data);
 
                                                               if (!success) {
-                                                                showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (BuildContext
-                                                                          context) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          "Failed To Join Room"),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          child:
-                                                                              Text("OK"),
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator.of(context).pop();
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content: Text(
+                                                                        "Failed To Join Room"),
+                                                                    action:
+                                                                        SnackBarAction(
+                                                                      label:
+                                                                          "OK",
+                                                                      onPressed:
+                                                                          () {
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .hideCurrentSnackBar();
+                                                                      },
+                                                                    ),
+                                                                  ),
                                                                 );
                                                               } else {
                                                                 Navigator.push(

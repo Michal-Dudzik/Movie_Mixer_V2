@@ -34,7 +34,7 @@ class AppStyle {
     fontSize: getFontSize(
       15,
     ),
-    fontFamily: 'Lemon Tuesday',
+    fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
 
@@ -52,7 +52,7 @@ class AppStyle {
     fontSize: getFontSize(
       30,
     ),
-    fontFamily: 'Lemon Tuesday',
+    fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
 
@@ -142,7 +142,7 @@ class AppStyle {
     fontSize: getFontSize(
       20,
     ),
-    fontFamily: 'Lemon Tuesday',
+    fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
   );
 
