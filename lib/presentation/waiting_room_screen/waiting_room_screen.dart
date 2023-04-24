@@ -174,7 +174,7 @@ class _WaitingRoomScreenState extends State<WaitingRoomScreen> {
                                                                                             Align(
                                                                                                 alignment: Alignment.bottomRight,
                                                                                                 child: Container(
-                                                                                                  width: getHorizontalSize(65),
+                                                                                                  width: getHorizontalSize(70),
                                                                                                   child: Text(
                                                                                                     "$_currentUserNumber",
                                                                                                     style: AppStyle.txtRobotoRomanRegular40,
